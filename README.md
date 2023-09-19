@@ -9,7 +9,7 @@ A. To learn. And since it uses Lua, perhaps a port to other devices, such as PC.
 <br>
 A. Rock Revolution is a music video game developed by Zoë Mode and HB Studios and published by Konami. The game was released on 15 October 2008 for the Nintendo DS, PlayStation 3, Wii and Xbox 360. (Wikipedia)
 <br>
-<b>Q. Whats a "RRmod"</b>
+<b>Q. Whats a "RRmod"?</b>
 <br>
 A. RR is short for "Rock Revolution. The "mod" part is there to match my other project, [WoRmod](https://github.com/JamesIsWack/WoRmod).
 <br>
