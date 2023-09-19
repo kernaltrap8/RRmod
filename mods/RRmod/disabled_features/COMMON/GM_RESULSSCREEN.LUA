@@ -4,8 +4,7 @@
 GM_ResultsScreen = {}
 
 -- Use a proxy name for a consistent look across files
-local gm = GM_ResultsScreen [
-    [
+local gm = GM_ResultsScreen 
 gm.SongNamePos = {-0.35, -0.4}
 gm.SongNameSize = {0.7, 0.1}
 gm.SongNameColour = {1.0, 1.0, 1.0, 1.0}
@@ -173,5 +172,4 @@ gm.EntryScoreFormat[5] = TextFormat.kRightAlign + TextFormat.kCentreYAlign
 gm.EntryScoreScale[5] = 1.0
 gm.EntryScoreTypefaceId[5] = DrumFont.kInGame
 gm.EntryScoreSizeInPts[5] = 30
-    ]
-]
+
