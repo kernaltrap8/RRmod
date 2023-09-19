@@ -26,4 +26,4 @@ A. `Lua 5.0.3` if IDA isn't lying.
 A. Im a software developer, noob reverse engineer, and game modder. My primary focus in game modding and RE is to learn, and to create (hopefully) useful mods for old games. I mostly focus on Playstation 3 releases and rhythm games.
 <br>
 # Project announcements
-(19/9/2023): Project start date, Lua/XML/INI files are sorted from a game dump, files to be analyzed.
+(19/9/2023): Project start date, Lua/XML/INI files are sorted from a game dump, files to be analyzed. | First mod released, [Unlock all e2a55f2](https://github.com/JamesIsWack/RRmod/commit/e2a55f2fc93c35b3a452f8a09d58e9e62aec395f)
