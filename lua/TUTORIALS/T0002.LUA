@@ -1,0 +1,3 @@
+-- DRUMS -- INTERMEDIATE --
+
+KitId = 1004

@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Collada-SceneDataContainer xmlns:d="http://www.kuju.com/TnT/2003/Delta" d:version="1.0" d:id="1222176">
+	<LightSourceData/>
+	<GeometryData>
+		<Collada-GeometryData d:id="171424072">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 13.177000 13.286000 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5001_marker_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5001</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171424280">
+					<Name d:type="cDeltaString">h0001_5001_marker_p2_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 15.901000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171424648">
+					<Name d:type="cDeltaString">h0001_5001_marker_p2_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 18.670000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171424768">
+					<Name d:type="cDeltaString">h0001_5001_marker_p2_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 21.403000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171424888">
+					<Name d:type="cDeltaString">h0001_5001_marker_p2_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 24.159000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171425008">
+					<Name d:type="cDeltaString">h0001_5078_hammerOnPullOff_p2_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 13.177000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171425128">
+					<Name d:type="cDeltaString">h0001_5078_hammerOnPullOff_p2_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 15.901000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171425248">
+					<Name d:type="cDeltaString">h0001_5078_hammerOnPullOff_p2_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 18.670000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171425368">
+					<Name d:type="cDeltaString">h0001_5078_hammerOnPullOff_p2_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 21.403000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171425488">
+					<Name d:type="cDeltaString">h0001_5078_hammerOnPullOff_p2_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 24.159000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171437664">
+					<Name d:type="cDeltaString">h0001_5001_marker_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -23.823000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171437784">
+					<Name d:type="cDeltaString">h0001_5001_marker_p1_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -21.099001 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171437904">
+					<Name d:type="cDeltaString">h0001_5001_marker_p1_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -18.330000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171438024">
+					<Name d:type="cDeltaString">h0001_5001_marker_p1_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -15.597000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171438144">
+					<Name d:type="cDeltaString">h0001_5001_marker_p1_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -12.841000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171438264">
+					<Name d:type="cDeltaString">h0001_5078_hammerOnPullOff_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -23.823000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171438384">
+					<Name d:type="cDeltaString">h0001_5078_hammerOnPullOff_p1_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -21.099001 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171438504">
+					<Name d:type="cDeltaString">h0001_5078_hammerOnPullOff_p1_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -18.330000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171438624">
+					<Name d:type="cDeltaString">h0001_5078_hammerOnPullOff_p1_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -15.597000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171438744">
+					<Name d:type="cDeltaString">h0001_5078_hammerOnPullOff_p1_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -12.841000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171417624">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 13.177000 13.286000 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5002_fillBottom_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5002</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171417832">
+					<Name d:type="cDeltaString">h0001_5002_fillBottom_p2_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 15.901000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171418200">
+					<Name d:type="cDeltaString">h0001_5002_fillBottom_p2_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 18.670000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171418320">
+					<Name d:type="cDeltaString">h0001_5002_fillBottom_p2_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 21.403000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171418440">
+					<Name d:type="cDeltaString">h0001_5002_fillBottom_p2_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 24.159000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171431056">
+					<Name d:type="cDeltaString">h0001_5002_fillBottom_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -23.823000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171431176">
+					<Name d:type="cDeltaString">h0001_5002_fillBottom_p1_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -21.099001 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171431296">
+					<Name d:type="cDeltaString">h0001_5002_fillBottom_p1_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -18.330000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171431416">
+					<Name d:type="cDeltaString">h0001_5002_fillBottom_p1_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -15.597000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171431536">
+					<Name d:type="cDeltaString">h0001_5002_fillBottom_p1_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -12.841000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171418560">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 13.177000 13.286000 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5003_fillMiddle_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5003</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171418768">
+					<Name d:type="cDeltaString">h0001_5003_fillMiddle_p2_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 15.901000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171419136">
+					<Name d:type="cDeltaString">h0001_5003_fillMiddle_p2_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 18.670000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171419256">
+					<Name d:type="cDeltaString">h0001_5003_fillMiddle_p2_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 21.403000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171419376">
+					<Name d:type="cDeltaString">h0001_5003_fillMiddle_p2_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 24.159000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171431912">
+					<Name d:type="cDeltaString">h0001_5003_fillMiddle_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -23.823000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171432032">
+					<Name d:type="cDeltaString">h0001_5003_fillMiddle_p1_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -21.099001 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171432152">
+					<Name d:type="cDeltaString">h0001_5003_fillMiddle_p1_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -18.330000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171432272">
+					<Name d:type="cDeltaString">h0001_5003_fillMiddle_p1_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -15.597000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171432392">
+					<Name d:type="cDeltaString">h0001_5003_fillMiddle_p1_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -12.841000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171419496">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 13.177000 13.286000 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5004_fillTop_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5004</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171419704">
+					<Name d:type="cDeltaString">h0001_5004_fillTop_p2_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 15.901000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171420072">
+					<Name d:type="cDeltaString">h0001_5004_fillTop_p2_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 18.670000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171420192">
+					<Name d:type="cDeltaString">h0001_5004_fillTop_p2_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 21.403000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171420312">
+					<Name d:type="cDeltaString">h0001_5004_fillTop_p2_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 24.159000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171432768">
+					<Name d:type="cDeltaString">h0001_5004_fillTop_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -23.823000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171432888">
+					<Name d:type="cDeltaString">h0001_5004_fillTop_p1_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -21.099001 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171433008">
+					<Name d:type="cDeltaString">h0001_5004_fillTop_p1_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -18.330000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171433128">
+					<Name d:type="cDeltaString">h0001_5004_fillTop_p1_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -15.597000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171433248">
+					<Name d:type="cDeltaString">h0001_5004_fillTop_p1_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -12.841000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171425864">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 13.177500 -16.459999 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5005_gateLitUp_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5005</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171426072">
+					<Name d:type="cDeltaString">h0001_5005_gateLitUp_p2_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 15.901100 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171426440">
+					<Name d:type="cDeltaString">h0001_5005_gateLitUp_p2_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 18.669901 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171426560">
+					<Name d:type="cDeltaString">h0001_5005_gateLitUp_p2_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 21.403200 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171426680">
+					<Name d:type="cDeltaString">h0001_5005_gateLitUp_p2_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 24.158600 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171438864">
+					<Name d:type="cDeltaString">h0001_5005_gateLitUp_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -23.822500 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171438984">
+					<Name d:type="cDeltaString">h0001_5005_gateLitUp_p1_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -21.098900 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171439104">
+					<Name d:type="cDeltaString">h0001_5005_gateLitUp_p1_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -18.330099 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171439224">
+					<Name d:type="cDeltaString">h0001_5005_gateLitUp_p1_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -15.596800 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171439344">
+					<Name d:type="cDeltaString">h0001_5005_gateLitUp_p1_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -12.841400 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171416688">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 13.177500 -16.459999 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5006_gate_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5006</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171416896">
+					<Name d:type="cDeltaString">h0001_5006_gate_p2_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 15.901100 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171417264">
+					<Name d:type="cDeltaString">h0001_5006_gate_p2_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 18.669901 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171417384">
+					<Name d:type="cDeltaString">h0001_5006_gate_p2_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 21.403200 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171417504">
+					<Name d:type="cDeltaString">h0001_5006_gate_p2_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 24.158600 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171430200">
+					<Name d:type="cDeltaString">h0001_5006_gate_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -23.822500 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171430320">
+					<Name d:type="cDeltaString">h0001_5006_gate_p1_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -21.098900 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171430440">
+					<Name d:type="cDeltaString">h0001_5006_gate_p1_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -18.330099 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171430560">
+					<Name d:type="cDeltaString">h0001_5006_gate_p1_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -15.596800 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171430680">
+					<Name d:type="cDeltaString">h0001_5006_gate_p1_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -12.841400 -16.459999 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171426800">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 28.834801 -16.406900 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5010_perfectGauge1_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5010</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171439720">
+					<Name d:type="cDeltaString">h0001_5010_perfectGauge1_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -8.165170 -16.406900 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171427008">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 28.834801 -16.406900 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5011_perfectGauge2_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5011</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171440088">
+					<Name d:type="cDeltaString">h0001_5011_perfectGauge2_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -8.165170 -16.406900 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171427216">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 28.834801 -16.406900 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5012_perfectGauge3_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5012</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171440456">
+					<Name d:type="cDeltaString">h0001_5012_perfectGauge3_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -8.165170 -16.406900 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171427424">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 28.834801 -16.406900 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5013_perfectGauge4_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5013</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171440824">
+					<Name d:type="cDeltaString">h0001_5013_perfectGauge4_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -8.165170 -16.406900 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171427632">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 28.834801 -16.406900 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5014_perfectGauge5_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5014</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171441192">
+					<Name d:type="cDeltaString">h0001_5014_perfectGauge5_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -8.165170 -16.406900 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171427840">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 28.834801 -16.406900 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5015_perfectGauge6_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5015</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171441560">
+					<Name d:type="cDeltaString">h0001_5015_perfectGauge6_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -8.165170 -16.406900 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171428048">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 28.834801 -16.406900 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5016_perfectGauge7_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5016</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171441928">
+					<Name d:type="cDeltaString">h0001_5016_perfectGauge7_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -8.165170 -16.406900 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171428256">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 28.834801 -16.406900 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5017_perfectGauge8_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5017</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171442296">
+					<Name d:type="cDeltaString">h0001_5017_perfectGauge8_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -8.165170 -16.406900 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171428464">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 28.834801 -16.406900 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5018_perfectGauge9_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5018</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171442664">
+					<Name d:type="cDeltaString">h0001_5018_perfectGauge9_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -8.165170 -16.406900 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171428672">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 28.834801 -16.406900 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5019_perfectGauge10_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5019</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171443032">
+					<Name d:type="cDeltaString">h0001_5019_perfectGauge10_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -8.165170 -16.406900 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171429088">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 10.739000 -16.647600 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5022_numberBot_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5022</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171429296">
+					<Name d:type="cDeltaString">h0001_5022_numberBot_p2_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 9.151890 -16.647600 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171429664">
+					<Name d:type="cDeltaString">h0001_5022_numberBot_p2_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 7.538240 -16.647600 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171443768">
+					<Name d:type="cDeltaString">h0001_5022_numberBot_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -26.261000 -16.647600 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171443888">
+					<Name d:type="cDeltaString">h0001_5022_numberBot_p1_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -27.848101 -16.647600 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171444008">
+					<Name d:type="cDeltaString">h0001_5022_numberBot_p1_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -29.461800 -16.647600 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171429784">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 9.097660 -16.741400 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5024_comboBackTrans_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5024</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171444128">
+					<Name d:type="cDeltaString">h0001_5024_comboBackTrans_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -27.902300 -16.741400 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171428880">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 9.097660 -16.741400 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5025_comboBack_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5025</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171443400">
+					<Name d:type="cDeltaString">h0001_5025_comboBack_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -27.902300 -16.741400 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171429992">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 27.849199 -16.694500 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5028_multiplyerBackBot_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5028</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171444496">
+					<Name d:type="cDeltaString">h0001_5028_multiplyerBackBot_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -9.150820 -16.694500 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171414800">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 21.403200 -6.726000 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5037_guitarLaneWide_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5037</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171415952">
+					<Name d:type="cDeltaString">h0001_5037_guitarLaneWide_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -15.663000 -6.726000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171414592">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 21.403200 -6.726000 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5038_guitarLaneDetailWide_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5038</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171415584">
+					<Name d:type="cDeltaString">h0001_5038_guitarLaneDetailWide_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -15.663000 -6.726000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171414384">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 20.548000 0.000000 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5040_bassBackgroundDetail_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5040</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171415216">
+					<Name d:type="cDeltaString">h0001_5040_bassBackgroundDetail_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -16.770000 0.000000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171420432">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 13.177000 13.286000 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5052_sustainBottom_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5052</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171421056">
+					<Name d:type="cDeltaString">h0001_5052_sustainBottom_p2_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 15.901000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171422160">
+					<Name d:type="cDeltaString">h0001_5052_sustainBottom_p2_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 18.670000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171422520">
+					<Name d:type="cDeltaString">h0001_5052_sustainBottom_p2_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 21.403000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171422880">
+					<Name d:type="cDeltaString">h0001_5052_sustainBottom_p2_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 24.159000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171433624">
+					<Name d:type="cDeltaString">h0001_5052_sustainBottom_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -23.823000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171433984">
+					<Name d:type="cDeltaString">h0001_5052_sustainBottom_p1_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -21.099001 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171434344">
+					<Name d:type="cDeltaString">h0001_5052_sustainBottom_p1_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -18.330000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171434704">
+					<Name d:type="cDeltaString">h0001_5052_sustainBottom_p1_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -15.597000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171435064">
+					<Name d:type="cDeltaString">h0001_5052_sustainBottom_p1_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -12.841000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171420640">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 13.177000 13.286000 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5053_sustainMiddle_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5053</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171421424">
+					<Name d:type="cDeltaString">h0001_5053_sustainMiddle_p2_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 15.901000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171422280">
+					<Name d:type="cDeltaString">h0001_5053_sustainMiddle_p2_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 18.670000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171422640">
+					<Name d:type="cDeltaString">h0001_5053_sustainMiddle_p2_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 21.403000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171423000">
+					<Name d:type="cDeltaString">h0001_5053_sustainMiddle_p2_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 24.159000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171433744">
+					<Name d:type="cDeltaString">h0001_5053_sustainMiddle_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -23.823000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171434104">
+					<Name d:type="cDeltaString">h0001_5053_sustainMiddle_p1_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -21.099001 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171434464">
+					<Name d:type="cDeltaString">h0001_5053_sustainMiddle_p1_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -18.330000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171434824">
+					<Name d:type="cDeltaString">h0001_5053_sustainMiddle_p1_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -15.597000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171435440">
+					<Name d:type="cDeltaString">h0001_5053_sustainMiddle_p1_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -12.841000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171420848">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 13.177000 13.286000 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5054_sustainTop_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5054</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171421792">
+					<Name d:type="cDeltaString">h0001_5054_sustainTop_p2_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 15.901000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171422400">
+					<Name d:type="cDeltaString">h0001_5054_sustainTop_p2_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 18.670000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171422760">
+					<Name d:type="cDeltaString">h0001_5054_sustainTop_p2_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 21.403000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171423120">
+					<Name d:type="cDeltaString">h0001_5054_sustainTop_p2_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 24.159000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171433864">
+					<Name d:type="cDeltaString">h0001_5054_sustainTop_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -23.823000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171434224">
+					<Name d:type="cDeltaString">h0001_5054_sustainTop_p1_0001</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -21.099001 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171434584">
+					<Name d:type="cDeltaString">h0001_5054_sustainTop_p1_0002</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -18.330000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171434944">
+					<Name d:type="cDeltaString">h0001_5054_sustainTop_p1_0003</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -15.597000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+				<Collada-InstanceData d:id="171435816">
+					<Name d:type="cDeltaString">h0001_5054_sustainTop_p1_0004</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -12.841000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171423448">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 13.177000 13.286000 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5065_shredBoxTop_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5065</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171436560">
+					<Name d:type="cDeltaString">h0001_5065_shredBoxTop_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -23.823000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171423656">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 13.177000 13.286000 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5066_shredBoxMid_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5066</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171436928">
+					<Name d:type="cDeltaString">h0001_5066_shredBoxMid_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -23.823000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171423864">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 13.177000 13.286000 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5067_shredBoxBottom_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5067</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171437296">
+					<Name d:type="cDeltaString">h0001_5067_shredBoxBottom_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -23.823000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171415008">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 652.939026 0.000000 0.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5077_guitarHorizontalBar_p2_0000</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5077</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171416320">
+					<Name d:type="cDeltaString">h0001_5077_guitarHorizontalBar_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -476.763000 0.000000 0.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+		<Collada-GeometryData d:id="171423240">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 13.177000 13.286000 -607.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">h0001_5088_shredRollMark_p2_0001</Name>
+			<ShapeReference d:type="cDeltaString">h0001_5088</ShapeReference>
+			<NumberPointLights d:type="sUInt32">0</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation/>
+			<Instance>
+				<Collada-InstanceData d:id="171436192">
+					<Name d:type="cDeltaString">h0001_5088_shredRollMark_p1_0000</Name>
+					<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 -23.823000 13.286000 -607.000000 1.000000</Matrix>
+				</Collada-InstanceData>
+			</Instance>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+	</GeometryData>
+	<LocatorData/>
+	<CameraData/>
+	<ShadowGeometryData/>
+</Collada-SceneDataContainer>

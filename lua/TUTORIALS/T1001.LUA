@@ -1,0 +1,3 @@
+-- GUITAR -- INTRODUCTION --
+
+KitId = 1004

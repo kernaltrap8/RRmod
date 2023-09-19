@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Collada-SceneDataContainer xmlns:d="http://www.kuju.com/TnT/2003/Delta" d:version="1.0" d:id="1288336">
+	<LightSourceData/>
+	<GeometryData>
+		<Collada-GeometryData d:id="555948436">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">p5002_guitar</Name>
+			<ShapeReference d:type="cDeltaString">p5002</ShapeReference>
+			<NumberPointLights d:type="sUInt32">2</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">1</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">0</NumberProjLights>
+			<Animation>
+				<Collada-AnimationData d:id="555280904">
+					<Name d:type="cDeltaString">p5002_0000_bindPose</Name>
+				</Collada-AnimationData>
+			</Animation>
+			<Instance/>
+			<LightIncludeName/>
+		</Collada-GeometryData>
+	</GeometryData>
+	<LocatorData/>
+	<CameraData/>
+</Collada-SceneDataContainer>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Collada-SceneDataContainer xmlns:d="http://www.kuju.com/TnT/2003/Delta" d:version="1.0" d:id="1222176">
+	<LightSourceData>
+		<Collada-LightSourceData d:id="193232944">
+			<LightType d:type="cDeltaString">kPoint</LightType>
+			<DiffuseColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</DiffuseColor>
+			<SpecularColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</SpecularColor>
+			<Position d:numElements="4" d:elementType="sFloat32" d:precision="string">0.000000 174.154999 -113.612999 1.000000</Position>
+			<Direction d:numElements="4" d:elementType="sFloat32" d:precision="string">0.000000 0.000000 1.000000 0.000000</Direction>
+			<Name d:type="cDeltaString">zPoint1</Name>
+			<Intensity d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</Intensity>
+			<AttenuationConstant d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</AttenuationConstant>
+			<AttenuationLinear d:type="sFloat32" d:alt_encoding="000000E04D6260BF" d:precision="string">-0.002000</AttenuationLinear>
+			<AttenuationQuadratic d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</AttenuationQuadratic>
+			<FallOffDistance d:type="sFloat32" d:alt_encoding="0000000000407F40" d:precision="string">500.000000</FallOffDistance>
+			<DeadDistance d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</DeadDistance>
+			<PenumbraAngle d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</PenumbraAngle>
+			<ConeAngle d:type="sFloat32" d:alt_encoding="000000E0A3700540" d:precision="string">2.680000</ConeAngle>
+			<CastShadows d:type="sUInt32">0</CastShadows>
+			<TextureName d:type="cDeltaString"></TextureName>
+			<TextureScrollU d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollU>
+			<TextureScrollV d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollV>
+			<RotateSpeed d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</RotateSpeed>
+			<LightConnected d:type="cDeltaString"></LightConnected>
+			<DistanceMultiplier d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</DistanceMultiplier>
+			<ShadowMapSize d:type="sUInt32">256</ShadowMapSize>
+			<UseAbsoluteInclude d:type="sUInt32">0</UseAbsoluteInclude>
+			<ModelExcludeName/>
+		</Collada-LightSourceData>
+		<Collada-LightSourceData d:id="193201840">
+			<LightType d:type="cDeltaString">kAmbient</LightType>
+			<DiffuseColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</DiffuseColor>
+			<SpecularColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</SpecularColor>
+			<Position d:numElements="4" d:elementType="sFloat32" d:precision="string">0.000000 0.000000 0.000000 1.000000</Position>
+			<Direction d:numElements="4" d:elementType="sFloat32" d:precision="string">0.000000 0.000000 1.000000 0.000000</Direction>
+			<Name d:type="cDeltaString">zoeAmbientLight</Name>
+			<Intensity d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Intensity>
+			<AttenuationConstant d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</AttenuationConstant>
+			<AttenuationLinear d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</AttenuationLinear>
+			<AttenuationQuadratic d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</AttenuationQuadratic>
+			<FallOffDistance d:type="sFloat32" d:alt_encoding="000000000088C340" d:precision="string">10000.000000</FallOffDistance>
+			<DeadDistance d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</DeadDistance>
+			<PenumbraAngle d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</PenumbraAngle>
+			<ConeAngle d:type="sFloat32" d:alt_encoding="000000E0A3700540" d:precision="string">2.680000</ConeAngle>
+			<CastShadows d:type="sUInt32">0</CastShadows>
+			<TextureName d:type="cDeltaString"></TextureName>
+			<TextureScrollU d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollU>
+			<TextureScrollV d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollV>
+			<RotateSpeed d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</RotateSpeed>
+			<LightConnected d:type="cDeltaString"></LightConnected>
+			<DistanceMultiplier d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</DistanceMultiplier>
+			<ShadowMapSize d:type="sUInt32">256</ShadowMapSize>
+			<UseAbsoluteInclude d:type="sUInt32">0</UseAbsoluteInclude>
+			<ModelExcludeName/>
+		</Collada-LightSourceData>
+	</LightSourceData>
+	<GeometryData>
+		<Collada-GeometryData d:id="193260760">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">p0331_crowdMale1</Name>
+			<ShapeReference d:type="cDeltaString">p0331</ShapeReference>
+			<NumberPointLights d:type="sUInt32">1</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation>
+				<Collada-AnimationData d:id="193261068">
+					<Name d:type="cDeltaString">p0331_0000_bindPose</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="193261072">
+					<Name d:type="cDeltaString">p0331_0001_buffer</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="193261076">
+					<Name d:type="cDeltaString">p0331_0002_level0</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="193261080">
+					<Name d:type="cDeltaString">p0331_0003_level1</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="193261084">
+					<Name d:type="cDeltaString">p0331_0004_level2</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="193261088">
+					<Name d:type="cDeltaString">p0331_0005_level3</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="193261092">
+					<Name d:type="cDeltaString">p0331_0006_level4</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="193261096">
+					<Name d:type="cDeltaString">p0331_0007_level5</Name>
+				</Collada-AnimationData>
+			</Animation>
+			<Instance/>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+	</GeometryData>
+	<LocatorData/>
+	<CameraData/>
+	<ShadowGeometryData/>
+</Collada-SceneDataContainer>

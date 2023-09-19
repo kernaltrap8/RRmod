@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Collada-SceneDataContainer xmlns:d="http://www.kuju.com/TnT/2003/Delta" d:version="1.0" d:id="1223020">
+	<LightSourceData>
+		<Collada-LightSourceData d:id="19905160">
+			<LightType d:type="cDeltaString">kPoint</LightType>
+			<DiffuseColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Alpha>
+				</cHcColour>
+			</DiffuseColor>
+			<SpecularColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Alpha>
+				</cHcColour>
+			</SpecularColor>
+			<Position d:numElements="4" d:elementType="sFloat32" d:precision="string">12.1967 188.5000 -189.6490 1.0000</Position>
+			<Direction d:numElements="4" d:elementType="sFloat32" d:precision="string">0.0000 0.0000 1.0000 0.0000</Direction>
+			<Name d:type="cDeltaString">pointLight1</Name>
+			<Intensity d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Intensity>
+			<AttenuationConstant d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</AttenuationConstant>
+			<AttenuationLinear d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.0000</AttenuationLinear>
+			<AttenuationQuadratic d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.0000</AttenuationQuadratic>
+			<FallOffDistance d:type="sFloat32" d:alt_encoding="000000000088C340" d:precision="string">10000.0000</FallOffDistance>
+			<DeadDistance d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.0000</DeadDistance>
+			<PenumbraAngle d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.0000</PenumbraAngle>
+			<ConeAngle d:type="sFloat32" d:alt_encoding="000000E0A3700540" d:precision="string">2.6800</ConeAngle>
+		</Collada-LightSourceData>
+		<Collada-LightSourceData d:id="19905264">
+			<LightType d:type="cDeltaString">kAmbient</LightType>
+			<DiffuseColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.0000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.0000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.0000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Alpha>
+				</cHcColour>
+			</DiffuseColor>
+			<SpecularColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Alpha>
+				</cHcColour>
+			</SpecularColor>
+			<Position d:numElements="4" d:elementType="sFloat32" d:precision="string">0.0000 0.0000 0.0000 1.0000</Position>
+			<Direction d:numElements="4" d:elementType="sFloat32" d:precision="string">0.0000 0.0000 1.0000 0.0000</Direction>
+			<Name d:type="cDeltaString">kujuAmbientLight</Name>
+			<Intensity d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</Intensity>
+			<AttenuationConstant d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.0000</AttenuationConstant>
+			<AttenuationLinear d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.0000</AttenuationLinear>
+			<AttenuationQuadratic d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.0000</AttenuationQuadratic>
+			<FallOffDistance d:type="sFloat32" d:alt_encoding="000000000088C340" d:precision="string">10000.0000</FallOffDistance>
+			<DeadDistance d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.0000</DeadDistance>
+			<PenumbraAngle d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.0000</PenumbraAngle>
+			<ConeAngle d:type="sFloat32" d:alt_encoding="000000E0A3700540" d:precision="string">2.6800</ConeAngle>
+		</Collada-LightSourceData>
+	</LightSourceData>
+	<GeometryData>
+		<Collada-GeometryData d:id="19251688">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000</Matrix>
+			<Name d:type="cDeltaString">p0060</Name>
+			<ShapeReference d:type="cDeltaString">p0060</ShapeReference>
+			<NumberPointLights d:type="sUInt32">1</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<Animation/>
+		</Collada-GeometryData>
+	</GeometryData>
+	<LocatorData/>
+	<CameraData/>
+</Collada-SceneDataContainer>

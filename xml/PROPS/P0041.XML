@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Collada-SceneDataContainer xmlns:d="http://www.kuju.com/TnT/2003/Delta" d:version="1.0" d:id="1222212">
+	<LightSourceData/>
+	<GeometryData>
+		<Collada-GeometryData d:id="555244524">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">p0040_AmpSm</Name>
+			<ShapeReference d:type="cDeltaString">p0040</ShapeReference>
+			<NumberPointLights d:type="sUInt32">2</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">4</NumberProjLights>
+			<Animation/>
+			<Instance/>
+			<LightIncludeName/>
+		</Collada-GeometryData>
+	</GeometryData>
+	<LocatorData/>
+	<CameraData/>
+</Collada-SceneDataContainer>

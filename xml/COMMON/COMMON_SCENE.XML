@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Collada-SceneDataContainer xmlns:d="http://www.kuju.com/TnT/2003/Delta" d:version="1.0" d:id="1222140">
+	<LightSourceData>
+		<Collada-LightSourceData d:id="169809036">
+			<LightType d:type="cDeltaString">kPoint</LightType>
+			<DiffuseColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</DiffuseColor>
+			<SpecularColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</SpecularColor>
+			<Position d:numElements="4" d:elementType="sFloat32" d:precision="string">-600.000000 550.000000 -600.000000 1.000000</Position>
+			<Direction d:numElements="4" d:elementType="sFloat32" d:precision="string">0.000000 0.000000 1.000000 0.000000</Direction>
+			<Name d:type="cDeltaString">zoePtLight01</Name>
+			<Intensity d:type="sFloat32" d:alt_encoding="000000A09999D93F" d:precision="string">0.400000</Intensity>
+			<AttenuationConstant d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</AttenuationConstant>
+			<AttenuationLinear d:type="sFloat32" d:alt_encoding="000000E04D6240BF" d:precision="string">-0.000500</AttenuationLinear>
+			<AttenuationQuadratic d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</AttenuationQuadratic>
+			<FallOffDistance d:type="sFloat32" d:alt_encoding="000000000088B340" d:precision="string">5000.000000</FallOffDistance>
+			<DeadDistance d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</DeadDistance>
+			<PenumbraAngle d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</PenumbraAngle>
+			<ConeAngle d:type="sFloat32" d:alt_encoding="000000E0A3700540" d:precision="string">2.680000</ConeAngle>
+			<CastShadows d:type="sUInt32">0</CastShadows>
+			<TextureName d:type="cDeltaString"></TextureName>
+			<TextureScrollU d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollU>
+			<TextureScrollV d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollV>
+			<RotateSpeed d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</RotateSpeed>
+			<LightConnected d:type="cDeltaString"></LightConnected>
+			<DistanceMultiplier d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</DistanceMultiplier>
+			<ShadowMapSize d:type="sUInt32">256</ShadowMapSize>
+			<UseAbsoluteInclude d:type="sUInt32">0</UseAbsoluteInclude>
+			<ModelExcludeName/>
+		</Collada-LightSourceData>
+		<Collada-LightSourceData d:id="169813572">
+			<LightType d:type="cDeltaString">kPoint</LightType>
+			<DiffuseColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</DiffuseColor>
+			<SpecularColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</SpecularColor>
+			<Position d:numElements="4" d:elementType="sFloat32" d:precision="string">800.000000 0.000000 -800.000000 1.000000</Position>
+			<Direction d:numElements="4" d:elementType="sFloat32" d:precision="string">0.000000 0.000000 1.000000 0.000000</Direction>
+			<Name d:type="cDeltaString">zoePtLight02</Name>
+			<Intensity d:type="sFloat32" d:alt_encoding="000000A09999D93F" d:precision="string">0.400000</Intensity>
+			<AttenuationConstant d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</AttenuationConstant>
+			<AttenuationLinear d:type="sFloat32" d:alt_encoding="000000E04D6240BF" d:precision="string">-0.000500</AttenuationLinear>
+			<AttenuationQuadratic d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</AttenuationQuadratic>
+			<FallOffDistance d:type="sFloat32" d:alt_encoding="0000000000409F40" d:precision="string">2000.000000</FallOffDistance>
+			<DeadDistance d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</DeadDistance>
+			<PenumbraAngle d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</PenumbraAngle>
+			<ConeAngle d:type="sFloat32" d:alt_encoding="000000E0A3700540" d:precision="string">2.680000</ConeAngle>
+			<CastShadows d:type="sUInt32">0</CastShadows>
+			<TextureName d:type="cDeltaString"></TextureName>
+			<TextureScrollU d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollU>
+			<TextureScrollV d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollV>
+			<RotateSpeed d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</RotateSpeed>
+			<LightConnected d:type="cDeltaString"></LightConnected>
+			<DistanceMultiplier d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</DistanceMultiplier>
+			<ShadowMapSize d:type="sUInt32">256</ShadowMapSize>
+			<UseAbsoluteInclude d:type="sUInt32">0</UseAbsoluteInclude>
+			<ModelExcludeName/>
+		</Collada-LightSourceData>
+		<Collada-LightSourceData d:id="169817868">
+			<LightType d:type="cDeltaString">kPoint</LightType>
+			<DiffuseColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</DiffuseColor>
+			<SpecularColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</SpecularColor>
+			<Position d:numElements="4" d:elementType="sFloat32" d:precision="string">600.000000 -0.110402 600.000000 1.000000</Position>
+			<Direction d:numElements="4" d:elementType="sFloat32" d:precision="string">0.000000 0.000000 1.000000 0.000000</Direction>
+			<Name d:type="cDeltaString">zoePtLight03</Name>
+			<Intensity d:type="sFloat32" d:alt_encoding="000000A09999D93F" d:precision="string">0.400000</Intensity>
+			<AttenuationConstant d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</AttenuationConstant>
+			<AttenuationLinear d:type="sFloat32" d:alt_encoding="000000E04D6240BF" d:precision="string">-0.000500</AttenuationLinear>
+			<AttenuationQuadratic d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</AttenuationQuadratic>
+			<FallOffDistance d:type="sFloat32" d:alt_encoding="0000000000409F40" d:precision="string">2000.000000</FallOffDistance>
+			<DeadDistance d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</DeadDistance>
+			<PenumbraAngle d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</PenumbraAngle>
+			<ConeAngle d:type="sFloat32" d:alt_encoding="000000E0A3700540" d:precision="string">2.680000</ConeAngle>
+			<CastShadows d:type="sUInt32">0</CastShadows>
+			<TextureName d:type="cDeltaString"></TextureName>
+			<TextureScrollU d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollU>
+			<TextureScrollV d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollV>
+			<RotateSpeed d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</RotateSpeed>
+			<LightConnected d:type="cDeltaString"></LightConnected>
+			<DistanceMultiplier d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</DistanceMultiplier>
+			<ShadowMapSize d:type="sUInt32">256</ShadowMapSize>
+			<UseAbsoluteInclude d:type="sUInt32">0</UseAbsoluteInclude>
+			<ModelExcludeName/>
+		</Collada-LightSourceData>
+		<Collada-LightSourceData d:id="169822164">
+			<LightType d:type="cDeltaString">kPoint</LightType>
+			<DiffuseColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</DiffuseColor>
+			<SpecularColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</SpecularColor>
+			<Position d:numElements="4" d:elementType="sFloat32" d:precision="string">-800.000000 550.000000 800.000000 1.000000</Position>
+			<Direction d:numElements="4" d:elementType="sFloat32" d:precision="string">0.000000 0.000000 1.000000 0.000000</Direction>
+			<Name d:type="cDeltaString">zoePtLight04</Name>
+			<Intensity d:type="sFloat32" d:alt_encoding="000000A09999D93F" d:precision="string">0.400000</Intensity>
+			<AttenuationConstant d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</AttenuationConstant>
+			<AttenuationLinear d:type="sFloat32" d:alt_encoding="000000E04D6240BF" d:precision="string">-0.000500</AttenuationLinear>
+			<AttenuationQuadratic d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</AttenuationQuadratic>
+			<FallOffDistance d:type="sFloat32" d:alt_encoding="0000000000409F40" d:precision="string">2000.000000</FallOffDistance>
+			<DeadDistance d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</DeadDistance>
+			<PenumbraAngle d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</PenumbraAngle>
+			<ConeAngle d:type="sFloat32" d:alt_encoding="000000E0A3700540" d:precision="string">2.680000</ConeAngle>
+			<CastShadows d:type="sUInt32">0</CastShadows>
+			<TextureName d:type="cDeltaString"></TextureName>
+			<TextureScrollU d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollU>
+			<TextureScrollV d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollV>
+			<RotateSpeed d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</RotateSpeed>
+			<LightConnected d:type="cDeltaString"></LightConnected>
+			<DistanceMultiplier d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</DistanceMultiplier>
+			<ShadowMapSize d:type="sUInt32">256</ShadowMapSize>
+			<UseAbsoluteInclude d:type="sUInt32">0</UseAbsoluteInclude>
+			<ModelExcludeName/>
+		</Collada-LightSourceData>
+		<Collada-LightSourceData d:id="169826460">
+			<LightType d:type="cDeltaString">kSpot</LightType>
+			<DiffuseColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</DiffuseColor>
+			<SpecularColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</SpecularColor>
+			<Position d:numElements="4" d:elementType="sFloat32" d:precision="string">764.737976 430.605988 -9.354850 1.000000</Position>
+			<Direction d:numElements="4" d:elementType="sFloat32" d:precision="string">-0.866025 -0.500000 0.000000 0.000000</Direction>
+			<Name d:type="cDeltaString">zoeSpLight01</Name>
+			<Intensity d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Intensity>
+			<AttenuationConstant d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</AttenuationConstant>
+			<AttenuationLinear d:type="sFloat32" d:alt_encoding="000000E04D6240BF" d:precision="string">-0.000500</AttenuationLinear>
+			<AttenuationQuadratic d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</AttenuationQuadratic>
+			<FallOffDistance d:type="sFloat32" d:alt_encoding="0000000000409F40" d:precision="string">2000.000000</FallOffDistance>
+			<DeadDistance d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</DeadDistance>
+			<PenumbraAngle d:type="sFloat32" d:alt_encoding="0000004052C1E03F" d:precision="string">0.523599</PenumbraAngle>
+			<ConeAngle d:type="sFloat32" d:alt_encoding="000000601857E63F" d:precision="string">0.698132</ConeAngle>
+			<CastShadows d:type="sUInt32">0</CastShadows>
+			<TextureName d:type="cDeltaString"></TextureName>
+			<TextureScrollU d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollU>
+			<TextureScrollV d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollV>
+			<RotateSpeed d:type="sFloat32" d:alt_encoding="0000000000000080" d:precision="string">-0.000000</RotateSpeed>
+			<LightConnected d:type="cDeltaString"></LightConnected>
+			<DistanceMultiplier d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</DistanceMultiplier>
+			<ShadowMapSize d:type="sUInt32">256</ShadowMapSize>
+			<UseAbsoluteInclude d:type="sUInt32">0</UseAbsoluteInclude>
+			<ModelExcludeName/>
+		</Collada-LightSourceData>
+		<Collada-LightSourceData d:id="169830756">
+			<LightType d:type="cDeltaString">kSpot</LightType>
+			<DiffuseColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</DiffuseColor>
+			<SpecularColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</SpecularColor>
+			<Position d:numElements="4" d:elementType="sFloat32" d:precision="string">-217.171005 401.332001 -573.997009 1.000000</Position>
+			<Direction d:numElements="4" d:elementType="sFloat32" d:precision="string">0.296198 -0.500000 0.813798 0.000000</Direction>
+			<Name d:type="cDeltaString">zoeSpLight02</Name>
+			<Intensity d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Intensity>
+			<AttenuationConstant d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</AttenuationConstant>
+			<AttenuationLinear d:type="sFloat32" d:alt_encoding="000000E04D6240BF" d:precision="string">-0.000500</AttenuationLinear>
+			<AttenuationQuadratic d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</AttenuationQuadratic>
+			<FallOffDistance d:type="sFloat32" d:alt_encoding="0000000000409F40" d:precision="string">2000.000000</FallOffDistance>
+			<DeadDistance d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</DeadDistance>
+			<PenumbraAngle d:type="sFloat32" d:alt_encoding="0000004052C1E03F" d:precision="string">0.523599</PenumbraAngle>
+			<ConeAngle d:type="sFloat32" d:alt_encoding="000000601857E63F" d:precision="string">0.698132</ConeAngle>
+			<CastShadows d:type="sUInt32">0</CastShadows>
+			<TextureName d:type="cDeltaString"></TextureName>
+			<TextureScrollU d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollU>
+			<TextureScrollV d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollV>
+			<RotateSpeed d:type="sFloat32" d:alt_encoding="0000000000000080" d:precision="string">-0.000000</RotateSpeed>
+			<LightConnected d:type="cDeltaString"></LightConnected>
+			<DistanceMultiplier d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</DistanceMultiplier>
+			<ShadowMapSize d:type="sUInt32">256</ShadowMapSize>
+			<UseAbsoluteInclude d:type="sUInt32">0</UseAbsoluteInclude>
+			<ModelExcludeName/>
+		</Collada-LightSourceData>
+		<Collada-LightSourceData d:id="169835052">
+			<LightType d:type="cDeltaString">kAmbient</LightType>
+			<DiffuseColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000C0EA73EF3F" d:precision="string">0.982900</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000C0EA73EF3F" d:precision="string">0.982900</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000C0EA73EF3F" d:precision="string">0.982900</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</DiffuseColor>
+			<SpecularColor>
+				<cHcColour>
+					<Red d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Red>
+					<Green d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Green>
+					<Blue d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Blue>
+					<Alpha d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</Alpha>
+				</cHcColour>
+			</SpecularColor>
+			<Position d:numElements="4" d:elementType="sFloat32" d:precision="string">0.000000 0.000000 0.000000 1.000000</Position>
+			<Direction d:numElements="4" d:elementType="sFloat32" d:precision="string">0.000000 0.000000 1.000000 0.000000</Direction>
+			<Name d:type="cDeltaString">kujuAmbientLight</Name>
+			<Intensity d:type="sFloat32" d:alt_encoding="000000A09999B93F" d:precision="string">0.100000</Intensity>
+			<AttenuationConstant d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</AttenuationConstant>
+			<AttenuationLinear d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</AttenuationLinear>
+			<AttenuationQuadratic d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</AttenuationQuadratic>
+			<FallOffDistance d:type="sFloat32" d:alt_encoding="000000000088C340" d:precision="string">10000.000000</FallOffDistance>
+			<DeadDistance d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</DeadDistance>
+			<PenumbraAngle d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</PenumbraAngle>
+			<ConeAngle d:type="sFloat32" d:alt_encoding="000000E0A3700540" d:precision="string">2.680000</ConeAngle>
+			<CastShadows d:type="sUInt32">0</CastShadows>
+			<TextureName d:type="cDeltaString"></TextureName>
+			<TextureScrollU d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollU>
+			<TextureScrollV d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</TextureScrollV>
+			<RotateSpeed d:type="sFloat32" d:alt_encoding="0000000000000000" d:precision="string">0.000000</RotateSpeed>
+			<LightConnected d:type="cDeltaString"></LightConnected>
+			<DistanceMultiplier d:type="sFloat32" d:alt_encoding="000000000000F03F" d:precision="string">1.000000</DistanceMultiplier>
+			<ShadowMapSize d:type="sUInt32">256</ShadowMapSize>
+			<UseAbsoluteInclude d:type="sUInt32">0</UseAbsoluteInclude>
+			<ModelExcludeName/>
+		</Collada-LightSourceData>
+	</LightSourceData>
+	<GeometryData/>
+	<LocatorData/>
+	<CameraData/>
+	<ShadowGeometryData/>
+</Collada-SceneDataContainer>

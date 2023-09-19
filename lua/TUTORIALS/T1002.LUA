@@ -1,0 +1,3 @@
+-- GUITAR -- INTERMEDIATE --
+
+KitId = 1004

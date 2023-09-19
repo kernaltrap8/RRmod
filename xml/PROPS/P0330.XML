@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Collada-SceneDataContainer xmlns:d="http://www.kuju.com/TnT/2003/Delta" d:version="1.0" d:id="1222176">
+	<LightSourceData/>
+	<GeometryData>
+		<Collada-GeometryData d:id="227274488">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</Matrix>
+			<Name d:type="cDeltaString">p0330_crowdMale</Name>
+			<ShapeReference d:type="cDeltaString">p0330</ShapeReference>
+			<NumberPointLights d:type="sUInt32">1</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">3</NumberProjLights>
+			<NumberShadowSpotLights d:type="sUInt32">2</NumberShadowSpotLights>
+			<ShadowDepthBias d:type="sFloat32" d:alt_encoding="00000040E17A843F" d:precision="string">0.010000</ShadowDepthBias>
+			<Animation>
+				<Collada-AnimationData d:id="227276212">
+					<Name d:type="cDeltaString">p0330_0001_0a</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276216">
+					<Name d:type="cDeltaString">p0330_0002_0b</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276220">
+					<Name d:type="cDeltaString">p0330_0003_0c</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276224">
+					<Name d:type="cDeltaString">p0330_0004_0d</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276228">
+					<Name d:type="cDeltaString">p0330_0005_0e</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276232">
+					<Name d:type="cDeltaString">p0330_0006_0f</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276236">
+					<Name d:type="cDeltaString">p0330_0007_1a</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276240">
+					<Name d:type="cDeltaString">p0330_0008_1b</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276244">
+					<Name d:type="cDeltaString">p0330_0009_1c</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276248">
+					<Name d:type="cDeltaString">p0330_0010_1d</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276252">
+					<Name d:type="cDeltaString">p0330_0011_1e</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276256">
+					<Name d:type="cDeltaString">p0330_0012_1f</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276260">
+					<Name d:type="cDeltaString">p0330_0013_2a</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276264">
+					<Name d:type="cDeltaString">p0330_0014_2b</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276268">
+					<Name d:type="cDeltaString">p0330_0015_2c</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276272">
+					<Name d:type="cDeltaString">p0330_0016_2d</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276276">
+					<Name d:type="cDeltaString">p0330_0017_2e</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276280">
+					<Name d:type="cDeltaString">p0330_0018_2f</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276284">
+					<Name d:type="cDeltaString">p0330_0019_3a</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276288">
+					<Name d:type="cDeltaString">p0330_0020_3b</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276292">
+					<Name d:type="cDeltaString">p0330_0021_3c</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276296">
+					<Name d:type="cDeltaString">p0330_0022_3d</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276300">
+					<Name d:type="cDeltaString">p0330_0023_3e</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276304">
+					<Name d:type="cDeltaString">p0330_0024_3f</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276308">
+					<Name d:type="cDeltaString">p0330_0025_4a</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276312">
+					<Name d:type="cDeltaString">p0330_0026_4b</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276316">
+					<Name d:type="cDeltaString">p0330_0027_4c</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276320">
+					<Name d:type="cDeltaString">p0330_0028_4d</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276324">
+					<Name d:type="cDeltaString">p0330_0029_4e</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276328">
+					<Name d:type="cDeltaString">p0330_0030_4f</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276332">
+					<Name d:type="cDeltaString">p0330_0031_5a</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276336">
+					<Name d:type="cDeltaString">p0330_0032_5b</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276340">
+					<Name d:type="cDeltaString">p0330_0033_5c</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276344">
+					<Name d:type="cDeltaString">p0330_0034_5d</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276348">
+					<Name d:type="cDeltaString">p0330_0035_5e</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276352">
+					<Name d:type="cDeltaString">p0330_0036_5f</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="227276356">
+					<Name d:type="cDeltaString">p0330_0000_bindPose</Name>
+				</Collada-AnimationData>
+			</Animation>
+			<Instance/>
+			<LightIncludeName/>
+			<ShadowGeometryIndex d:type="sInt32">-1</ShadowGeometryIndex>
+		</Collada-GeometryData>
+	</GeometryData>
+	<LocatorData/>
+	<CameraData/>
+	<ShadowGeometryData/>
+</Collada-SceneDataContainer>

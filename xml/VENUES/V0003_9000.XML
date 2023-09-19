@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Collada-SceneDataContainer xmlns:d="http://www.kuju.com/TnT/2003/Delta" d:version="1.0" d:id="1222928">
+	<LightSourceData/>
+	<GeometryData>
+		<Collada-GeometryData d:id="658902892">
+			<GeometryType d:type="cDeltaString">kGeometry</GeometryType>
+			<Matrix d:numElements="16" d:elementType="sFloat32" d:precision="string">1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 0.0000 0.0000 0.0000 1.0000 0.0000 15.5886 67.2977 -114.3850 1.0000</Matrix>
+			<Name d:type="cDeltaString">v0003_9000_crowdMass</Name>
+			<ShapeReference d:type="cDeltaString">v0003_9000</ShapeReference>
+			<NumberPointLights d:type="sUInt32">1</NumberPointLights>
+			<NumberSpotLights d:type="sUInt32">0</NumberSpotLights>
+			<NumberProjLights d:type="sUInt32">0</NumberProjLights>
+			<Animation>
+				<Collada-AnimationData d:id="561436152">
+					<Name d:type="cDeltaString">v0003_9001</Name>
+				</Collada-AnimationData>
+				<Collada-AnimationData d:id="561436156">
+					<Name d:type="cDeltaString">v0003_9002</Name>
+				</Collada-AnimationData>
+			</Animation>
+			<Instance/>
+			<LightIncludeName/>
+		</Collada-GeometryData>
+	</GeometryData>
+	<LocatorData/>
+	<CameraData/>
+</Collada-SceneDataContainer>
