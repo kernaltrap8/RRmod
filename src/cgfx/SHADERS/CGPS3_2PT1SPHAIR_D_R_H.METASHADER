@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cHcMetaShader xmlns:d="http://www.kuju.com/TnT/2003/Delta" d:version="1.0" d:id="870192480">
+	<Technique>
+		<cHcMetaShader-cTechnique d:id="870235144">
+			<Pass>
+				<cHcMetaShader-cPass d:id="870235208">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="870235272">
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<FrontFace d:type="cDeltaString">HC_FRONT_FACE_CW</FrontFace>
+							<BlendSrcColour d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcColour>
+							<BlendSrcAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcAlpha>
+							<BlendDestColour d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestColour>
+							<BlendDestAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestAlpha>
+							<BlendEnabled d:type="bool">1</BlendEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+							<ZWriteEnabled d:type="bool">0</ZWriteEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">VSLevel8</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">mainEdge</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+				<cHcMetaShader-cPass d:id="870235384">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="870235448">
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<BlendSrcColour d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcColour>
+							<BlendSrcAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcAlpha>
+							<BlendDestColour d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestColour>
+							<BlendDestAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestAlpha>
+							<BlendEnabled d:type="bool">1</BlendEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+							<ZWriteEnabled d:type="bool">0</ZWriteEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">VSLevel0</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">main</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+				<cHcMetaShader-cPass d:id="870235560">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="870235624">
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<BlendSrcColour d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcColour>
+							<BlendSrcAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcAlpha>
+							<BlendDestColour d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestColour>
+							<BlendDestAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestAlpha>
+							<BlendEnabled d:type="bool">1</BlendEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+							<ZWriteEnabled d:type="bool">0</ZWriteEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">VSLevel1</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">main</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+				<cHcMetaShader-cPass d:id="870235736">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="870235800">
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<BlendSrcColour d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcColour>
+							<BlendSrcAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcAlpha>
+							<BlendDestColour d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestColour>
+							<BlendDestAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestAlpha>
+							<BlendEnabled d:type="bool">1</BlendEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">VSLevel2</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">main</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+				<cHcMetaShader-cPass d:id="870235912">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="870235976">
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<BlendSrcColour d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcColour>
+							<BlendSrcAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcAlpha>
+							<BlendDestColour d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestColour>
+							<BlendDestAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestAlpha>
+							<BlendEnabled d:type="bool">1</BlendEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+							<ZWriteEnabled d:type="bool">0</ZWriteEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">VSLevel3</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">main</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+				<cHcMetaShader-cPass d:id="870236088">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="870236152">
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<BlendSrcColour d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcColour>
+							<BlendSrcAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcAlpha>
+							<BlendDestColour d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestColour>
+							<BlendDestAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestAlpha>
+							<BlendEnabled d:type="bool">1</BlendEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+							<ZWriteEnabled d:type="bool">0</ZWriteEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">VSLevel4</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">main</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+				<cHcMetaShader-cPass d:id="870236264">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="870236328">
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<BlendSrcColour d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcColour>
+							<BlendSrcAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcAlpha>
+							<BlendDestColour d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestColour>
+							<BlendDestAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestAlpha>
+							<BlendEnabled d:type="bool">1</BlendEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+							<ZWriteEnabled d:type="bool">0</ZWriteEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">VSLevel5</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">main</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+				<cHcMetaShader-cPass d:id="870236440">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="870236504">
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<BlendSrcColour d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcColour>
+							<BlendSrcAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcAlpha>
+							<BlendDestColour d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestColour>
+							<BlendDestAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestAlpha>
+							<BlendEnabled d:type="bool">1</BlendEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+							<ZWriteEnabled d:type="bool">0</ZWriteEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">VSLevel6</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">main</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+				<cHcMetaShader-cPass d:id="870236616">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="870236680">
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<BlendSrcColour d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcColour>
+							<BlendSrcAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcAlpha>
+							<BlendDestColour d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestColour>
+							<BlendDestAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestAlpha>
+							<BlendEnabled d:type="bool">1</BlendEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">VSLevel7</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">main</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+			</Pass>
+			<TechniqueName d:type="cDeltaString">Hair</TechniqueName>
+		</cHcMetaShader-cTechnique>
+	</Technique>
+	<SamplerState>
+		<cHcMetaShader-cSamplerState d:id="870234856">
+			<MagFilter d:type="cDeltaString">HC_FILTER_MODE_LINEAR</MagFilter>
+			<MinFilter d:type="cDeltaString">HC_FILTER_MODE_LINEAR</MinFilter>
+			<MipFilter d:type="cDeltaString">HC_FILTER_MODE_LINEAR</MipFilter>
+			<SamplerName d:type="cDeltaString">DiffuseSampler</SamplerName>
+		</cHcMetaShader-cSamplerState>
+		<cHcMetaShader-cSamplerState d:id="870234952">
+			<MagFilter d:type="cDeltaString">HC_FILTER_MODE_LINEAR</MagFilter>
+			<MinFilter d:type="cDeltaString">HC_FILTER_MODE_LINEAR</MinFilter>
+			<MipFilter d:type="cDeltaString">HC_FILTER_MODE_LINEAR</MipFilter>
+			<TextureAddrModeV d:type="cDeltaString">HC_TEXTURE_ADDR_MODE_CLAMP</TextureAddrModeV>
+			<SamplerName d:type="cDeltaString">EdgeSampler</SamplerName>
+		</cHcMetaShader-cSamplerState>
+		<cHcMetaShader-cSamplerState d:id="870235048">
+			<MagFilter d:type="cDeltaString">HC_FILTER_MODE_LINEAR</MagFilter>
+			<MinFilter d:type="cDeltaString">HC_FILTER_MODE_LINEAR</MinFilter>
+			<MipFilter d:type="cDeltaString">HC_FILTER_MODE_LINEAR</MipFilter>
+			<SamplerName d:type="cDeltaString">HeightmapSampler</SamplerName>
+		</cHcMetaShader-cSamplerState>
+	</SamplerState>
+	<ShaderName d:type="cDeltaString">CGPS3_2Pt1SpHair_d_r_h</ShaderName>
+</cHcMetaShader>

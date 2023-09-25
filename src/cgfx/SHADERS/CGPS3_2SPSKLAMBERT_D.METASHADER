@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cHcMetaShader xmlns:d="http://www.kuju.com/TnT/2003/Delta" d:version="1.0" d:id="902515232">
+	<Technique>
+		<cHcMetaShader-cTechnique d:id="903715992">
+			<Pass>
+				<cHcMetaShader-cPass d:id="903716056">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="903716120">
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">mainVS</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">main</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+			</Pass>
+			<TechniqueName d:type="cDeltaString">SkLambert_d0</TechniqueName>
+		</cHcMetaShader-cTechnique>
+		<cHcMetaShader-cTechnique d:id="903716232">
+			<Pass>
+				<cHcMetaShader-cPass d:id="903716296">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="903716360">
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<BlendSrcColour d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_COLOUR</BlendSrcColour>
+							<BlendSrcAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_COLOUR</BlendSrcAlpha>
+							<BlendDestAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_ONE</BlendDestAlpha>
+							<BlendEnabled d:type="bool">1</BlendEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+							<ZWriteEnabled d:type="bool">0</ZWriteEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">mainVS</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">mainAdditive</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+			</Pass>
+			<TechniqueName d:type="cDeltaString">SkLambert_d0_Additive</TechniqueName>
+		</cHcMetaShader-cTechnique>
+		<cHcMetaShader-cTechnique d:id="903716472">
+			<Pass>
+				<cHcMetaShader-cPass d:id="903716536">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="903716600">
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<BlendSrcColour d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcColour>
+							<BlendSrcAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcAlpha>
+							<BlendDestColour d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestColour>
+							<BlendDestAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestAlpha>
+							<BlendEnabled d:type="bool">1</BlendEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+							<ZWriteEnabled d:type="bool">0</ZWriteEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">mainVS</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">mainAlpha</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+			</Pass>
+			<TechniqueName d:type="cDeltaString">SkLambert_d0_Alpha</TechniqueName>
+		</cHcMetaShader-cTechnique>
+		<cHcMetaShader-cTechnique d:id="903716712">
+			<Pass>
+				<cHcMetaShader-cPass d:id="903716776">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="903716840">
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<BlendSrcColour d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcColour>
+							<BlendSrcAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcAlpha>
+							<BlendDestColour d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestColour>
+							<BlendDestAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestAlpha>
+							<BlendEnabled d:type="bool">1</BlendEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+							<ZWriteEnabled d:type="bool">0</ZWriteEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">mainVS</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">mainAlpha</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+				<cHcMetaShader-cPass d:id="903716952">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="903717016">
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<ColourWrite d:type="cDeltaString">HC_COLOUR_WRITE_NONE</ColourWrite>
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<BlendSrcColour d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcColour>
+							<BlendSrcAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_ALPHA</BlendSrcAlpha>
+							<BlendDestColour d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestColour>
+							<BlendDestAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_ONE_MINUS_SRC_ALPHA</BlendDestAlpha>
+							<BlendEnabled d:type="bool">1</BlendEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">zWriteVertex</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">zWritePixel</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+			</Pass>
+			<TechniqueName d:type="cDeltaString">SkLambert_d0_ZWrite_Alpha</TechniqueName>
+		</cHcMetaShader-cTechnique>
+		<cHcMetaShader-cTechnique d:id="903717128">
+			<Pass>
+				<cHcMetaShader-cPass d:id="903717192">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="903717256">
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">mainVS</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">main</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+			</Pass>
+			<TechniqueName d:type="cDeltaString">SkLambert_d0_NoCull</TechniqueName>
+		</cHcMetaShader-cTechnique>
+		<cHcMetaShader-cTechnique d:id="903717368">
+			<Pass>
+				<cHcMetaShader-cPass d:id="903717432">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="903717496">
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<BlendSrcColour d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_COLOUR</BlendSrcColour>
+							<BlendSrcAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_SRC_COLOUR</BlendSrcAlpha>
+							<BlendDestAlpha d:type="cDeltaString">HC_BLEND_FUNCTION_ONE</BlendDestAlpha>
+							<BlendEnabled d:type="bool">1</BlendEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+							<ZWriteEnabled d:type="bool">0</ZWriteEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">mainVS</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">mainAdditive</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+			</Pass>
+			<TechniqueName d:type="cDeltaString">SkLambert_d0_NoCull_Additive</TechniqueName>
+		</cHcMetaShader-cTechnique>
+		<cHcMetaShader-cTechnique d:id="903717608">
+			<Pass>
+				<cHcMetaShader-cPass d:id="903717672">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="903717736">
+							<AlphaRef d:type="sUInt32">252</AlphaRef>
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<FaceCullEnabled d:type="bool">1</FaceCullEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">mainVS</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">mainAlpha</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+			</Pass>
+			<TechniqueName d:type="cDeltaString">SkLambert_d0_AlphaMask</TechniqueName>
+		</cHcMetaShader-cTechnique>
+		<cHcMetaShader-cTechnique d:id="903717848">
+			<Pass>
+				<cHcMetaShader-cPass d:id="903717912">
+					<RenderStateData>
+						<cHcMetaShader-cRenderStateData d:id="903717976">
+							<AlphaRef d:type="sUInt32">252</AlphaRef>
+							<AlphaTestType d:type="cDeltaString">HC_ALPHATEST_GREATER</AlphaTestType>
+							<AlphaTestEnabled d:type="bool">1</AlphaTestEnabled>
+							<ZTestEnabled d:type="bool">1</ZTestEnabled>
+						</cHcMetaShader-cRenderStateData>
+					</RenderStateData>
+					<VertexProgramEntryPoint d:type="cDeltaString">mainVS</VertexProgramEntryPoint>
+					<FragmentProgramEntryPoint d:type="cDeltaString">mainAlpha</FragmentProgramEntryPoint>
+				</cHcMetaShader-cPass>
+			</Pass>
+			<TechniqueName d:type="cDeltaString">SkLambert_d0_AlphaMask_NoCull</TechniqueName>
+		</cHcMetaShader-cTechnique>
+	</Technique>
+	<SamplerState>
+		<cHcMetaShader-cSamplerState d:id="903715896">
+			<MagFilter d:type="cDeltaString">HC_FILTER_MODE_LINEAR</MagFilter>
+			<MinFilter d:type="cDeltaString">HC_FILTER_MODE_LINEAR</MinFilter>
+			<MipFilter d:type="cDeltaString">HC_FILTER_MODE_LINEAR</MipFilter>
+			<SamplerName d:type="cDeltaString">DiffuseSampler</SamplerName>
+		</cHcMetaShader-cSamplerState>
+	</SamplerState>
+	<ShaderName d:type="cDeltaString">CGPS3_2SpSkLambert_d</ShaderName>
+</cHcMetaShader>

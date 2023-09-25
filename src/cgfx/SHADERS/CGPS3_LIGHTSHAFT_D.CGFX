@@ -1,0 +1,585 @@
+
+#define CG_BUILD
+#define CG_PS3_BUILD
+#define POINTLIGHT_0
+#define SPOTLIGHT_0
+/*
+	Light Shaft -
+	Conor Lenihan
+	28 March 2007
+*/
+
+#define LIGHTSHAFT_D_SHC
+
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+#define BASE_SHH
+
+//-----------Change variable formats to make platform independant----------
+
+//Floats
+#define FLOAT  float 
+#define FLOAT2 float2 
+#define FLOAT3 float3 
+#define FLOAT4 float4  
+#define FLOAT3x3 float3x3
+#define FLOAT4x3 float4x3
+#define FLOAT3x4 float3x4
+#define FLOAT4x4 float4x4
+//Halves
+#define HALF half
+#define HALF2 half2
+#define HALF3 half3
+#define HALF4 half4
+#define HALF3x3 half3x3
+#define HALF4x3 half4x3
+#define HALF3x4 half3x4
+#define HALF4x4 half4x4
+//int
+#define INT int
+#define INT2 int2
+#define INT3 int3
+#define INT4 int4
+//Others
+#define BOOL bool
+#define STRING string
+#define TEXTURE texture
+#define SAMPLER2D sampler2D
+#define SAMPLERCUBE samplerCUBE
+//#define OUT out
+
+//-----------Change Technique formats to make platform independant----------
+#define VERTEXCOMPILE arbvp1
+#define PIXELCOMPILE arbfp1
+#define VERTEXPROGRAM VertexProgram
+#define PIXELPROGRAM FragmentProgram
+
+#define HLSL_OR_PS3_BUILD
+
+FLOAT3 GetBlack() { return FLOAT3(0,0,0); }
+FLOAT3 GetWhite() { return FLOAT3(1,1,1); }
+
+//-----------Change Function formats to make platform independant----------
+//This is here to prevent a bug where HLSL need to do 
+//its multiplication by (1r4c * 4r4c) where the CG and 
+//GLSL do it (4r4c * 4r1c). This should result in the 
+//same thing appearing on screen
+FLOAT4 MULTIPLY(FLOAT4x4 myMatrix, FLOAT4 myVector)
+{
+	return mul(myVector, myMatrix);
+}
+
+FLOAT4x4 MULTIPLY(FLOAT4x4 myMatrix1, FLOAT4x4 myMatrix2)
+{
+	return mul(myMatrix2, myMatrix1);
+}
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+/*
+	Diffuse: 	Calculates diffuse 
+				D = Dintensity * Dcolor * Dcoefficent
+	Conor Lenihan
+	23 October 2006
+*/
+
+#define DIFFUSE_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT Kd : DIFFUSEINFLUENCE
+<
+	STRING UIName = "Diffuse Influence";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 8;
+	FLOAT UIStep = 0.1;
+> = 1;
+
+//Default texture to apply to object
+TEXTURE DiffuseTexture
+<
+	STRING ResourceName = "Drummer_d.dds";
+	STRING ResourceType = "2D";
+>;
+
+//Default 2D sampler to apply to object
+SAMPLER2D DiffuseSampler = sampler_state
+{
+	Texture = <DiffuseTexture>;
+  	MagFilter = Linear;
+  	MinFilter = LinearMipMapLinear;
+	AddressU = WRAP;
+	AddressV = WRAP;	
+};
+
+//-----------------------------------------------------------------------------------------------
+/*
+	DiffuseColour: 	Diffuse colour and alpha
+	Barry Northern
+	14 March 2007
+*/
+
+#define DIFFUSECOLOUR_SHH
+
+//Default diffuse colour to apply
+FLOAT3 DiffuseColor : DIFFUSECOLOUR
+<
+    STRING UIName =  "Diffuse Color";
+    STRING UIWidget = "Color";
+> = {1.0f, 1.0f, 1.0f};
+
+FLOAT DiffuseAlpha : DIFFUSEALPHA
+<
+	STRING UIName = "Diffuse Alpha";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0f;
+	FLOAT UIMax = 1.0f;
+	FLOAT UIStep = 0.01f;
+> = 1.0f;
+
+FLOAT3 GetDiffuse()
+{
+	return DiffuseColor;
+}
+
+FLOAT GetDiffuseAlpha(FLOAT v)
+{
+	return (DiffuseAlpha * v);
+}
+
+
+FLOAT3 CalcDiffuse(FLOAT diffuseCoeff, FLOAT3 lightColor, FLOAT3 InputColour)
+{
+	FLOAT3 finalDiffuse = diffuseCoeff * lightColor * InputColour;
+	return finalDiffuse;
+}
+
+FLOAT3 CalcInputColour(FLOAT3 col1, FLOAT3 col2)
+{
+	return (col1 * col2);
+}
+
+//-----------------------------------------------------------------------------------------------
+
+//Calculates diffuse if you want to use the default Sampler
+FLOAT3 CalcDiffuse(FLOAT diffuseCoeff, FLOAT3 lightColor, FLOAT2 diffuseTexCoord)
+{
+	FLOAT3 diffuseCol = diffuseCoeff * lightColor * DiffuseColor;
+	FLOAT3 texDiffuse = tex2D(DiffuseSampler, diffuseTexCoord).xyz;
+	FLOAT3 finalDiffuse = diffuseCol * texDiffuse;
+	return finalDiffuse;
+}
+
+FLOAT3 GetDiffuse(FLOAT2 texCoord)
+{
+	FLOAT3 texDiffuse = tex2D(DiffuseSampler, texCoord).xyz;
+	FLOAT3 finalDiffuse = DiffuseColor * texDiffuse;
+	return finalDiffuse;
+}
+
+FLOAT GetDiffuseAlpha (FLOAT2 texCoord, FLOAT v)
+{
+	FLOAT texAlph = tex2D(DiffuseSampler, texCoord).w;
+	FLOAT finalAlpha = (DiffuseAlpha * texAlph) * v;
+	return finalAlpha;
+}
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	STRUCT Struture for a 1UV texcoord
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define STRUCT_1UV_N_T_B_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDVIEWPROJ_SHH
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDVIEWPROJ_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT4x4 WorldViewProjXf : WorldViewProjection;
+
+FLOAT4x4 GetWorldViewProj ()
+{
+	return WorldViewProjXf;
+}
+
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	Vertex shaders for normals
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDVIEWPOSITION
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDVIEWPROJ_SHH
+	Conor Lenihan
+	14 February 2007
+*/
+
+//-------------------------------------------------------------------------------------------------
+FLOAT4 CalcWorldViewPosition(FLOAT3 position)
+{
+	return MULTIPLY(WorldViewProjXf, FLOAT4(position,1.0f));
+}
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	ViewInverse - Semantics connected to game, used to get the matrix of the camera
+	Conor Lenihan
+	17 January 2007
+*/
+
+#define VIEWINVERSE_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT4x4 ViewInvXf : ViewInverse;
+
+FLOAT4x4 GetViewInverse ()
+{
+	return ViewInvXf;
+}
+
+FLOAT3 GetViewInversePosition ()
+{
+	return ViewInvXf[3].xyz;
+}
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDTRANSPOSE
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDTRANSPOSE_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT4x4 WorldXf : World;
+
+FLOAT4x4 GetWorldTransform ()
+{
+	return WorldXf;
+}
+
+
+//-------------------------------------------------------------------------------------------------
+#define FOG_SHH
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+#define FOG_ENABLED
+
+FLOAT Fog_Start : FOGSTART
+<
+    STRING UIName =  "Fog Start";
+    STRING UIWidget = "Fog Start";
+> = 0.0f;
+
+FLOAT Fog_End : FOGEND
+<
+    STRING UIName =  "Fog End";
+    STRING UIWidget = "Fog End";
+> = 100000.0f;
+
+FLOAT4 Fog : FOGCOLOR
+<
+    STRING UIName =  "Fog";
+    STRING UIWidget = "Fog";
+> = {1.0f, 1.0f, 1.0f, 0.0f};	// Fog that is white but no Density
+
+FLOAT CalculateExp2FogRatio (FLOAT distanceToCamera)
+{
+	FLOAT distanceInFog = clamp((Fog_End - distanceToCamera) / (Fog_End - Fog_Start), 0.0, 1.0);
+	FLOAT density = (1.0f - distanceInFog) * Fog.w;
+	return density;
+}
+
+FLOAT3 BlendFogAndLight (FLOAT3 currentColour, FLOAT fogRatio)
+{
+	return currentColour;
+}
+
+
+////////////////////////////////////////////////////
+/// structures /////////////////////////////////////
+////////////////////////////////////////////////////
+struct VertexInput 
+{
+    FLOAT4 Position : POSITION;
+    FLOAT4 UV0      : TEXCOORD0;
+	FLOAT4 Colour	: COLOR0;
+};
+
+struct PixelInput 
+{
+    FLOAT4 HPosition    : POSITION;
+	FLOAT4 Colour		: COLOR0;
+    FLOAT4 TexCoord0    : TEXCOORD0;
+};
+
+PixelInput VertexToPixelInput(VertexInput IN)
+{
+	PixelInput OUT = (PixelInput)0;
+
+
+	OUT.HPosition = CalcWorldViewPosition(IN.Position.xyz);
+   
+	OUT.TexCoord0 = IN.UV0;
+
+	OUT.Colour.xyz = IN.Colour.xyz;
+	OUT.Colour.w = IN.Colour.w;
+	return OUT;
+}
+//-------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+/*
+	Alpha Belnd
+	Conor Lenihan
+	19 April 2007
+*/
+
+#define ALPHABLEND_SHH
+
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT AdditiveAlphaValue(FLOAT3 colour)
+{
+	FLOAT maxColour = max (colour.x, colour.y);
+	maxColour = max (maxColour, colour.z);
+	return maxColour;
+}
+//-----------------------------------------------------------------------------------------------
+//////////////////////////////////////////////////////////
+// shader code ///////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+//Vertex Shader
+PixelInput mainVS(VertexInput IN) 
+{
+	PixelInput OUT = VertexToPixelInput(IN);
+	return OUT;
+}
+
+//Pixel Shader
+FLOAT4 main(PixelInput IN) : COLOR 
+{  
+	FLOAT3 diffContrib = CalcInputColour(GetDiffuse(IN.TexCoord0.xy), IN.Colour.xyz);
+	diffContrib.xyz *= Kd;
+	FLOAT alphaValue = AdditiveAlphaValue(diffContrib);
+
+	return FLOAT4( diffContrib.xyz, alphaValue );
+}
+
+
+/////////////////////////////////////////////////////
+// TECHNIQUES /////////////////////////////////////////
+///////////////////////////////////////////////////////
+
+technique Flat_d0
+{
+	pass p0
+    {
+	#ifdef HLSL_BUILD
+		ZEnable = true;
+		ZWriteEnable = false;
+		CullMode = NONE;
+		ZFunc = GREATEREQUAL ;
+		AlphaTestEnable = true;
+		AlphaFunc = GREATEREQUAL;
+		AlphaBlendEnable = true;		
+		SrcBlend = SRCALPHA;
+		DestBlend = ONE;
+		BlendOp = ADD;
+		AlphaRef = 0;
+	#endif //#ifdef HLSL_BUILD
+	#ifdef CG_BUILD
+	#ifdef CG_PS3_BUILD
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		DepthMask = false;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(GEqual, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,One);
+		CullFaceEnable = false;
+		FrontFace = CW;
+	#else // CG_PS3_BUILD
+		DepthTestEnable = false;
+		DepthFunc = Equal;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(GEqual, 0);
+		BlendEnable = true;
+		BlendFunc = int2(One,One);
+		BlendEquation = ADD;
+		CullFaceEnable = false;
+		FrontFace = CW;
+	#endif // CG_PS3_BUILD
+	#endif//#ifdef CG_BUILD
+        VERTEXPROGRAM = compile VERTEXCOMPILE mainVS();
+        PIXELPROGRAM = compile PIXELCOMPILE main();
+    }
+}
+
+technique LightShaft_d0_Alpha
+{
+	pass p0
+    {
+	#ifdef HLSL_BUILD
+		ZEnable = true;
+		ZWriteEnable = false;
+		CullMode = NONE;
+		ZFunc = GREATEREQUAL ;
+		AlphaTestEnable = true;
+		AlphaFunc = GREATEREQUAL;
+		AlphaBlendEnable = true;		
+		SrcBlend = SRCALPHA;
+		DestBlend = ONE;
+		BlendOp = ADD;
+		AlphaRef = 0;
+	#endif //#ifdef HLSL_BUILD
+	#ifdef CG_BUILD
+	#ifdef CG_PS3_BUILD
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		DepthMask = false;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(GEqual, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,One);
+		CullFaceEnable = false;
+		FrontFace = CW;
+	#else // CG_PS3_BUILD
+		DepthTestEnable = false;
+		DepthFunc = Equal;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(GEqual, 0);
+		BlendEnable = true;
+		BlendFunc = int2(One,One);
+		BlendEquation = ADD;
+		CullFaceEnable = false;
+		FrontFace = CW;
+	#endif // CG_PS3_BUILD
+	#endif//#ifdef CG_BUILD
+        VERTEXPROGRAM = compile VERTEXCOMPILE mainVS();
+        PIXELPROGRAM = compile PIXELCOMPILE main();
+    }
+}	
+
+technique LightShaft_d0_Additive
+{
+	pass p0
+    {
+	#ifdef HLSL_BUILD	
+		ZEnable = true;
+		ZWriteEnable = false;
+		CullMode = NONE;
+		ZFunc = GREATEREQUAL ;
+		AlphaTestEnable = true;
+		AlphaFunc = GREATEREQUAL;
+		AlphaBlendEnable = true;		
+		SrcBlend = SRCCOLOR;
+		DestBlend = ONE;
+		BlendOp = ADD;
+		AlphaRef = 0;
+	#endif //#ifdef HLSL_BUILD
+	#ifdef CG_BUILD
+	#ifdef CG_PS3_BUILD
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		DepthMask = false;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(GEqual, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcColor,One);
+		CullFaceEnable = false;
+		FrontFace = CW;
+	#else // CG_PS3_BUILD
+		DepthTestEnable = false;
+		DepthFunc = Equal;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(GEqual, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SRCCOLOR,One);
+		BlendEquation = ADD;
+		CullFaceEnable = false;
+		FrontFace = CW;
+	#endif // CG_PS3_BUILD
+	#endif//#ifdef CG_BUILD
+        VERTEXPROGRAM = compile VERTEXCOMPILE mainVS();
+        PIXELPROGRAM = compile PIXELCOMPILE main();
+    }
+}	

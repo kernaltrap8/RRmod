@@ -1,0 +1,1039 @@
+
+#define CG_BUILD
+#define CG_PS3_BUILD
+#define POINTLIGHT_0
+#define SPOTLIGHT_0
+
+//JIML
+//VertexShader compile vs_2_0  foo();
+//PixelShader = compile ps_2_0 foo();
+// Cullmode vs CullFaceEnable
+//
+
+
+//-----------------------------------------------------------------------------
+// "borrowed" frrom the direct x sample to get the initial HDR filters working
+// on DR.
+//
+// -Gabs 17-01-07
+//
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+// File: FullScreenEffects.fx
+//
+// pixel shaders for the HDR effects in Drum Rev.
+//
+//-----------------------------------------------------------------------------
+
+
+//-----------Change Technique formats to make platform independant----------
+
+//-----------Change variable formats to make platform independant----------
+
+//Floats
+#define FLOAT  float 
+#define FLOAT2 float2 
+#define FLOAT3 float3 
+#define FLOAT4 float4  
+#define FLOAT3x3 float3x3
+#define FLOAT4x3 float4x3
+#define FLOAT3x4 float3x4
+#define FLOAT4x4 float4x4
+//Halves
+#define HALF half
+#define HALF2 half2
+#define HALF3 half3
+#define HALF4 half4
+#define HALF3x3 half3x3
+#define HALF4x3 half4x3
+#define HALF3x4 half3x4
+#define HALF4x4 half4x4
+//int
+#define INT int
+#define INT2 int2
+#define INT3 int3
+#define INT4 int4
+//Others
+#define BOOL bool
+#define STRING string
+#define TEXTURE texture
+#define SAMPLER2D sampler2D
+#define SAMPLERCUBE samplerCUBE
+//#define OUT out
+
+#define VERTEXCOMPILE arbvp1
+#define PIXELCOMPILE arbfp1
+#define VERTEXPROGRAM VertexProgram
+#define PIXELPROGRAM FragmentProgram
+
+
+#define HLSL_OR_PS3_BUILD
+
+//-----------------------------------------------------------------------------
+// Global variables
+//-----------------------------------------------------------------------------
+
+
+const FLOAT g_fDesaturation;
+const FLOAT g_fSaturation;
+const FLOAT g_fTonemapLevelFraction;
+
+const FLOAT4 g_fTexelOffsetsX[8];
+const FLOAT4 g_fTexelOffsetsY[8];
+const FLOAT4 g_fGlareTexelOffsets[15];
+
+const FLOAT4x4 g_fParameters[2];
+
+//const FLOAT g_fBloomDesaturation       = g_fParameters[0][0][0];
+//const FLOAT g_fBloomDesaturationRT1    = g_fParameters[0][0][1];
+//const FLOAT g_fBloomDesaturationRT2    = g_fParameters[0][0][2];
+//const FLOAT g_fBloomPreviousFrameBlend = g_fParameters[0][0][3];
+//const FLOAT g_fBloomSaturation         = g_fParameters[0][1][0];
+//const FLOAT g_fBloomSaturationRT1      = g_fParameters[0][1][1];
+//const FLOAT g_fBloomSaturationRT2      = g_fParameters[0][1][2];
+//const FLOAT g_fDofBlur                 = g_fParameters[0][1][3];
+//const FLOAT g_fDofDensity              = g_fParameters[0][2][0];
+//const FLOAT g_fDofFarEnd               = g_fParameters[0][2][1];
+//const FLOAT g_fDofFarStart             = g_fParameters[0][2][2];
+//const FLOAT g_fDofNearEnd              = g_fParameters[0][2][3];
+//const FLOAT g_fDofNearStart            = g_fParameters[0][3][0];
+//const FLOAT g_fExposure                = g_fParameters[0][3][1];
+//const FLOAT g_fFarClip                 = g_fParameters[0][3][2];
+//const FLOAT g_fFogAmbientFactor        = g_fParameters[0][3][3];
+//const FLOAT g_fFogColB                 = g_fParameters[1][0][0];
+//const FLOAT g_fFogColG                 = g_fParameters[1][0][1];
+//const FLOAT g_fFogColR                 = g_fParameters[1][0][2];
+//const FLOAT g_fFogDensity              = g_fParameters[1][0][3];
+//const FLOAT g_fFogDensityMapScaler     = g_fParameters[1][1][0];
+//const FLOAT g_fFogEnd                  = g_fParameters[1][1][1];
+//const FLOAT g_fFogLightMapFactor       = g_fParameters[1][1][2];
+//const FLOAT g_fFogLightMapZFade        = g_fParameters[1][1][3];
+//const FLOAT g_fFogStart                = g_fParameters[1][2][0];
+//const FLOAT g_fHDRwindowOffset         = g_fParameters[1][2][1];
+//const FLOAT g_fHDRwindowOffsetRT1      = g_fParameters[1][2][2];
+//const FLOAT g_fHDRwindowOffsetRT2      = g_fParameters[1][2][3];
+//const FLOAT g_fHDRwindowSize           = g_fParameters[1][3][0];
+//const FLOAT g_fHDRwindowSizeRT1        = g_fParameters[1][3][1];
+//const FLOAT g_fHDRwindowSizeRT2        = g_fParameters[1][3][2];
+//const FLOAT g_fNearClip                = g_fParameters[1][3][3];
+
+
+
+//-----------------------------------------------------------------------------
+// Texture samplers
+//-----------------------------------------------------------------------------
+sampler s0 : register(s0);
+sampler s1 : register(s1);
+sampler s2 : register(s2);
+sampler s3 : register(s3);
+sampler s4 : register(s4);
+sampler s5 : register(s5);
+sampler s6 : register(s6);
+sampler s7 : register(s7);
+
+
+
+//-----------------------------------------------------------------------------
+// Vertex shaders
+//-----------------------------------------------------------------------------
+struct PASSTHRU_VERTEX
+{
+    HALF4 Position   : POSITION;
+    HALF2 TexCoords   : TEXCOORD0;
+};
+
+
+PASSTHRU_VERTEX psThrough( HALF3 vPosition : POSITION )
+{
+    PASSTHRU_VERTEX Output;
+
+    Output.Position  = HALF4( vPosition.x, vPosition.y, 1.0f, 1.0f );
+    Output.TexCoords.x = (vPosition.x + 1) / 2;
+    Output.TexCoords.y = (2 - (vPosition.y + 1)) / 2;
+    return Output;
+}
+
+//-----------------------------------------------------------------------------
+// Pixel shaders
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+// Name: FinalScenePass
+// Type: Pixel shader                                      
+// Desc: HDR Full Screen Effects - Release Shader
+//-----------------------------------------------------------------------------
+
+HALF3 ExposureAndSaturation
+    (
+    in HALF3 vSample
+    ) //JIML	: COLOR
+{
+	vSample *= g_fParameters[0][3][1];
+	HALF fSampleMono = (vSample.x + vSample.y + vSample.z) / 3;
+	HALF3 vSampleMono = fSampleMono;
+	vSample = vSampleMono * g_fDesaturation + vSample * g_fSaturation;
+
+	return vSample;
+}
+
+HALF3 Tonemap
+    (
+    in HALF3 vSample
+    ) // JIML: COLOR
+{
+	HALF2 vPos = HALF2(0.0f, 0.5f);
+	vPos.y = g_fTonemapLevelFraction;
+
+	// A texture co-ordinate of 1.0 ends up returning a value outside of the tonemap texture, so
+	// squish the range by one pixel and re-centre.
+	// old range of vSample.r: [0, 1]
+	// new range: [1/512, 1 - 1/512]
+	HALF m = 255.0f / 256.0f;
+	HALF b = 1.0f / 512.0f;
+	vPos.x = m * saturate(vSample.r) + b;
+
+	HALF vCurvesRed = h1tex2D(s1, vPos);
+
+	vPos.x = m * saturate(vSample.g) + b;
+
+	HALF2 vCurvesGreen = h2tex2D(s1, vPos);
+	vPos.x = m * saturate(vSample.b) + b;
+
+	HALF3 vCurvesBlue = h3tex2D(s1, vPos);
+
+    vSample.r = vCurvesRed;
+    vSample.g = vCurvesGreen.g;
+    vSample.b = vCurvesBlue.b;
+
+	return vSample;
+}
+
+//JIML
+//HALF3 GothenburgFilter
+//    (
+//    in HALF3 vSample
+//    ) : COLOR
+//{
+//	HALF3 sample2 = vSample;
+//	vSample = (vSample - sample2) * 1.5;
+//	return vSample;
+//}
+
+
+//JIML
+//HALF3 EightiesFilter
+//    (
+//    in HALF3 vSample
+//    ) : COLOR
+//{
+//	HALF git2 = vSample;
+//	vSample = (vSample * 2) - git2;
+//}
+
+
+HALF4 FogLightmap
+    (
+    HALF4 vSample, 
+    HALF4 cSample
+    ) //JIML	: COLOR
+{
+// convert z buffer value back to z
+	HALF z = (g_fParameters[0][3][2] * g_fParameters[1][3][3]) / (g_fParameters[0][3][2] - ((2.0f * vSample.r - 1.0f) * (g_fParameters[0][3][2] - g_fParameters[1][3][3])));
+	vSample.a = (z - g_fParameters[1][2][0]) / (g_fParameters[1][1][1] - g_fParameters[1][2][0]);
+	vSample.a = clamp(vSample.a, 0.0f, 1.0f);	// basic distance fog range from 0 - 1
+
+	HALF fog = vSample.a * g_fParameters[1][0][3];
+
+	fog += cSample.a * vSample.a * g_fParameters[1][1][0];	// density map in alpha channel - scale by basic fog distance
+	vSample.a = clamp(fog, 0.0f, 1.0f);	// reclamp afer adding adding / subtracting density map
+	
+	cSample.rgb *= 1.0f - (vSample.a * g_fParameters[1][1][3]);		// fade lightmap over range
+	cSample.rgb *= g_fParameters[1][1][2];
+	
+	vSample.r = (g_fParameters[1][0][2] * g_fParameters[0][3][3]) + cSample.r;		// bend in ambient
+	vSample.g = (g_fParameters[1][0][1] * g_fParameters[0][3][3]) + cSample.g;
+	vSample.b = (g_fParameters[1][0][0] * g_fParameters[0][3][3]) + cSample.b;
+	
+	return vSample;
+}
+
+
+HALF4 Dof
+    (
+    HALF4 vSample, 
+    HALF3 cSample
+    )	//JIML : COLOR
+{
+// convert z buffer value back to z
+	HALF z = (g_fParameters[0][3][2] * g_fParameters[1][3][3]) / (g_fParameters[0][3][2] - ((2.0f * vSample.r - 1.0f) * (g_fParameters[0][3][2] - g_fParameters[1][3][3])));
+	vSample.a = (z - g_fParameters[0][2][2]) / (g_fParameters[0][2][1] - g_fParameters[0][2][2]);
+	vSample.a = clamp(vSample.a, 0.0f, 1.0f);	// basic distance dof range from 0 - 1
+
+	HALF nearz = (z - g_fParameters[0][3][0]) / (g_fParameters[0][2][3] - g_fParameters[0][3][0]);
+	nearz = clamp(nearz, 0.0f, 1.0f);	// basic distance dof range from 0 - 1
+
+	vSample.a += nearz;
+	vSample.a *= g_fParameters[0][2][0];
+	
+	vSample.rgb = cSample;
+
+	return vSample;
+}
+
+HALF4 FinalScenePassAll
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample;
+	vSample.rgb = h3tex2D(s0, IN.TexCoords);
+
+	HALF4 zbuffer = HALF4(texDepth2D(s4, IN.TexCoords), 0, 0, 0);
+
+	HALF4 dof = Dof(zbuffer, h3tex2D(s6, IN.TexCoords));	// zbuffer and fog lightmap
+	vSample.rgb = (vSample.rgb * (1.0f - dof.a)) + (dof.rgb * dof.a);		// alpha in fog
+	
+	HALF4 fog = FogLightmap(zbuffer, h4tex2D(s5, IN.TexCoords));	// zbuffer and fog lightmap
+	vSample.rgb = (vSample.rgb * (1.0f - fog.a)) + (fog.rgb * fog.a);		// alpha in fog
+
+	vSample.rgb = ExposureAndSaturation(vSample.rgb);
+
+	vSample.rgb = Tonemap(vSample.rgb);
+
+	HALF3 bloom = h3tex2D(s2, IN.TexCoords);
+	vSample.rgb += bloom;
+
+	vSample.a = 1;
+
+	return vSample;
+}
+
+//-----------------------------------------------------------------------------
+// Name: FinalScenePassAll
+// Type: Technique                                     
+// Desc: Final Pass HDR effects
+//-----------------------------------------------------------------------------
+technique FinalScenePassAll
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE FinalScenePassAll();
+    }
+}
+
+HALF4 FinalScenePassFog
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample;
+	vSample.rgb = h3tex2D(s0, IN.TexCoords);
+
+	HALF4 zbuffer = HALF4(texDepth2D(s4, IN.TexCoords), 0, 0, 0);
+
+	HALF4 fog = FogLightmap(zbuffer, h4tex2D(s5, IN.TexCoords));	// zbuffer and fog lightmap
+	vSample.rgb = (vSample.rgb * (1.0f - fog.a)) + (fog.rgb * fog.a);		// alpha in fog
+
+	vSample.rgb = ExposureAndSaturation(vSample.rgb);
+
+	vSample.rgb = Tonemap(vSample.rgb);
+
+	vSample.a = 1;
+
+	return vSample;
+}
+
+//-----------------------------------------------------------------------------
+// Name: FinalScenePassFog
+// Type: Technique                                     
+// Desc: Final Pass HDR effects
+//-----------------------------------------------------------------------------
+technique FinalScenePassFog
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE FinalScenePassFog();
+    }
+}
+
+HALF4 FinalScenePassDof
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample;
+	vSample.rgb = h3tex2D(s0, IN.TexCoords);
+
+	HALF4 zbuffer = HALF4(texDepth2D(s4, IN.TexCoords), 0, 0, 0);
+
+	HALF4 dof = Dof(zbuffer, h3tex2D(s6, IN.TexCoords));	// zbuffer and fog lightmap
+	vSample.rgb = (vSample.rgb * (1.0f - dof.a)) + (dof.rgb * dof.a);		// alpha in fog
+	
+	vSample.rgb = ExposureAndSaturation(vSample.rgb);
+
+	vSample.rgb = Tonemap(vSample.rgb);
+
+	vSample.a = 1;
+
+	return vSample;
+}
+
+//-----------------------------------------------------------------------------
+// Name: FinalScenePassDof
+// Type: Technique                                     
+// Desc: Final Pass HDR effects
+//-----------------------------------------------------------------------------
+technique FinalScenePassDof
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE FinalScenePassDof();
+    }
+}
+
+HALF4 FinalScenePassBloom
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample;
+	vSample.rgb = h3tex2D(s0, IN.TexCoords);
+
+	vSample.rgb = ExposureAndSaturation(vSample.rgb);
+
+	vSample.rgb = Tonemap(vSample.rgb);
+
+	HALF3 bloom = h3tex2D(s2, IN.TexCoords);
+	vSample.rgb += bloom;
+
+	vSample.a = 1;
+
+	return vSample;
+}
+
+//-----------------------------------------------------------------------------
+// Name: FinalScenePassBloom
+// Type: Technique                                     
+// Desc: Final Pass HDR effects
+//-----------------------------------------------------------------------------
+technique FinalScenePassBloom
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMILE FinalScenePassBloom();
+    }
+}
+
+
+HALF4 FinalScenePassFogDof
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample;
+	vSample.rgb = h3tex2D(s0, IN.TexCoords);
+
+	HALF4 zbuffer = HALF4(texDepth2D(s4, IN.TexCoords), 0, 0, 0);
+
+	HALF4 dof = Dof(zbuffer, h3tex2D(s6, IN.TexCoords));	// zbuffer and fog lightmap
+	vSample.rgb = (vSample.rgb * (1.0f - dof.a)) + (dof.rgb * dof.a);		// alpha in fog
+	
+	HALF4 fog = FogLightmap(zbuffer, h4tex2D(s5, IN.TexCoords));	// zbuffer and fog lightmap
+	vSample.rgb = (vSample.rgb * (1.0f - fog.a)) + (fog.rgb * fog.a);		// alpha in fog
+
+	vSample.rgb = ExposureAndSaturation(vSample.rgb);
+
+	vSample.rgb = Tonemap(vSample.rgb);
+
+	vSample.a = 1;
+
+	return vSample;
+}
+
+//-----------------------------------------------------------------------------
+// Name: FinalScenePassFogDof
+// Type: Technique                                     
+// Desc: Final Pass HDR effects
+//-----------------------------------------------------------------------------
+technique FinalScenePassFogDof
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE FinalScenePassFogDof();
+    }
+}
+
+HALF4 FinalScenePassFogBloom
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample;
+	vSample.rgb = h3tex2D(s0, IN.TexCoords);
+
+	HALF4 zbuffer = HALF4(texDepth2D(s4, IN.TexCoords), 0, 0, 0);
+
+	HALF4 fog = FogLightmap(zbuffer, h4tex2D(s5, IN.TexCoords));	// zbuffer and fog lightmap
+	vSample.rgb = (vSample.rgb * (1.0f - fog.a)) + (fog.rgb * fog.a);		// alpha in fog
+
+	vSample.rgb = ExposureAndSaturation(vSample.rgb);
+
+	vSample.rgb = Tonemap(vSample.rgb);
+
+	HALF3 bloom = h3tex2D(s2, IN.TexCoords);
+	vSample.rgb += bloom;
+
+	vSample.a = 1;
+
+	return vSample;
+}
+
+//-----------------------------------------------------------------------------
+// Name: FinalScenePassFogBloom
+// Type: Technique                                     
+// Desc: Final Pass HDR effects
+//-----------------------------------------------------------------------------
+technique FinalScenePassFogBloom
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE FinalScenePassFogBloom();
+    }
+}
+
+
+HALF4 FinalScenePassDofBloom
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample;
+	vSample.rgb = h3tex2D(s0, IN.TexCoords);
+
+	HALF4 zbuffer = HALF4(texDepth2D(s4, IN.TexCoords), 0, 0, 0);
+
+	HALF4 dof = Dof(zbuffer, h3tex2D(s6, IN.TexCoords));	// zbuffer and fog lightmap
+	vSample.rgb = (vSample.rgb * (1.0f - dof.a)) + (dof.rgb * dof.a);		// alpha in fog
+	
+	vSample.rgb = ExposureAndSaturation(vSample.rgb);
+
+	vSample.rgb = Tonemap(vSample.rgb);
+
+	HALF3 bloom = h3tex2D(s2, IN.TexCoords);
+	vSample.rgb += bloom;
+
+	vSample.a = 1;
+
+	return vSample;
+}
+
+HALF4 FinalScenePass
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample;
+	vSample.rgb = h3tex2D(s0, IN.TexCoords);
+
+	vSample.rgb = ExposureAndSaturation(vSample.rgb);
+
+	vSample.rgb = Tonemap(vSample.rgb);
+
+	vSample.a = 1;
+
+	return vSample;
+}
+
+//-----------------------------------------------------------------------------
+// Name: FinalScenePass
+// Type: Technique                                     
+// Desc: Final Pass HDR effects
+//-----------------------------------------------------------------------------
+technique FinalScenePass
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE FinalScenePass();
+    }
+}
+
+//-----------------------------------------------------------------------------
+// Name: FinalScenePassDofBloom
+// Type: Technique                                     
+// Desc: Final Pass HDR effects
+//-----------------------------------------------------------------------------
+technique FinalScenePassDofBloom
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE FinalScenePassDofBloom();
+    }
+}
+
+
+HALF4 FinalScenePassIRA
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF3 vSampleNoise = h3tex2D(s4, IN.TexCoords);
+
+	HALF2 coords = IN.TexCoords;
+	coords.x += (vSampleNoise.r - .5) / 20;
+	coords.y += (vSampleNoise.g - .5) / 20;
+	HALF4 vSample;
+	vSample.rgb = h3tex2D(s0, coords);
+
+	vSampleNoise.b -= .5;
+	vSampleNoise.b *= .25;
+
+	vSample.rgb += vSampleNoise.b;
+
+	vSample.rgb = ExposureAndSaturation(vSample.rgb);
+
+	vSample.rgb = Tonemap(vSample.rgb);
+
+	HALF3 bloom = h3tex2D(s2, coords);
+	vSample.rgb += bloom;
+	vSample.a = 1;
+
+	return vSample;
+}
+
+
+//-----------------------------------------------------------------------------
+// Name: FinalScenePassIRA
+// Type: Technique                                     
+// Desc: Final Pass HDR effects plus IRA
+//-----------------------------------------------------------------------------
+technique FinalScenePassIRA
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE FinalScenePassIRA();
+    }
+}
+
+//-----------------------------------------------------------------------------
+// Name: BloomPassOne
+// Type: Pixel shader                                      
+// Desc: Window the HDR to get the bloom/glare luminance and saturate etc
+//-----------------------------------------------------------------------------
+HALF4 BloomWindowingAndSaturation
+    (
+    HALF4 vSample,
+    HALF fHDRwindowOffset,
+    HALF fHDRwindowSize,
+    HALF fBloomDesaturation,
+    HALF fBloomSaturation
+    )
+{
+	vSample.rgb = saturate(vSample.rgb - fHDRwindowOffset) * fHDRwindowSize;
+	HALF fSampleMono = (vSample.x + vSample.y + vSample.z) / 3;
+	HALF3 vSampleMono = fSampleMono;
+	vSample.rgb = vSampleMono.rgb * fBloomDesaturation + vSample.rgb * fBloomSaturation;
+	vSample.a = 1;
+	return vSample;
+}
+
+HALF3 OuterAverage
+(
+	PASSTHRU_VERTEX IN
+)
+{
+	HALF3 vSample;
+
+    HALF3 vColor = h3tex2D(s2, IN.TexCoords);		// centre pixel
+
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsY[0].xy);
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsY[1].xy);
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsY[2].xy);
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsY[3].xy);
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsY[4].xy);
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsY[5].xy);
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsY[6].xy);
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsY[7].xy);
+
+	vSample = vColor / 9.0f;	// outer ring + centre average
+	
+	return vSample;
+}
+
+HALF3 InnerAverage
+(
+	PASSTHRU_VERTEX IN
+)
+{
+	HALF3 vSample;
+
+    HALF3 vColor = 0;
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsX[0].xy);
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsX[1].xy);
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsX[2].xy);
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsX[3].xy);
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsX[4].xy);
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsX[5].xy);
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsX[6].xy);
+    vColor += h3tex2D(s2, IN.TexCoords + g_fTexelOffsetsX[7].xy);
+
+	vSample = vColor / 8.0f;
+
+	return vSample;
+}
+
+HALF4 BloomPassOne
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample;
+	vSample.rgb = (OuterAverage(IN) * 1.6875) + InnerAverage(IN);		// magic number to replicate old bloom effect (with bug that caused large outer ring influence)
+	vSample.a = 1.0f;
+	vSample = BloomWindowingAndSaturation(vSample, g_fParameters[1][2][1], g_fParameters[1][3][0], g_fParameters[0][0][0], g_fParameters[0][1][0]);
+	return vSample;
+}
+
+//-----------------------------------------------------------------------------
+// Name: BloomPassOne
+// Type: Technique                                     
+// Desc: Window the HDR to get the bloom/glare luminance
+//-----------------------------------------------------------------------------
+technique BloomPassOne
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE BloomPassOne();
+    }
+}
+
+struct PS_MRTOUTPUT
+{
+    HALF4 colour[3] : COLOR0;
+};
+
+
+PS_MRTOUTPUT BloomPassOneMRT
+    (
+    in PASSTHRU_VERTEX IN
+    )
+{
+	PS_MRTOUTPUT outCols;
+	HALF4 vSample;
+	HALF3 vSampleIn, vSampleOut;
+	vSampleIn = InnerAverage(IN);
+	vSampleOut = OuterAverage(IN);
+
+	vSample.rgb = (vSampleIn * 1.6875f) + vSampleOut;		// magic number to replicate old bloom effect (with bug that caused large outer ring influence)
+	outCols.colour[0] = BloomWindowingAndSaturation(vSample, g_fParameters[1][2][1], g_fParameters[1][3][0], g_fParameters[0][0][0], g_fParameters[0][1][0]);
+	vSample.rgb = ((vSampleIn * 1.5f) + vSampleOut) / 2.5f;
+	outCols.colour[1] = BloomWindowingAndSaturation(vSample, g_fParameters[1][2][2], g_fParameters[1][3][1], g_fParameters[0][0][1], g_fParameters[0][1][1]);
+
+//JIML
+	vSample.rgb = (vSampleIn * (1.0f - g_fParameters[0][1][3])) + (vSampleOut * g_fParameters[0][1][3]);
+//	vSample.rgb = ((vSampleIn * 1.5f) + vSampleOut) / 2.5f;
+
+	outCols.colour[2] = BloomWindowingAndSaturation(vSample, g_fParameters[1][2][3], g_fParameters[1][3][2], g_fParameters[0][0][2], g_fParameters[0][1][2]);
+
+	return outCols;
+}
+
+//-----------------------------------------------------------------------------
+// Name: BloomPassOneMRT
+// Type: Technique                                     
+// Desc: Window the HDR to get the bloom/glare luminance - 2 render targets
+//-----------------------------------------------------------------------------
+technique BloomPassOneMRT
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE BloomPassOneMRT();
+    }
+}
+
+
+//-----------------------------------------------------------------------------
+// Name: BloomPassTwo
+// Type: Technique                                     
+// Desc: blur the bloom buffer more without colour and windowing
+//-----------------------------------------------------------------------------
+HALF4 BloomPassTwo
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample;
+	vSample.rgb = (OuterAverage(IN) * 1.6875) + InnerAverage(IN);	// magic number to replicate old bloom effect (with bug that caused large outer ring influence)
+
+	vSample.rgb = ((vSample.rgb * (1.0f - g_fParameters[0][0][3])) + (h3tex2D(s0, IN.TexCoords) * g_fParameters[0][0][3]));
+
+	vSample.a = 1;	
+	return vSample;
+}
+
+//-----------------------------------------------------------------------------
+// Name: BloomPassTwo
+// Type: Technique                                     
+// Desc: blur the bloom buffer more without colour and windowing
+//-----------------------------------------------------------------------------
+technique BloomPassTwo
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE BloomPassTwo();
+    }
+}
+
+
+//-----------------------------------------------------------------------------
+// Name: BloomPassTwoSimple
+// Type: Technique                                     
+// Desc: blur the bloom buffer more without colour and windowing
+//-----------------------------------------------------------------------------
+HALF4 BloomPassTwoSimple
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample;
+	vSample.rgb = InnerAverage(IN);
+
+	vSample.a = 0;	// clear alpha to zero ready to reder particles into it
+	return vSample;
+}
+
+//-----------------------------------------------------------------------------
+// Name: BloomPassTwoSimple
+// Type: Technique                                     
+// Desc: blur the bloom buffer more without colour and windowing
+//-----------------------------------------------------------------------------
+technique BloomPassTwoSimple
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE BloomPassTwoSimple();
+    }
+}
+
+
+//-----------------------------------------------------------------------------
+// Name: GlarePass
+// Type: Pixel shader                                      
+// Desc: glare pass - not used at present (too expensive)
+//-----------------------------------------------------------------------------
+HALF4 GlarePass
+    (
+    in HALF2 vScreenPosition : TEXCOORD0
+    ) : COLOR
+{
+    HALF4 vSample = h4tex2D(s0, vScreenPosition);
+
+    HALF4 vColor = h4tex2D(s2, vScreenPosition);
+
+	for(int iSample = 0; iSample < 15; iSample++)
+    {
+        vColor += h4tex2D(s2, vScreenPosition + g_fGlareTexelOffsets[iSample].xy);
+    }
+
+	vSample += vColor / 32.0f;
+
+	return vSample;
+}
+
+//-----------------------------------------------------------------------------
+// Name: GlarePass
+// Type: Technique                                     
+// Desc: glare pass - not used at present (too expensive)
+//-----------------------------------------------------------------------------
+technique GlarePass
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE GlarePass();
+    }
+}
+
+//-----------------------------------------------------------------------------
+// Name: Debug
+// Type: Technique                                     
+// Desc: tex->screen using scr coords as uvs
+//-----------------------------------------------------------------------------
+HALF4 DebugShader
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample;
+	vSample.rgb = h3tex2D(s0, IN.TexCoords);
+	vSample.a = 1;
+	return vSample;
+}
+
+technique DebugShaderPass
+{
+    pass P0
+    {
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE DebugShader();
+    }
+}
+
+
+//-----------------------------------------------------------------------------
+// Name: Fog
+// Type: Technique                                     
+// Desc: 
+//-----------------------------------------------------------------------------
+HALF4 FogShader
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample;
+	vSample.rgb = h3tex2D(s0, IN.TexCoords);
+	HALF zBuf = vSample.r;
+// convert z buffer value back to z
+	HALF z = (g_fParameters[0][3][2] * g_fParameters[1][3][3]) / (g_fParameters[0][3][2] - (zBuf * (g_fParameters[0][3][2] - g_fParameters[1][3][3])));
+	vSample.a = (z - g_fParameters[1][2][0]) / (g_fParameters[1][1][1] - g_fParameters[1][2][0]);
+	vSample.a *= g_fParameters[1][0][3];
+
+	vSample.a = clamp(vSample.a, 0.0f, g_fParameters[1][0][3]);
+	
+	vSample.r = g_fParameters[1][0][2];
+	vSample.g = g_fParameters[1][0][1];
+	vSample.b = g_fParameters[1][0][0];
+	return vSample;
+}
+
+technique FogShaderPass
+{
+    pass P0
+    {
+		CullFaceEnable = false;
+//		CullMode = None;
+		FrontFace = CCW;
+
+		ColorWriteEnable = 0xf;
+
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,OneMinusSrcAlpha);
+//		AlphaBlendEnable = true;
+		AlphaTestEnable = false;
+//		DestBlend = InvSrcAlpha;
+//		SrcBlend = SrcAlpha;
+		AlphaFunc = float2(Greater, 0);
+		
+//		ZEnable = false;
+//		ZWriteEnable = false;	
+	
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE FogShader();
+    }
+}
+
+
+//-----------------------------------------------------------------------------
+// Name: Fog
+// Type: Technique                                     
+// Desc: 
+//-----------------------------------------------------------------------------
+HALF4 FogShaderLightmap
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample = h4tex2D(s0, IN.TexCoords);	// zbuffer
+	HALF4 cSample = h4tex2D(s1, IN.TexCoords);	// lightmap
+	
+	return FogLightmap(vSample, cSample);
+}
+
+technique FogShaderLightmapPass
+{
+    pass P0
+    {
+		CullFaceEnable = false;
+//		CullMode = None;
+		FrontFace = CCW;
+
+		ColorWriteEnable = 0xf;
+
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,OneMinusSrcAlpha);
+//		AlphaBlendEnable = true;
+		AlphaTestEnable = false;
+//		DestBlend = InvSrcAlpha;
+//		SrcBlend = SrcAlpha;
+		AlphaFunc = float2(Greater, 0);
+		
+//		ZEnable = false;
+//		ZWriteEnable = false;	
+	
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE FogShaderLightmap();
+    }
+}
+
+
+HALF4 FogShader2
+    (
+    in PASSTHRU_VERTEX IN
+    ) : COLOR
+{
+	HALF4 vSample;
+	vSample.r = h1tex2D(s0, IN.TexCoords);
+	HALF aSample = h1tex2D(s1, IN.TexCoords);
+	HALF zBuf = vSample.r - aSample;
+	if (zBuf != 0)
+		zBuf = aSample;
+	
+	HALF z = (g_fParameters[0][3][2] * g_fParameters[1][3][3]) / (g_fParameters[0][3][2] - (zBuf * (g_fParameters[0][3][2] - g_fParameters[1][3][3])));
+	vSample.a = (z - g_fParameters[1][2][0]) / (g_fParameters[1][1][1] - g_fParameters[1][2][0]);
+	vSample.a *= g_fParameters[1][0][3];
+
+	vSample.a = clamp(vSample.a, 0.0f, g_fParameters[1][0][3]);
+	vSample.r = g_fParameters[1][0][2];
+	vSample.g = g_fParameters[1][0][1];
+	vSample.b = g_fParameters[1][0][0];
+	return vSample;
+}
+
+technique FogShaderPass2
+{
+    pass P0
+    {
+		CullFaceEnable = false;
+//		CullMode = None;
+		FrontFace = CCW;
+
+		ColorWriteEnable = 0xf;
+
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,OneMinusSrcAlpha);
+//		AlphaBlendEnable = true;
+		AlphaTestEnable = false;
+//		DestBlend = InvSrcAlpha;
+//		SrcBlend = SrcAlpha;
+		AlphaFunc = float2(Greater, 0);
+
+//		ZEnable = false;
+//		ZWriteEnable = false;	
+	
+		VERTEXPROGRAM = compile VERTEXCOMPILE psThrough();
+        PIXELPROGRAM  = compile PIXELCOMPILE FogShader2();
+    }
+}

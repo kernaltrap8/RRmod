@@ -1,0 +1,59 @@
+// Diffuse skin CG vertex program shader for PS3
+
+float4 MaterialAmbient	: MATERIALAMBIENT	= {1.0f, 1.0f, 1.0f, 1.0f};
+float4 MaterialDiffuse	: MATERIALDIFFUSE	= {0.8f, 0.8f, 0.8f, 1.0f};
+
+float4 Ambient			: LIGHTAMBIENT		= { 0.2, 0.2, 0.0, 1.0};
+float4 mDirection0		: LIGHTDIRECTION	= { 0.0, 0.0, 1.0, 0.0};
+float4 mDiffuse0		: LIGHTCOLOR		= { 1.0, 1.0, 1.0, 1.0};
+
+float4x4 mViewProj				: VIEWPROJECTION;
+float4x4 mBlendingMatrices[8]	: BLENDINGMATRICES;
+
+void main(
+	float4 iPosition 	: POSITION, 	// in object space
+	float3 iNormal 		: NORMAL, 		// in object space
+	float3 iTexcoord 	: TEXCOORD0,
+	float4 BlendWeights	: BLENDWEIGHT,	// For upto 4 bones put 0.0 in the un-needed weight slots 	
+	float4 BoneIndices	: BLENDINDICES,	// If < 4 matrices put 0 in the un-needed index slots
+
+	out float4 oPosition : POSITION, 	//in projection space
+	out float4 oColour	 : COLOR,		// diffuse map
+	out float4 oTexcoord : TEXCOORD0	// diffuse map
+	)
+{
+	float4 Pos;
+	float4 Normal;
+
+	oTexcoord = float4(iTexcoord.xy, 0.0f, 1.0f);
+
+   	// cast the vectors to arrays for use in the for loop below
+   	float4x4 mWorldMatrixArray[4];
+   	mWorldMatrixArray[0] = mBlendingMatrices[BoneIndices.x];
+   	mWorldMatrixArray[1] = mBlendingMatrices[BoneIndices.y];
+   	mWorldMatrixArray[2] = mBlendingMatrices[BoneIndices.z];
+   	mWorldMatrixArray[3] = mBlendingMatrices[BoneIndices.w];
+
+   	// Average the Pos, Light Vec and Eye Vec using the weights 
+	Pos 	= (mul(iPosition, mWorldMatrixArray[0]) * BlendWeights.x);
+	Normal	= (mul(mWorldMatrixArray[0], iNormal) * BlendWeights.x);
+
+   	Pos 	+= (mul(iPosition, mWorldMatrixArray[1]) * BlendWeights.y);
+   	Normal	+= (mul(mWorldMatrixArray[1], iNormal) * BlendWeights.y);
+
+   	Pos 	+= (mul(iPosition, mWorldMatrixArray[2]) * BlendWeights.z);
+   	Normal	+= (mul(mWorldMatrixArray[2], iNormal) * BlendWeights.z);
+
+	Pos 	+= (mul(iPosition, mWorldMatrixArray[3]) * BlendWeights.w);
+	Normal	+= (mul(mWorldMatrixArray[3], iNormal) * BlendWeights.w);
+
+	Normal = normalize (Normal);
+                   
+    // transform position from world space into view and then projection space
+    oPosition = mul(float4(Pos.xyz, 1.0f), mViewProj);
+
+	// perform lighting
+    
+	float intens = clamp (dot (float4(Normal.xyz, 0.0f),-mDirection0), 0.0, 1.0);
+	oColour = MaterialAmbient * Ambient + MaterialDiffuse * mDiffuse0 * intens;
+}

@@ -1,0 +1,212 @@
+
+#define CG_BUILD
+#define CG_PS3_BUILD
+#define POINTLIGHT_0
+#define SPOTLIGHT_0
+#define LENSEFFECTS_SHC
+
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+#define BASE_SHH
+
+//-----------Change variable formats to make platform independant----------
+
+//Floats
+#define FLOAT  float 
+#define FLOAT2 float2 
+#define FLOAT3 float3 
+#define FLOAT4 float4  
+#define FLOAT3x3 float3x3
+#define FLOAT4x3 float4x3
+#define FLOAT3x4 float3x4
+#define FLOAT4x4 float4x4
+//Halves
+#define HALF half
+#define HALF2 half2
+#define HALF3 half3
+#define HALF4 half4
+#define HALF3x3 half3x3
+#define HALF4x3 half4x3
+#define HALF3x4 half3x4
+#define HALF4x4 half4x4
+//int
+#define INT int
+#define INT2 int2
+#define INT3 int3
+#define INT4 int4
+//Others
+#define BOOL bool
+#define STRING string
+#define TEXTURE texture
+#define SAMPLER2D sampler2D
+#define SAMPLERCUBE samplerCUBE
+//#define OUT out
+
+//-----------Change Technique formats to make platform independant----------
+#define VERTEXCOMPILE arbvp1
+#define PIXELCOMPILE arbfp1
+#define VERTEXPROGRAM VertexProgram
+#define PIXELPROGRAM FragmentProgram
+
+#define HLSL_OR_PS3_BUILD
+
+FLOAT3 GetBlack() { return FLOAT3(0,0,0); }
+FLOAT3 GetWhite() { return FLOAT3(1,1,1); }
+
+//-----------Change Function formats to make platform independant----------
+//This is here to prevent a bug where HLSL need to do 
+//its multiplication by (1r4c * 4r4c) where the CG and 
+//GLSL do it (4r4c * 4r1c). This should result in the 
+//same thing appearing on screen
+FLOAT4 MULTIPLY(FLOAT4x4 myMatrix, FLOAT4 myVector)
+{
+	return mul(myVector, myMatrix);
+}
+
+FLOAT4x4 MULTIPLY(FLOAT4x4 myMatrix1, FLOAT4x4 myMatrix2)
+{
+	return mul(myMatrix2, myMatrix1);
+}
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDVIEWPROJ_SHH
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDVIEWPROJ_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT4x4 WorldViewProjXf : WorldViewProjection;
+
+FLOAT4x4 GetWorldViewProj ()
+{
+	return WorldViewProjXf;
+}
+
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDTRANSPOSE
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDTRANSPOSE_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT4x4 WorldXf : World;
+
+FLOAT4x4 GetWorldTransform ()
+{
+	return WorldXf;
+}
+
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	Vertex shaders for normals
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDVIEWPOSITION
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDVIEWPROJ_SHH
+	Conor Lenihan
+	14 February 2007
+*/
+
+//-------------------------------------------------------------------------------------------------
+FLOAT4 CalcWorldViewPosition(FLOAT3 position)
+{
+	return MULTIPLY(WorldViewProjXf, FLOAT4(position,1.0f));
+}
+//-------------------------------------------------------------------------------------------------
+
+//////////////////////////////////////////////////////////
+// shader code ///////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+struct VertexInput 
+{
+    FLOAT3 Position : POSITION;
+};
+
+struct PixelInput 
+{
+	FLOAT4 HPosition    : POSITION;
+};
+
+//Vertex Shader
+PixelInput mainVS(VertexInput IN) 
+{
+	PixelInput OUT = (PixelInput)0;
+	OUT.HPosition = CalcWorldViewPosition(IN.Position.xyz);
+	return OUT;
+}
+
+//Pixel Shader
+FLOAT4 main(PixelInput IN) : COLOR 
+{  
+	return float4(0.0f, 0.0f, 1.0f,1.0f);
+}
+
+
+/////////////////////////////////////////////////////
+// TECHNIQUES /////////////////////////////////////////
+///////////////////////////////////////////////////////
+
+technique LightVolume_Additive
+{
+	pass p0
+    {
+	//Alpha technique
+		DepthMask = false;
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(Greater, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,OneMinusSrcAlpha);
+		CullFaceEnable = true;
+		FrontFace = CCW;
+		DepthTestEnable = false;
+		DepthMask = false;
+        VERTEXPROGRAM = compile VERTEXCOMPILE mainVS();
+        PIXELPROGRAM = compile PIXELCOMPILE main();
+    }
+}

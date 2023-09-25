@@ -1,0 +1,450 @@
+
+#define CG_BUILD
+#define CG_PS3_BUILD
+#define POINTLIGHT_0
+#define SPOTLIGHT_0
+#define PROJLIGHT_3
+
+/*
+	Diffuse Colour: Non-lit, no samplers
+	Conor Lenihan
+	15 February 2007
+*/
+
+#define ProjLight_SHC
+
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+#define BASE_SHH
+
+//-----------Change variable formats to make platform independant----------
+
+//Floats
+#define FLOAT  float 
+#define FLOAT2 float2 
+#define FLOAT3 float3 
+#define FLOAT4 float4  
+#define FLOAT3x3 float3x3
+#define FLOAT4x3 float4x3
+#define FLOAT3x4 float3x4
+#define FLOAT4x4 float4x4
+//Halves
+#define HALF half
+#define HALF2 half2
+#define HALF3 half3
+#define HALF4 half4
+#define HALF3x3 half3x3
+#define HALF4x3 half4x3
+#define HALF3x4 half3x4
+#define HALF4x4 half4x4
+//int
+#define INT int
+#define INT2 int2
+#define INT3 int3
+#define INT4 int4
+//Others
+#define BOOL bool
+#define STRING string
+#define TEXTURE texture
+#define SAMPLER2D sampler2D
+#define SAMPLERCUBE samplerCUBE
+//#define OUT out
+
+//-----------Change Technique formats to make platform independant----------
+#define VERTEXCOMPILE arbvp1
+#define PIXELCOMPILE arbfp1
+#define VERTEXPROGRAM VertexProgram
+#define PIXELPROGRAM FragmentProgram
+
+#define HLSL_OR_PS3_BUILD
+
+FLOAT3 GetBlack() { return FLOAT3(0,0,0); }
+FLOAT3 GetWhite() { return FLOAT3(1,1,1); }
+
+//-----------Change Function formats to make platform independant----------
+//This is here to prevent a bug where HLSL need to do 
+//its multiplication by (1r4c * 4r4c) where the CG and 
+//GLSL do it (4r4c * 4r1c). This should result in the 
+//same thing appearing on screen
+FLOAT4 MULTIPLY(FLOAT4x4 myMatrix, FLOAT4 myVector)
+{
+	return mul(myVector, myMatrix);
+}
+
+FLOAT4x4 MULTIPLY(FLOAT4x4 myMatrix1, FLOAT4x4 myMatrix2)
+{
+	return mul(myMatrix2, myMatrix1);
+}
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+/*
+	Lights: 	Deals with point and spot light values and illumination models.
+	
+	Note:		The LIGHTCONEINNER and LIGHTCONEOUTER for each spot must be in this order to
+				work with the heracles engine. If you swap them then you will have strange 
+				results in the binding stage of the shader. 
+				
+	Conor Lenihan
+	24 October 2006
+*/
+#define PROJLIGHTS_SHH
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------------------------------
+//	Point Light Defines
+//---------------------------------------------------------------------------------------------------------------
+#define PROJLIGHT_2
+#define ENABLE_PROJLIGHT_3
+#define PROJLIGHT_1
+#define ENABLE_PROJLIGHT_2
+#define ENABLE_PROJLIGHT_1
+
+//---------------------------------------------------------------------------------------------------------------
+//	Projection Light Attributes
+//---------------------------------------------------------------------------------------------------------------
+
+TEXTURE pl_3_Texture;
+SAMPLER2D pl_3_Sampler : PROJ_3_TEXTURE = sampler_state
+{
+  	MagFilter = Linear;
+  	MinFilter = LinearMipMapLinear;
+  	AddressU  = Border;
+  	AddressV  = Border;
+  	BorderColor = 0x00000000;
+};
+
+FLOAT4x4 	pl_3_TextureMat 	: PROJ_3_TEXTUREMATRIX; 		//= biasMatrix * projectionMatrix * modelMatrix
+FLOAT 		pl_3_Intensity 		: PROJ_3_INTENSITY = 1;			// How bright the image is
+FLOAT 		pl_3_ConeAngle		: PROJ_3_CONE;					// UNUSED (packed into tex mtx)
+FLOAT 		pl_3_PenumbraAngle	: PROJ_3_PENUMBRA;				// UNUSED
+FLOAT4 		pl_3_Colour 		: PROJ_3_COLOUR = {1,1,1,1};	// A tint applied to the image
+FLOAT4 		pl_3_Attenuation 	: PROJ_3_ATTENUATION;			// UNUSED
+FLOAT4 		pl_3_Scrolluv 		: PROJ_3_SCROLLUV;				// UNUSED
+FLOAT4		pl_3_LightPos		: PROJ_3_LIGHTPOS;
+
+TEXTURE pl_2_Texture;
+SAMPLER2D pl_2_Sampler : PROJ_2_TEXTURE = sampler_state
+{
+  	MagFilter = Linear;
+  	MinFilter = LinearMipMapLinear;
+  	AddressU  = Border;
+  	AddressV  = Border;
+  	BorderColor = 0x00000000;
+};
+
+FLOAT4x4 	pl_2_TextureMat 	: PROJ_2_TEXTUREMATRIX; 		//= biasMatrix * projectionMatrix * modelMatrix
+FLOAT 		pl_2_Intensity 		: PROJ_2_INTENSITY = 1;			// How bright the image is
+FLOAT 		pl_2_ConeAngle		: PROJ_2_CONE;					// UNUSED (packed into tex mtx)
+FLOAT 		pl_2_PenumbraAngle	: PROJ_2_PENUMBRA;				// UNUSED
+FLOAT4 		pl_2_Colour 		: PROJ_2_COLOUR = {1,1,1,1};	// A tint applied to the image
+FLOAT4 		pl_2_Attenuation 	: PROJ_2_ATTENUATION;			// UNUSED
+FLOAT4 		pl_2_Scrolluv 		: PROJ_2_SCROLLUV;				// UNUSED
+FLOAT4		pl_2_LightPos		: PROJ_2_LIGHTPOS;
+
+TEXTURE pl_1_Texture;
+SAMPLER2D pl_1_Sampler : PROJ_1_TEXTURE = sampler_state
+{
+  	MagFilter = Linear;
+  	MinFilter = LinearMipMapLinear;
+  	AddressU  = Border;
+  	AddressV  = Border;
+  	BorderColor = 0x00000000;
+};
+
+FLOAT4x4 	pl_1_TextureMat 	: PROJ_1_TEXTUREMATRIX; 		//= biasMatrix * projectionMatrix * modelMatrix
+FLOAT 		pl_1_Intensity 		: PROJ_1_INTENSITY = 1;			// How bright the image is
+FLOAT 		pl_1_ConeAngle		: PROJ_1_CONE;					// UNUSED (packed into tex mtx)
+FLOAT 		pl_1_PenumbraAngle	: PROJ_1_PENUMBRA;				// UNUSED
+FLOAT4 		pl_1_Colour 		: PROJ_1_COLOUR = {1,1,1,1};	// A tint applied to the image
+FLOAT4 		pl_1_Attenuation 	: PROJ_1_ATTENUATION;			// UNUSED
+FLOAT4 		pl_1_Scrolluv 		: PROJ_1_SCROLLUV;				// UNUSED
+FLOAT4		pl_1_LightPos		: PROJ_1_LIGHTPOS;
+
+INT   		g_numActiveLights 	: NUM_ACTIVE_LIGHTS = 0;
+//---------------------------------------------------------------------------------------------------------------
+//	Light Functions
+//---------------------------------------------------------------------------------------------------------------
+// Calculate where the texture is being projected to for a vertex
+FLOAT4 CalcProjTexCoord(FLOAT4 vertPos, FLOAT4x4 texMatrix)
+{
+	return MULTIPLY(texMatrix, FLOAT4(vertPos.xyz, 1.0));
+}
+
+// Calculate the projected lights contribution
+FLOAT4 GetProjectedContrib(FLOAT4 projTexCoord,
+							SAMPLER2D texSampler,
+							FLOAT intensity,
+							FLOAT4 colour,
+							FLOAT3 lightPos,
+							FLOAT3 objPos,
+							FLOAT3 worldNormal)
+{
+	FLOAT4 pc;
+	pc = tex2Dproj(texSampler, projTexCoord);
+	FLOAT3 Ln = normalize(lightPos - objPos);
+	FLOAT t = dot(worldNormal, Ln);
+	t = saturate(t * (2 - t));
+	pc *= intensity * colour * t;
+	return pc;
+}
+//-------------------------------------------------------------------------------------------------
+/*
+	Vertex shaders for normals
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDVIEWPOSITION
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDVIEWPROJ_SHH
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDVIEWPROJ_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT4x4 WorldViewProjXf : WorldViewProjection;
+
+FLOAT4x4 GetWorldViewProj ()
+{
+	return WorldViewProjXf;
+}
+
+
+//-------------------------------------------------------------------------------------------------
+FLOAT4 CalcWorldViewPosition(FLOAT3 position)
+{
+	return MULTIPLY(WorldViewProjXf, FLOAT4(position,1.0f));
+}
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDTRANSPOSE
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDTRANSPOSE_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT4x4 WorldXf : World;
+
+FLOAT4x4 GetWorldTransform ()
+{
+	return WorldXf;
+}
+
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	Vertex shaders for normals
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define STRUCT_VERTEX_NORMAL
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDINVERSETRANSPOSE
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDINVERSETRANSPOSE_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT4x4 WorldITXf : WorldInverseTranspose;
+
+FLOAT4x4 GetWorldInverseTranspose ()
+{
+	return WorldITXf;
+}
+
+
+//-------------------------------------------------------------------------------------------------
+
+
+FLOAT3 CalcWorldNormal(FLOAT4 Normal)
+{
+	return (normalize(MULTIPLY(GetWorldInverseTranspose(), Normal).xyz));
+}
+
+//-------------------------------------------------------------------------------------------------
+
+struct VertexInput 
+{
+    FLOAT4 Position : POSITION;
+	FLOAT4 Normal  	: NORMAL;
+};
+
+struct PixelInput 
+{
+    FLOAT4 HPosition    : POSITION;
+	FLOAT3 ObjPosition  : TEXCOORD0;
+    FLOAT3 WorldNormal  : TEXCOORD1;
+    FLOAT4 TexCoord0	: TEXCOORD2;
+    FLOAT4 TexCoord1	: TEXCOORD3;
+    FLOAT4 TexCoord2	: TEXCOORD4;
+};
+
+//////////////////////////////////////////////////////////
+// shader code ///////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+PixelInput VertexToPixelInput(VertexInput IN)
+{
+	PixelInput OUT = (PixelInput)0;	
+	OUT.HPosition = CalcWorldViewPosition(IN.Position.xyz);
+	FLOAT4 p4 = FLOAT4(IN.Position.xyz, 1.0f);
+	FLOAT4 posWorld;
+	posWorld = MULTIPLY(GetWorldTransform(), p4);
+	OUT.WorldNormal = CalcWorldNormal(IN.Normal);
+	OUT.ObjPosition = posWorld.xyz;
+
+	if(g_numActiveLights >= 1)
+		OUT.TexCoord0 = CalcProjTexCoord(posWorld, pl_1_TextureMat);
+	if(g_numActiveLights >= 2)
+		OUT.TexCoord1 = CalcProjTexCoord(posWorld, pl_2_TextureMat);
+	if(g_numActiveLights >= 3)
+		OUT.TexCoord2 = CalcProjTexCoord(posWorld, pl_3_TextureMat);
+	return OUT;
+}
+
+//////////////////////////////////////////////////////////
+// shader code ///////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+//Vertex Shader
+PixelInput mainVS(VertexInput IN) 
+{
+	PixelInput OUT = VertexToPixelInput(IN);
+	return OUT;
+}
+
+//Pixel Shader
+FLOAT4 main(PixelInput IN) : COLOR 
+{  
+	FLOAT4 projContrib = 0;
+	if(g_numActiveLights >= 1)
+		projContrib += GetProjectedContrib(IN.TexCoord0, pl_1_Sampler, pl_1_Intensity, pl_1_Colour, pl_1_LightPos.xyz, IN.ObjPosition.xyz, IN.WorldNormal.xyz);
+	if(g_numActiveLights >= 2)
+		projContrib += GetProjectedContrib(IN.TexCoord1, pl_2_Sampler, pl_2_Intensity, pl_2_Colour, pl_2_LightPos.xyz, IN.ObjPosition.xyz, IN.WorldNormal.xyz);
+	if(g_numActiveLights >= 3)
+		projContrib += GetProjectedContrib(IN.TexCoord2, pl_3_Sampler, pl_3_Intensity, pl_3_Colour, pl_3_LightPos.xyz, IN.ObjPosition.xyz, IN.WorldNormal.xyz);
+	;	
+	return FLOAT4(projContrib.xyz, 1.0f);
+}
+
+
+/////////////////////////////////////////////////////
+// TECHNIQUES /////////////////////////////////////////
+///////////////////////////////////////////////////////
+
+technique ProjTex_pj
+{
+	pass p0
+    {
+	//Basic opaque solid technique
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		AlphaTestEnable = false;
+		BlendEnable = false;
+		CullFaceEnable = true;
+		FrontFace = CCW;
+        VERTEXPROGRAM = compile VERTEXCOMPILE mainVS();
+        PIXELPROGRAM = compile PIXELCOMPILE main();
+    }
+}
+
+technique ProjTex_pj_Additive
+{
+	pass p0
+	{
+	//Additive Shader	
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		DepthMask = false;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(Greater, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcColor,One);
+		CullFaceEnable = true;
+		FrontFace = CCW;
+        VERTEXPROGRAM = compile VERTEXCOMPILE mainVS();
+        PIXELPROGRAM = compile PIXELCOMPILE main();
+	}
+}
+
+technique ProjTex_pj_Alpha
+{
+	pass p0
+	{
+	//Alpha technique
+		DepthMask = false;
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(Greater, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,OneMinusSrcAlpha);
+		CullFaceEnable = true;
+		FrontFace = CCW;
+        VERTEXPROGRAM = compile VERTEXCOMPILE mainVS();
+        PIXELPROGRAM = compile PIXELCOMPILE main();
+	}
+}	

@@ -1,0 +1,415 @@
+#define CG_BUILD
+#define CG_PS3_BUILD
+#define POINTLIGHT_0
+#define SPOTLIGHT_0
+#define PROJLIGHT_4
+
+/*
+	Diffuse Colour: Non-lit, no samplers
+	Conor Lenihan
+	15 February 2007
+*/
+
+#define ProjLight_SHC
+
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+#define BASE_SHH
+
+//-----------Change variable formats to make platform independant----------
+//Floats
+#define FLOAT  float 
+#define FLOAT2 float2 
+#define FLOAT3 float3 
+#define FLOAT4 float4  
+#define FLOAT3x3 float3x3
+#define FLOAT4x3 float4x3
+#define FLOAT3x4 float3x4
+#define FLOAT4x4 float4x4
+//Halves
+#define HALF half
+#define HALF2 half2
+#define HALF3 half3
+#define HALF4 half4
+#define HALF3x3 half3x3
+#define HALF4x3 half4x3
+#define HALF3x4 half3x4
+#define HALF4x4 half4x4
+//int
+#define INT int
+#define INT2 int2
+#define INT3 int3
+#define INT4 int4
+//Others
+#define BOOL bool
+#define STRING string
+#define TEXTURE texture
+#define SAMPLER2D sampler2D
+#define SAMPLERCUBE samplerCUBE
+//#define OUT out
+
+
+//-----------Change Technique formats to make platform independant----------
+#define VERTEXCOMPILE arbvp1
+#define PIXELCOMPILE arbfp1
+#define VERTEXPROGRAM VertexProgram
+#define PIXELPROGRAM FragmentProgram
+#define HLSL_OR_PS3_BUILD
+
+HALF3 GetBlack() { return HALF3(0,0,0); }
+HALF3 GetWhite() { return HALF3(1,1,1); }
+
+//-----------Change Function formats to make platform independant----------
+//This is here to prevent a bug where HLSL need to do 
+//its multiplication by (1r4c * 4r4c) where the CG and 
+//GLSL do it (4r4c * 4r1c). This should result in the 
+//same thing appearing on screen
+HALF4 MULTIPLY(HALF4x4 myMatrix, HALF4 myVector)
+{
+	return mul(myVector, myMatrix);
+
+	return HALF4(0.0, 0.0, 0.0, 0.0);
+
+}
+
+HALF4x4 MULTIPLY(HALF4x4 myMatrix1, HALF4x4 myMatrix2)
+{
+	return mul(myMatrix2, myMatrix1);
+
+	return HALF4x4(
+        0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0);
+
+}
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+/*
+	Lights: 	Deals with point and spot light values and illumination models.
+	
+	Note:		The LIGHTCONEINNER and LIGHTCONEOUTER for each spot must be in this order to
+				work with the heracles engine. If you swap them then you will have strange 
+				results in the binding stage of the shader. 
+				
+	Conor Lenihan
+	24 October 2006
+*/
+#define PROJLIGHTS_SHH
+
+//---------------------------------------------------------------------------------------------------------------
+//	Point Light Defines
+//---------------------------------------------------------------------------------------------------------------
+#define PROJLIGHT_3
+#define ENABLE_PROJLIGHT_4
+#define PROJLIGHT_2
+#define ENABLE_PROJLIGHT_3
+#define PROJLIGHT_1
+#define ENABLE_PROJLIGHT_2
+#define ENABLE_PROJLIGHT_1
+
+//---------------------------------------------------------------------------------------------------------------
+//	Projection Light Attributes
+//---------------------------------------------------------------------------------------------------------------
+HALF4x4 	pl_3_TextureMat : PROJ_3_TEXTUREMATRIX; 		//= biasMatrix * projectionMatrix * modelMatrix
+HALF4x4 	pl_3_ViewProjMat: PROJ_3_VIEWPROJMATRIX; 		//= biasMatrix * projectionMatrix * modelMatrix
+TEXTURE 	pl_3_Texture;
+SAMPLER2D 	pl_3_Sampler : PROJ_3_TEXTURE = sampler_state
+{
+  	MagFilter = Linear;
+  	MinFilter = LinearMipMapLinear;
+  	AddressU  = Border;
+  	AddressV  = Border;
+  	BorderColor = 0x00;
+};
+
+HALF4x4 	pl_2_TextureMat	: PROJ_2_TEXTUREMATRIX; 		//= biasMatrix * projectionMatrix * modelMatrix
+HALF4x4 	pl_2_ViewProjMat: PROJ_2_VIEWPROJMATRIX; 		//= biasMatrix * projectionMatrix * modelMatrix
+TEXTURE 	pl_2_Texture;
+SAMPLER2D 	pl_2_Sampler : PROJ_2_TEXTURE = sampler_state
+{
+  	MagFilter = Linear;
+  	MinFilter = LinearMipMapLinear;
+  	AddressU  = Border;
+  	AddressV  = Border;
+  	BorderColor = 0x00;
+};
+
+HALF4x4 	pl_1_TextureMat : PROJ_1_TEXTUREMATRIX; 		//= biasMatrix * projectionMatrix * modelMatrix
+HALF4x4 	pl_1_ViewProjMat: PROJ_1_VIEWPROJMATRIX; 		//= biasMatrix * projectionMatrix * modelMatrix
+TEXTURE 	pl_1_Texture;
+SAMPLER2D 	pl_1_Sampler : PROJ_1_TEXTURE = sampler_state
+{
+  	MagFilter = Linear;
+  	MinFilter = LinearMipMapLinear;
+  	AddressU  = Border ;
+  	AddressV  = Border ;
+  	BorderColor = 0x00;
+};
+
+HALF	g_DepthBias 	: SHADOW_DEPTHBIAS = 0.0f;
+HALF	g_ShadowColour 	: SHADOW_COLOUR = 0.5f;
+HALF 	g_PCFOffset  	: SHADOW_PCFOFFSET = 0.5f;
+INT   	g_numShadows 	: SHADOW_NUMSHADOWS = 1;
+//---------------------------------------------------------------------------------------------------------------
+//	Light Functions
+//---------------------------------------------------------------------------------------------------------------
+// Calculate where the texture is being projected to for a vertex
+HALF4 CalcShadowMapCoord(HALF4 vertPos, HALF4x4 texMatrix)
+{
+	return MULTIPLY(texMatrix, HALF4(vertPos.xyz, 1.0));
+}
+
+
+
+//-------------------------------------------------------------------------------------------------
+/*
+	Vertex shaders for normals
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDVIEWPOSITION
+
+//Includes
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDVIEWPROJ_SHH
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDVIEWPROJ_SHH
+
+//Includes
+
+HALF4x4 WorldViewProjXf : WorldViewProjection;
+
+HALF4x4 GetWorldViewProj ()
+{
+	return WorldViewProjXf;
+}
+
+
+//-------------------------------------------------------------------------------------------------
+HALF4 CalcWorldViewPosition(HALF3 position)
+{
+	return MULTIPLY(WorldViewProjXf, HALF4(position,1.0f));
+}
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDTRANSPOSE
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDTRANSPOSE_SHH
+
+//Includes
+
+HALF4x4 WorldXf : World;
+
+HALF4x4 GetWorldTransform ()
+{
+	return WorldXf;
+}
+
+
+//-------------------------------------------------------------------------------------------------
+
+struct VertexInput 
+{
+    HALF4 Position : POSITION;
+};
+
+struct PixelInput 
+{
+    HALF4 HPosition : POSITION;
+    HALF4 TexCoord0	: TEXCOORD0;
+    HALF4 TexCoord1	: TEXCOORD1;
+    HALF4 Depth0		: TEXCOORD5;
+    HALF4 Depth1		: TEXCOORD6;
+};
+
+//////////////////////////////////////////////////////////
+// shader code ///////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+
+
+HALF GetShadowContrib(HALF4 posFromLight, SAMPLER2D depthMap, HALF4 texcoord)
+{
+	HALF pixelZ 		= ((posFromLight.z + g_DepthBias) / posFromLight.w );	
+	
+	if(pixelZ < 0.0f)
+	{
+		return 1.0f;
+	}
+	else
+	{
+		HALF tl = min(texcoord.x, texcoord.y);
+		HALF br = max(texcoord.x, texcoord.y);
+		if(tl > 0.0f && br < texcoord.w)
+		{
+			HALF depthMapValue = h1tex2Dproj(depthMap, texcoord.xyz);
+			HALF shadowContrib = pixelZ > depthMapValue ? 1.0f : g_ShadowColour;
+			return shadowContrib;
+		}
+		else
+		{
+			return 1.0f;
+		}
+	}
+}
+
+HALF GetShadowContribPCF(HALF4 posFromLight, SAMPLER2D depthMap, HALF4 texcoord, HALF2 offset)
+{
+   HALF scale = g_PCFOffset * posFromLight.w;
+   HALF4 tweak = 0;
+   tweak.xy = scale * (offset + HALF2(-1.5f,-1.5f));
+	HALF a0 = GetShadowContrib(posFromLight, depthMap, texcoord + tweak);
+   tweak.xy = scale * (offset + HALF2(0.5f,-1.5f));
+	HALF a1 = GetShadowContrib(posFromLight, depthMap, texcoord + tweak);   
+   tweak.xy = scale * (offset + HALF2(-1.5f,0.5f));
+   HALF a2 = GetShadowContrib(posFromLight, depthMap, texcoord + tweak);
+   tweak.xy = scale * (offset + HALF2(0.5f,0.5f));
+	HALF a3 = GetShadowContrib(posFromLight, depthMap, texcoord + tweak);
+
+   HALF4 Weights;
+   
+    // Bilinear. More expensive, looks noisy.
+    //asm {
+    //    getWeights2D Weights, texcoord.xy, depthMap, MagFilter=linear, MinFilter=linear, OffsetX = 0.5f, OffsetY = 0.5f
+    //};
+
+    //Weights = HALF4( (1-Weights.x)*(1-Weights.y), Weights.x*(1-Weights.y), (1-Weights.x)*Weights.y, Weights.x*Weights.y );
+
+    //HALF4 aN =HALF4(a0, a1, a2, a3); 
+   //HALF avg = dot(aN,Weights);
+   HALF avg = (a0 + a1 + a2 + a3) * 0.25;
+   
+	return avg;
+}
+
+PixelInput VertexToPixelInput(VertexInput IN)
+{
+	PixelInput OUT = (PixelInput)0;	
+	
+	// Vertex pos in screenspace
+	OUT.HPosition = CalcWorldViewPosition(IN.Position.xyz);
+	
+	// Proj tex coord of this vert.
+	HALF4 posWorld = MULTIPLY(GetWorldTransform(), HALF4(IN.Position.xyz, 1.0f));
+	
+	// Get some useful vert positions for each of the shadows
+	OUT.TexCoord0 	= CalcShadowMapCoord(posWorld, pl_1_TextureMat);
+	OUT.Depth0 		= CalcShadowMapCoord(posWorld, pl_1_ViewProjMat);
+	
+	// Get some useful vert positions for each of the shadows
+	OUT.TexCoord1 	= CalcShadowMapCoord(posWorld, pl_2_TextureMat);
+	OUT.Depth1 		= CalcShadowMapCoord(posWorld, pl_2_ViewProjMat);
+		
+	return OUT;
+}
+
+//////////////////////////////////////////////////////////
+// shader code ///////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+//Vertex Shader
+PixelInput mainVS(VertexInput IN) 
+{
+	PixelInput OUT = VertexToPixelInput(IN);
+	return OUT;
+}
+
+//Pixel Shader
+HALF4 main(PixelInput IN, HALF2 ScreenPos : WPOS) : COLOR 
+{  
+	// Something to store the colour in
+	HALF4 finalColour = 1.0f;
+	    
+	    
+   
+	HALF s0 = GetShadowContrib(IN.Depth0, pl_1_Sampler, IN.TexCoord0);
+	finalColour.rgb *= s0;
+
+   if(g_numShadows > 1)
+	{
+		HALF s1 = GetShadowContrib(IN.Depth1, pl_2_Sampler, IN.TexCoord1);
+		finalColour.rgb *= s1;
+	}
+
+		
+	return finalColour;     
+}
+
+HALF4 mainPCF(PixelInput IN, HALF2 ScreenPos : WPOS) : COLOR 
+{  
+	// Something to store the colour in
+	HALF4 finalColour = 1.0f;
+	 HALF2 offset;
+    offset = (HALF)(frac(ScreenPos.xy * 0.5) > 0.25);
+    
+    offset.y += offset.x;
+    if(offset.y > 1.1)
+      offset.y = 0;    
+    
+    HALF s0 = GetShadowContribPCF(IN.Depth0, pl_1_Sampler, IN.TexCoord0, offset);
+    finalColour.rgb *= (s0);
+    
+    if(g_numShadows > 1)
+	{
+		HALF s1 = GetShadowContribPCF(IN.Depth1, pl_2_Sampler, IN.TexCoord1,offset);
+		finalColour.rgb *= s1;
+	}
+    
+    
+	 return finalColour;
+}
+
+
+/////////////////////////////////////////////////////
+// TECHNIQUES /////////////////////////////////////////
+///////////////////////////////////////////////////////
+
+technique ShadowMap_pj
+{   
+	pass p0
+	{
+	//Additive Shader	
+		AlphaFunc = float2(Greater, 0);
+		AlphaTestEnable = true;
+		BlendEnable = true;
+		BlendFunc = int2(DstColor, Zero);
+		CullFaceEnable = true;
+		DepthFunc = LessEqual;
+		DepthTestEnable = true;
+		FrontFace = CCW;
+        VERTEXPROGRAM = compile VERTEXCOMPILE mainVS();
+        PIXELPROGRAM = compile PIXELCOMPILE main();
+	}
+}
+
+technique ShadowMap_PCF_pj
+{   
+	pass p0
+	{
+	//Additive Shader	
+		AlphaFunc = float2(Greater, 0);
+		AlphaTestEnable = true;
+		BlendEnable = true;
+		BlendFunc = int2(DstColor, Zero);
+		CullFaceEnable = true;
+		DepthFunc = LessEqual;
+		DepthTestEnable = true;
+		FrontFace = CCW;
+        VERTEXPROGRAM = compile VERTEXCOMPILE mainVS();
+        PIXELPROGRAM = compile PIXELCOMPILE mainPCF();
+	}
+}

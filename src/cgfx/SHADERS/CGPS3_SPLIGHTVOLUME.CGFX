@@ -1,0 +1,505 @@
+
+#define CG_BUILD
+#define CG_PS3_BUILD
+#define POINTLIGHT_0
+#define SPOTLIGHT_0
+#define SPLIGHTVOLUME_SHC
+
+#define SPOTLIGHT_1
+
+// Half precision causes problems on the PS3
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+#define BASE_SHH
+
+//-----------Change variable formats to make platform independant----------
+
+//Floats
+#define FLOAT  float 
+#define FLOAT2 float2 
+#define FLOAT3 float3 
+#define FLOAT4 float4  
+#define FLOAT3x3 float3x3
+#define FLOAT4x3 float4x3
+#define FLOAT3x4 float3x4
+#define FLOAT4x4 float4x4
+//Halves
+#define HALF half
+#define HALF2 half2
+#define HALF3 half3
+#define HALF4 half4
+#define HALF3x3 half3x3
+#define HALF4x3 half4x3
+#define HALF3x4 half3x4
+#define HALF4x4 half4x4
+//int
+#define INT int
+#define INT2 int2
+#define INT3 int3
+#define INT4 int4
+//Others
+#define BOOL bool
+#define STRING string
+#define TEXTURE texture
+#define SAMPLER2D sampler2D
+#define SAMPLERCUBE samplerCUBE
+//#define OUT out
+
+//-----------Change Technique formats to make platform independant----------
+#define VERTEXCOMPILE arbvp1
+#define PIXELCOMPILE arbfp1
+#define VERTEXPROGRAM VertexProgram
+#define PIXELPROGRAM FragmentProgram
+
+#define HLSL_OR_PS3_BUILD
+
+FLOAT3 GetBlack() { return FLOAT3(0,0,0); }
+FLOAT3 GetWhite() { return FLOAT3(1,1,1); }
+
+//-----------Change Function formats to make platform independant----------
+//This is here to prevent a bug where HLSL need to do 
+//its multiplication by (1r4c * 4r4c) where the CG and 
+//GLSL do it (4r4c * 4r1c). This should result in the 
+//same thing appearing on screen
+FLOAT4 MULTIPLY(FLOAT4x4 myMatrix, FLOAT4 myVector)
+{
+	return mul(myVector, myMatrix);
+}
+
+FLOAT4x4 MULTIPLY(FLOAT4x4 myMatrix1, FLOAT4x4 myMatrix2)
+{
+	return mul(myMatrix2, myMatrix1);
+}
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+/*
+	Lights: 	Deals with point and spot light values and illumination models.
+	
+	Note:		The LIGHTCONEINNER and LIGHTCONEOUTER for each spot must be in this order to
+				work with the heracles engine. If you swap them then you will have strange 
+				results in the binding stage of the shader. 
+				
+	Conor Lenihan
+	24 October 2006
+*/
+#define LIGHTS_SHH
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------------------------------
+//	Point Light Defines
+//---------------------------------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------------------------------
+//	Spot Light Defines
+//---------------------------------------------------------------------------------------------------------------
+#define ENABLE_SPOTLIGHT_1
+
+//---------------------------------------------------------------------------------------------------------------
+//	Point Light Attributes
+//---------------------------------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------------------------------
+//	Spot Light Attributes
+//---------------------------------------------------------------------------------------------------------------
+FLOAT3 LightSpotPosition1 : SPOTLIGHT_POSITION
+<
+    STRING Object = "Spot Light 1";
+	STRING UIName =  "Spot Pos 1";
+    STRING Space = "World";
+> = {100.0f, 100.0f, -100.0f};
+
+FLOAT3 LightSpotDirection1 : SPOTLIGHT_DIRECTION
+<
+    STRING Object = "Spot Light 1";
+    STRING Space = "World";
+> = {0.0f, 0.0f, 1.0f};
+
+FLOAT3 LightSpotColor1 : SPOTLIGHT_COLOUR
+<
+    STRING UIName =  "Spot Color 1";
+    STRING UIWidget = "Color";
+> = {1.0f, 1.0f, 1.0f};
+
+FLOAT LightSpotConeInner1 : SPOTLIGHT_CONEINNER
+<
+    STRING UIName = "Spot 1 Inner Cone";
+	STRING UIWidget = "slider";
+    FLOAT UIMin = 0.0;
+    FLOAT UIMax = 3.14;
+    FLOAT UIStep = 0.1;
+> = 0.785;
+
+FLOAT LightSpotConeOuter1 : SPOTLIGHT_CONEOUTER
+<
+    STRING UIName = "Spot 1 Outer Cone";
+	STRING UIWidget = "slider";
+    FLOAT UIMin = 0.0;
+    FLOAT UIMax = 3.14;
+    FLOAT UIStep = 0.1;
+> = 1.57;
+
+FLOAT LightSpotIntensity1 : SPOTLIGHT_INTENSITY
+<
+	STRING UIName = "Spot Light 1 Intensity";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 8;
+	FLOAT UIStep = 0.1;
+> = 1;
+
+
+//---------------------------------------------------------------------------------------------------------------
+//	Light Functions
+//---------------------------------------------------------------------------------------------------------------
+FLOAT3 CalcLightVector(FLOAT3 lightPos, FLOAT3 objectPos) 
+{
+	return normalize(lightPos - objectPos);
+}
+FLOAT3 CalcLightVector(FLOAT3 lightPos, FLOAT3 objectPos, out FLOAT distance) 
+{
+	FLOAT3 lightVec = (lightPos - objectPos);
+	distance = length(lightVec);
+	return normalize(lightVec);
+}
+
+
+FLOAT3 SpotIlluminationModel(FLOAT3 lightPos, 
+								FLOAT3 objPosition, 
+								FLOAT3 lightDirection,
+								FLOAT angleInner,
+								FLOAT angleOuter,
+								FLOAT intensity,
+								FLOAT3 worldEyeVec, 
+								FLOAT3 normalVector, 
+								FLOAT specExpon, 
+								out FLOAT colour,
+								out FLOAT distance)
+{
+	FLOAT3 Ln = CalcLightVector(lightPos, objPosition, distance);
+   FLOAT lightSurfaceVector = dot(Ln, -lightDirection);
+   
+   FLOAT a = (angleOuter); // calculated on CPU:  a = cos( cone outer angle)
+   FLOAT lightCoef = (lightSurfaceVector - a);
+
+   if(lightCoef < 0)
+   {  
+     // if pixel is outside spotlight cone, don't do lighting calculations
+     
+     colour = 0;
+     FLOAT3 empty = -1;
+
+     return empty;
+   }
+   else
+   {   
+	FLOAT3 Hn = normalize(worldEyeVec + Ln);
+	FLOAT ldn = dot(Ln,normalVector);
+	FLOAT4 lightingModel = lit(ldn,dot(Hn,normalVector),specExpon);
+	
+	FLOAT b = (angleInner); // calculated on CPU: b = 1 / (cos (cone inner angle) - cos(cone outer angle))
+	FLOAT t = saturate(lightCoef * b); // t = intensity, decreases in penumbra (quasi-linear)
+	t = (t * (2 - t)); // make t quadratic
+	//t = t * t * (3 - 2 * t);
+	colour =  intensity *  t;
+	return lightingModel.xyz;
+   }	
+}
+
+void SpotIlluminationModel(FLOAT3 lightPos, 
+								FLOAT3 objPosition, 
+								FLOAT3 lightDirection,
+								FLOAT angleInner,
+								FLOAT angleOuter,
+								FLOAT intensity,
+								out FLOAT colour,
+								out FLOAT distance)
+{
+	FLOAT3 Ln = CalcLightVector(lightPos, objPosition, distance);
+	
+	FLOAT lightSurfaceVector = dot(Ln, -lightDirection);
+	
+	FLOAT a = (angleOuter);
+	FLOAT b = (angleInner);
+	FLOAT t = saturate((lightSurfaceVector - a) * b);
+   t = (t * (2 - t));
+	//t = t * t * (3 - 2 * t);
+	colour =  intensity *  t;	
+}
+
+FLOAT3 SpotIlluminationModel(FLOAT3 lightPos, 
+								FLOAT3 objPosition, 
+								FLOAT3 lightDirection,
+								FLOAT angleInner,
+								FLOAT angleOuter,
+								FLOAT intensity, 
+								FLOAT3 normalVector, 
+								out FLOAT colour,
+								out FLOAT distance)
+{
+	FLOAT3 Ln = CalcLightVector(lightPos, objPosition, distance);
+	FLOAT ldn = dot(Ln,normalVector);
+	FLOAT4 lightingModel = lit(ldn,0.0f,0.0f);
+	
+	FLOAT lightSurfaceVector = dot(Ln, -lightDirection);
+	
+	FLOAT a = (angleOuter);
+	FLOAT b = (angleInner);
+	FLOAT t = saturate((lightSurfaceVector - a) * b);
+   t = (t * (2 - t));
+	//t = t * t * (3 - 2 * t);
+	colour =  intensity *  t;
+	return lightingModel.xyz;	
+}
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+/*
+	Light Attenuation: 	Deals with lights attenuation
+	
+	Note:	The ATTENCONSTANT, ATTENLINEAR & ATTENCONSTANT  for each spot must be in this order
+			to work with the heracles engine. If you swap them then you will have strange 
+			results in the binding stage of the shader. 
+				
+	Conor Lenihan
+	19 Novemeber 2006
+*/
+#define LIGHT_ATTENUATION_SHH
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+/*
+	Lights: 	Deals with point and spot light values and illumination models.
+	
+	Note:		The LIGHTCONEINNER and LIGHTCONEOUTER for each spot must be in this order to
+				work with the heracles engine. If you swap them then you will have strange 
+				results in the binding stage of the shader. 
+				
+	Conor Lenihan
+	24 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
+//	Point Light Attenuation Attributes//Drum/Build/image/Data/Shaders/HLSL_Phong.fx
+//---------------------------------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------------------------------
+//	Spot Light Attenuation Attributes
+//---------------------------------------------------------------------------------------------------------------
+FLOAT LightSpotConstantAtten1 : SPOTLIGHT_ATTENCONSTANT
+<
+	STRING UIName = "Spot 1 Constant Attn";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 8.0;
+	FLOAT UIStep = 0.05;
+> = 1.0;
+
+FLOAT LightSpotLinearAtten1 : SPOTLIGHT_ATTENLINEAR
+<
+	STRING UIName = "Spot 1 Linear Attn";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 0.08;
+	FLOAT UIStep = 0.005;
+> = 0.0;
+
+FLOAT LightSpotQuadraticAtten1 : SPOTLIGHT_ATTENQUADRATIC
+<
+	STRING UIName = "Spot 1 Quadratic Attn";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 0.08;
+	FLOAT UIStep = 0.005;
+> = 0.0;
+
+//---------------------------------------------------------------------------------------------------------------
+//	Light Attentuation Functions
+//---------------------------------------------------------------------------------------------------------------
+FLOAT CalulateAttenuation(	FLOAT distanceToObj,
+							FLOAT Ac,			
+							FLOAT Al,		
+							FLOAT Aq)
+{
+//	return (1.0 /  (Ac + distanceToObj* (Al + Aq * distanceToObj)));
+	return saturate(Ac + (distanceToObj * (Al + Aq * distanceToObj)));
+}
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDVIEWPROJ_SHH
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDVIEWPROJ_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT4x4 WorldViewProjXf : WorldViewProjection;
+
+FLOAT4x4 GetWorldViewProj ()
+{
+	return WorldViewProjXf;
+}
+
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDTRANSPOSE
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDTRANSPOSE_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT4x4 WorldXf : World;
+
+FLOAT4x4 GetWorldTransform ()
+{
+	return WorldXf;
+}
+
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	Vertex shaders for normals
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDVIEWPOSITION
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDVIEWPROJ_SHH
+	Conor Lenihan
+	14 February 2007
+*/
+
+//-------------------------------------------------------------------------------------------------
+FLOAT4 CalcWorldViewPosition(FLOAT3 position)
+{
+	return MULTIPLY(WorldViewProjXf, FLOAT4(position,1.0f));
+}
+//-------------------------------------------------------------------------------------------------
+
+FLOAT LightSpotDistanceMultiplier : SPOTLIGHT_VOLUMEDISTANCEMUL
+<
+	STRING UIName = "volume distance multiplier";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.1;
+	FLOAT UIMax = 100.0;
+	FLOAT UIStep = 1.0;
+> = 1.0;
+
+//////////////////////////////////////////////////////////
+// shader code ///////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+struct VertexInput 
+{
+    FLOAT3 Position : POSITION;
+};
+
+struct PixelInput 
+{
+	FLOAT4 HPosition    : POSITION;
+	FLOAT3 ObjPosition  : TEXCOORD0;
+};
+
+//Vertex Shader
+PixelInput mainVS(VertexInput IN) 
+{
+	PixelInput OUT = (PixelInput)0;
+ 
+    FLOAT4 pos = FLOAT4(IN.Position.xyz, 1.0);
+	FLOAT3 posWorld = MULTIPLY(GetWorldTransform(), pos).xyz;
+	OUT.HPosition = CalcWorldViewPosition(IN.Position.xyz);
+ 
+	OUT.ObjPosition = posWorld;
+	
+	
+	return OUT;
+}
+
+//Pixel Shader
+float4 main(PixelInput IN) : COLOR 
+{  
+	FLOAT distanceToObj;
+	FLOAT attenuation;
+	FLOAT lightIntensity;
+    FLOAT3 lightColour;
+	
+	SpotIlluminationModel(LightSpotPosition1, IN.ObjPosition, LightSpotDirection1, LightSpotConeInner1, LightSpotConeOuter1, LightSpotIntensity1,
+									lightIntensity, distanceToObj);
+	attenuation     = CalulateAttenuation(distanceToObj * LightSpotDistanceMultiplier, LightSpotConstantAtten1, LightSpotLinearAtten1, LightSpotQuadraticAtten1);
+	lightColour     = (LightSpotColor1 * lightIntensity * attenuation);
+
+	return float4(lightColour,1.0f);
+}
+
+
+/////////////////////////////////////////////////////
+// TECHNIQUES /////////////////////////////////////////
+///////////////////////////////////////////////////////
+
+technique LightVolume_Additive
+{
+	pass p0
+    {
+	//Additive Shader	
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		DepthMask = false;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(Greater, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcColor,One);
+		CullFaceEnable = true;
+		FrontFace = CCW;
+		DepthTestEnable = true;
+		DepthMask = false;
+        VERTEXPROGRAM = compile VERTEXCOMPILE mainVS();
+        PIXELPROGRAM = compile PIXELCOMPILE main();
+    }
+}

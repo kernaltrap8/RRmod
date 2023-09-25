@@ -1,0 +1,1505 @@
+
+#define CG_BUILD
+#define CG_PS3_BUILD
+#define POINTLIGHT_0
+#define SPOTLIGHT_2
+#define HAIR_SHC
+
+#define HEIGHTMAP
+
+#define HAIR_SHH
+
+#define WORLD_EYEVECTOR
+
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+#define BASE_SHH
+
+//-----------Change variable formats to make platform independant----------
+
+//Floats
+#define FLOAT  float 
+#define FLOAT2 float2 
+#define FLOAT3 float3 
+#define FLOAT4 float4  
+#define FLOAT3x3 float3x3
+#define FLOAT4x3 float4x3
+#define FLOAT3x4 float3x4
+#define FLOAT4x4 float4x4
+//Halves
+#define HALF half
+#define HALF2 half2
+#define HALF3 half3
+#define HALF4 half4
+#define HALF3x3 half3x3
+#define HALF4x3 half4x3
+#define HALF3x4 half3x4
+#define HALF4x4 half4x4
+//int
+#define INT int
+#define INT2 int2
+#define INT3 int3
+#define INT4 int4
+//Others
+#define BOOL bool
+#define STRING string
+#define TEXTURE texture
+#define SAMPLER2D sampler2D
+#define SAMPLERCUBE samplerCUBE
+//#define OUT out
+
+//-----------Change Technique formats to make platform independant----------
+#define VERTEXCOMPILE arbvp1
+#define PIXELCOMPILE arbfp1
+#define VERTEXPROGRAM VertexProgram
+#define PIXELPROGRAM FragmentProgram
+
+#define HLSL_OR_PS3_BUILD
+
+FLOAT3 GetBlack() { return FLOAT3(0,0,0); }
+FLOAT3 GetWhite() { return FLOAT3(1,1,1); }
+
+//-----------Change Function formats to make platform independant----------
+//This is here to prevent a bug where HLSL need to do 
+//its multiplication by (1r4c * 4r4c) where the CG and 
+//GLSL do it (4r4c * 4r1c). This should result in the 
+//same thing appearing on screen
+FLOAT4 MULTIPLY(FLOAT4x4 myMatrix, FLOAT4 myVector)
+{
+	return mul(myVector, myMatrix);
+}
+
+FLOAT4x4 MULTIPLY(FLOAT4x4 myMatrix1, FLOAT4x4 myMatrix2)
+{
+	return mul(myMatrix2, myMatrix1);
+}
+//-----------------------------------------------------------------------------------------------
+#define STRUCT_1UV_HAIR_SHH
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+//#include "Struct_1UV_N_E_T_B.shh"
+//-----------------------------------------------------------------------------------------------
+/*
+	Diffuse: 	Calculates diffuse 
+				D = Dintensity * Dcolor * Dcoefficent
+	Conor Lenihan
+	23 October 2006
+*/
+
+#define DIFFUSE_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT Kd : DIFFUSEINFLUENCE
+<
+	STRING UIName = "Diffuse Influence";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 8;
+	FLOAT UIStep = 0.1;
+> = 1;
+
+//Default texture to apply to object
+TEXTURE DiffuseTexture
+<
+	STRING ResourceName = "Drummer_d.dds";
+	STRING ResourceType = "2D";
+>;
+
+//Default 2D sampler to apply to object
+SAMPLER2D DiffuseSampler = sampler_state
+{
+	Texture = <DiffuseTexture>;
+  	MagFilter = Linear;
+  	MinFilter = LinearMipMapLinear;
+	AddressU = WRAP;
+	AddressV = WRAP;	
+};
+
+//-----------------------------------------------------------------------------------------------
+/*
+	DiffuseColour: 	Diffuse colour and alpha
+	Barry Northern
+	14 March 2007
+*/
+
+#define DIFFUSECOLOUR_SHH
+
+//Default diffuse colour to apply
+FLOAT3 DiffuseColor : DIFFUSECOLOUR
+<
+    STRING UIName =  "Diffuse Color";
+    STRING UIWidget = "Color";
+> = {1.0f, 1.0f, 1.0f};
+
+FLOAT DiffuseAlpha : DIFFUSEALPHA
+<
+	STRING UIName = "Diffuse Alpha";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0f;
+	FLOAT UIMax = 1.0f;
+	FLOAT UIStep = 0.01f;
+> = 1.0f;
+
+FLOAT3 GetDiffuse()
+{
+	return DiffuseColor;
+}
+
+FLOAT GetDiffuseAlpha(FLOAT v)
+{
+	return (DiffuseAlpha * v);
+}
+
+
+FLOAT3 CalcDiffuse(FLOAT diffuseCoeff, FLOAT3 lightColor, FLOAT3 InputColour)
+{
+	FLOAT3 finalDiffuse = diffuseCoeff * lightColor * InputColour;
+	return finalDiffuse;
+}
+
+FLOAT3 CalcInputColour(FLOAT3 col1, FLOAT3 col2)
+{
+	return (col1 * col2);
+}
+
+//-----------------------------------------------------------------------------------------------
+
+//Calculates diffuse if you want to use the default Sampler
+FLOAT3 CalcDiffuse(FLOAT diffuseCoeff, FLOAT3 lightColor, FLOAT2 diffuseTexCoord)
+{
+	FLOAT3 diffuseCol = diffuseCoeff * lightColor * DiffuseColor;
+	FLOAT3 texDiffuse = tex2D(DiffuseSampler, diffuseTexCoord).xyz;
+	FLOAT3 finalDiffuse = diffuseCol * texDiffuse;
+	return finalDiffuse;
+}
+
+FLOAT3 GetDiffuse(FLOAT2 texCoord)
+{
+	FLOAT3 texDiffuse = tex2D(DiffuseSampler, texCoord).xyz;
+	FLOAT3 finalDiffuse = DiffuseColor * texDiffuse;
+	return finalDiffuse;
+}
+
+FLOAT GetDiffuseAlpha (FLOAT2 texCoord, FLOAT v)
+{
+	FLOAT texAlph = tex2D(DiffuseSampler, texCoord).w;
+	FLOAT finalAlpha = (DiffuseAlpha * texAlph) * v;
+	return finalAlpha;
+}
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	Ambient - Over all colour that effects all parts of the object
+	Conor Lenihan
+	23 October 2006
+*/
+#define AMBIENT_SHH
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+//Default ambient colour to apply
+FLOAT3 LightAmbientColor : AMBIENT
+<
+    STRING UIName =  "Ambient Color";
+    STRING UIWidget = "Color";
+> = {0.17f, 0.17f, 0.17f};
+
+//Default ambient colour to apply
+FLOAT LightAmbientIntensity : AMBIENTINTENSITY
+<
+    STRING UIName =  "Ambient Intensity";
+    STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 8;
+	FLOAT UIStep = 0.1;
+> = 1.0;
+
+FLOAT3 GetAmbient() 
+{
+	return (LightAmbientIntensity * LightAmbientColor);
+}
+//-------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
+/*
+	Lambert: 	Pixel shader for the Lambert effect lighting model
+	Conor Lenihan
+	19 January 2007
+*/
+
+#define LAMBERT_SHH
+
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+/*
+	Light Attenuation: 	Deals with lights attenuation
+	
+	Note:	The ATTENCONSTANT, ATTENLINEAR & ATTENCONSTANT  for each spot must be in this order
+			to work with the heracles engine. If you swap them then you will have strange 
+			results in the binding stage of the shader. 
+				
+	Conor Lenihan
+	19 Novemeber 2006
+*/
+#define LIGHT_ATTENUATION_SHH
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+/*
+	Lights: 	Deals with point and spot light values and illumination models.
+	
+	Note:		The LIGHTCONEINNER and LIGHTCONEOUTER for each spot must be in this order to
+				work with the heracles engine. If you swap them then you will have strange 
+				results in the binding stage of the shader. 
+				
+	Conor Lenihan
+	24 October 2006
+*/
+#define LIGHTS_SHH
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------------------------------
+//	Point Light Defines
+//---------------------------------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------------------------------
+//	Spot Light Defines
+//---------------------------------------------------------------------------------------------------------------
+#define SPOTLIGHT_1
+#define ENABLE_SPOTLIGHT_2
+#define ENABLE_SPOTLIGHT_1
+
+//---------------------------------------------------------------------------------------------------------------
+//	Point Light Attributes
+//---------------------------------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------------------------------
+//	Spot Light Attributes
+//---------------------------------------------------------------------------------------------------------------
+FLOAT3 LightSpotPosition2 : SPOTLIGHT_POSITION
+<
+    STRING Object = "Point Light 2";
+	STRING UIName =  "Spot Pos 2";
+    STRING Space = "World";
+> = {100.0f, 100.0f, -100.0f};
+
+FLOAT3 LightSpotDirection2 : SPOTLIGHT_DIRECTION
+<
+    STRING Object = "Point Light 2";
+    STRING Space = "World";
+> = {0.0f, 0.0f, 1.0f};
+
+FLOAT3 LightSpotColor2 : SPOTLIGHT_COLOUR
+<
+    STRING UIName =  "Spot Color 2";
+    STRING UIWidget = "Color";
+> = {1.0f, 1.0f, 1.0f};
+
+FLOAT LightSpotConeInner2 : SPOTLIGHT_CONEINNER
+<
+    STRING UIName = "Spot 2 Inner Cone";
+	STRING UIWidget = "slider";
+    FLOAT UIMin = 0.0;
+    FLOAT UIMax = 3.14;
+    FLOAT UIStep = 0.1;
+> = 0.785;
+
+FLOAT LightSpotConeOuter2 : SPOTLIGHT_CONEOUTER
+<
+    STRING UIName = "Spot 2 Outer Cone";
+	STRING UIWidget = "slider";
+    FLOAT UIMin = 0.0;
+    FLOAT UIMax = 3.14;
+    FLOAT UIStep = 0.1;
+> = 1.57;
+
+FLOAT LightSpotIntensity2 : SPOTLIGHT_INTENSITY
+<
+	STRING UIName = "Spot Light 2 Intensity";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 8;
+	FLOAT UIStep = 0.1;
+> = 1;
+FLOAT3 LightSpotPosition1 : SPOTLIGHT_POSITION
+<
+    STRING Object = "Spot Light 1";
+	STRING UIName =  "Spot Pos 1";
+    STRING Space = "World";
+> = {100.0f, 100.0f, -100.0f};
+
+FLOAT3 LightSpotDirection1 : SPOTLIGHT_DIRECTION
+<
+    STRING Object = "Spot Light 1";
+    STRING Space = "World";
+> = {0.0f, 0.0f, 1.0f};
+
+FLOAT3 LightSpotColor1 : SPOTLIGHT_COLOUR
+<
+    STRING UIName =  "Spot Color 1";
+    STRING UIWidget = "Color";
+> = {1.0f, 1.0f, 1.0f};
+
+FLOAT LightSpotConeInner1 : SPOTLIGHT_CONEINNER
+<
+    STRING UIName = "Spot 1 Inner Cone";
+	STRING UIWidget = "slider";
+    FLOAT UIMin = 0.0;
+    FLOAT UIMax = 3.14;
+    FLOAT UIStep = 0.1;
+> = 0.785;
+
+FLOAT LightSpotConeOuter1 : SPOTLIGHT_CONEOUTER
+<
+    STRING UIName = "Spot 1 Outer Cone";
+	STRING UIWidget = "slider";
+    FLOAT UIMin = 0.0;
+    FLOAT UIMax = 3.14;
+    FLOAT UIStep = 0.1;
+> = 1.57;
+
+FLOAT LightSpotIntensity1 : SPOTLIGHT_INTENSITY
+<
+	STRING UIName = "Spot Light 1 Intensity";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 8;
+	FLOAT UIStep = 0.1;
+> = 1;
+
+
+//---------------------------------------------------------------------------------------------------------------
+//	Light Functions
+//---------------------------------------------------------------------------------------------------------------
+FLOAT3 CalcLightVector(FLOAT3 lightPos, FLOAT3 objectPos) 
+{
+	return normalize(lightPos - objectPos);
+}
+FLOAT3 CalcLightVector(FLOAT3 lightPos, FLOAT3 objectPos, out FLOAT distance) 
+{
+	FLOAT3 lightVec = (lightPos - objectPos);
+	distance = length(lightVec);
+	return normalize(lightVec);
+}
+
+
+FLOAT3 SpotIlluminationModel(FLOAT3 lightPos, 
+								FLOAT3 objPosition, 
+								FLOAT3 lightDirection,
+								FLOAT angleInner,
+								FLOAT angleOuter,
+								FLOAT intensity,
+								FLOAT3 worldEyeVec, 
+								FLOAT3 normalVector, 
+								FLOAT specExpon, 
+								out FLOAT colour,
+								out FLOAT distance)
+{
+	FLOAT3 Ln = CalcLightVector(lightPos, objPosition, distance);
+   FLOAT lightSurfaceVector = dot(Ln, -lightDirection);
+   
+   FLOAT a = (angleOuter); // calculated on CPU:  a = cos( cone outer angle)
+   FLOAT lightCoef = (lightSurfaceVector - a);
+
+   if(lightCoef < 0)
+   {  
+     // if pixel is outside spotlight cone, don't do lighting calculations
+     
+     colour = 0;
+     FLOAT3 empty = -1;
+
+     return empty;
+   }
+   else
+   {   
+	FLOAT3 Hn = normalize(worldEyeVec + Ln);
+	FLOAT ldn = dot(Ln,normalVector);
+	FLOAT4 lightingModel = lit(ldn,dot(Hn,normalVector),specExpon);
+	
+	FLOAT b = (angleInner); // calculated on CPU: b = 1 / (cos (cone inner angle) - cos(cone outer angle))
+	FLOAT t = saturate(lightCoef * b); // t = intensity, decreases in penumbra (quasi-linear)
+	t = (t * (2 - t)); // make t quadratic
+	//t = t * t * (3 - 2 * t);
+	colour =  intensity *  t;
+	return lightingModel.xyz;
+   }	
+}
+
+void SpotIlluminationModel(FLOAT3 lightPos, 
+								FLOAT3 objPosition, 
+								FLOAT3 lightDirection,
+								FLOAT angleInner,
+								FLOAT angleOuter,
+								FLOAT intensity,
+								out FLOAT colour,
+								out FLOAT distance)
+{
+	FLOAT3 Ln = CalcLightVector(lightPos, objPosition, distance);
+	
+	FLOAT lightSurfaceVector = dot(Ln, -lightDirection);
+	
+	FLOAT a = (angleOuter);
+	FLOAT b = (angleInner);
+	FLOAT t = saturate((lightSurfaceVector - a) * b);
+   t = (t * (2 - t));
+	//t = t * t * (3 - 2 * t);
+	colour =  intensity *  t;	
+}
+
+FLOAT3 SpotIlluminationModel(FLOAT3 lightPos, 
+								FLOAT3 objPosition, 
+								FLOAT3 lightDirection,
+								FLOAT angleInner,
+								FLOAT angleOuter,
+								FLOAT intensity, 
+								FLOAT3 normalVector, 
+								out FLOAT colour,
+								out FLOAT distance)
+{
+	FLOAT3 Ln = CalcLightVector(lightPos, objPosition, distance);
+	FLOAT ldn = dot(Ln,normalVector);
+	FLOAT4 lightingModel = lit(ldn,0.0f,0.0f);
+	
+	FLOAT lightSurfaceVector = dot(Ln, -lightDirection);
+	
+	FLOAT a = (angleOuter);
+	FLOAT b = (angleInner);
+	FLOAT t = saturate((lightSurfaceVector - a) * b);
+   t = (t * (2 - t));
+	//t = t * t * (3 - 2 * t);
+	colour =  intensity *  t;
+	return lightingModel.xyz;	
+}
+//-----------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
+//	Point Light Attenuation Attributes//Drum/Build/image/Data/Shaders/HLSL_Phong.fx
+//---------------------------------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------------------------------
+//	Spot Light Attenuation Attributes
+//---------------------------------------------------------------------------------------------------------------
+FLOAT LightSpotConstantAtten2 : SPOTLIGHT_ATTENCONSTANT
+<
+	STRING UIName = "Spot 2 Constant Attn";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 8.0;
+	FLOAT UIStep = 0.05;
+> = 1.0;
+
+FLOAT LightSpotLinearAtten2 : SPOTLIGHT_ATTENLINEAR
+<
+	STRING UIName = "Spot 2 Linear Attn";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 0.08;
+	FLOAT UIStep = 0.005;
+> = 0.0;
+
+FLOAT LightSpotQuadraticAtten2 : SPOTLIGHT_ATTENQUADRATIC
+<
+	STRING UIName = "Spot 2 Quadratic Attn";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 0.08;
+	FLOAT UIStep = 0.005;
+> = 0.0;
+FLOAT LightSpotConstantAtten1 : SPOTLIGHT_ATTENCONSTANT
+<
+	STRING UIName = "Spot 1 Constant Attn";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 8.0;
+	FLOAT UIStep = 0.05;
+> = 1.0;
+
+FLOAT LightSpotLinearAtten1 : SPOTLIGHT_ATTENLINEAR
+<
+	STRING UIName = "Spot 1 Linear Attn";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 0.08;
+	FLOAT UIStep = 0.005;
+> = 0.0;
+
+FLOAT LightSpotQuadraticAtten1 : SPOTLIGHT_ATTENQUADRATIC
+<
+	STRING UIName = "Spot 1 Quadratic Attn";
+	STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 0.08;
+	FLOAT UIStep = 0.005;
+> = 0.0;
+
+//---------------------------------------------------------------------------------------------------------------
+//	Light Attentuation Functions
+//---------------------------------------------------------------------------------------------------------------
+FLOAT CalulateAttenuation(	FLOAT distanceToObj,
+							FLOAT Ac,			
+							FLOAT Al,		
+							FLOAT Aq)
+{
+//	return (1.0 /  (Ac + distanceToObj* (Al + Aq * distanceToObj)));
+	return saturate(Ac + (distanceToObj * (Al + Aq * distanceToObj)));
+}
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+/*
+	Diffuse: 	Calculates diffuse 
+				D = Dintensity * Dcolor * Dcoefficent
+	Conor Lenihan
+	23 October 2006
+*/
+
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	Ambient - Over all colour that effects all parts of the object
+	Conor Lenihan
+	23 October 2006
+*/
+//-------------------------------------------------------------------------------------------------
+
+
+void LambertEffectColour(FLOAT3 objPosition, FLOAT3 diffuseColour, FLOAT3 normalVector, out FLOAT3 diffuse)
+{
+	diffuse = 0.0;
+
+	FLOAT distanceToObj;
+	FLOAT attenuation;
+	FLOAT lightIntensity;
+	FLOAT3 Ln;
+	FLOAT3 Hn;
+	FLOAT3 lighting;
+    FLOAT3 lightColour;
+	
+//---------------------------------------------------------------------------------------------------------------
+//	Point Light Behavior
+//---------------------------------------------------------------------------------------------------------------
+
+
+//---------------------------------------------------------------------------------------------------------------
+//	Spot Light Behaviour
+//---------------------------------------------------------------------------------------------------------------
+	lighting = SpotIlluminationModel(LightSpotPosition2, objPosition, LightSpotDirection2, LightSpotConeInner2, LightSpotConeOuter2, LightSpotIntensity2,
+									normalVector, lightIntensity, distanceToObj);
+	if (lighting.y > 0.0)
+	{
+        attenuation     = CalulateAttenuation(distanceToObj, LightSpotConstantAtten2, LightSpotLinearAtten2, LightSpotQuadraticAtten2);
+        lightColour     = LightSpotColor2 * lightIntensity * attenuation;
+		diffuse         += CalcDiffuse(lighting.y, lightColour, diffuseColour);
+	}
+	lighting = SpotIlluminationModel(LightSpotPosition1, objPosition, LightSpotDirection1, LightSpotConeInner1, LightSpotConeOuter1, LightSpotIntensity1,
+									 normalVector, lightIntensity, distanceToObj);
+	if (lighting.y > 0.0)
+	{
+        attenuation     = CalulateAttenuation(distanceToObj, LightSpotConstantAtten1, LightSpotLinearAtten1, LightSpotQuadraticAtten1);
+        lightColour     = LightSpotColor1 * lightIntensity * attenuation;
+		diffuse         += CalcDiffuse(lighting.y, lightColour, diffuseColour);
+	}
+
+	diffuse *= Kd;
+}
+
+void LambertEffect(FLOAT3 objPosition, FLOAT2 texCoord, FLOAT3 normalVector, out FLOAT3 diffuse)
+{
+	FLOAT3 diffuseColour = GetDiffuse(texCoord);
+	LambertEffectColour(objPosition, diffuseColour, normalVector, diffuse);
+}
+
+
+
+//--------------------------------------------------------------------------------------------
+#define HAIRVARIABLES_SHH
+
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+//Default diffuse colour to apply
+FLOAT3 BulkColour : HAIRBULKCOLOUR
+<
+    STRING UIName =  "Bulk Color";
+    STRING UIWidget = "Color";
+> = {0.8, 0.2, 0.1};
+
+FLOAT3 FrizzColour : HAIRFRIZZCOLOUR
+<
+    STRING UIName =  "Frizz Color";
+    STRING UIWidget = "Color";
+> = {0.7f, 0.5f, 0.0f};
+
+FLOAT NoiseTexDensity : HAIRDENSITY
+<
+    STRING UIName =  "Hair Texture Density";
+    STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 20;
+	FLOAT UIStep = 0.1;
+> = 8.0;
+
+FLOAT HeightmapDensity : HAIRHEIGHTDENSITY
+<
+    STRING UIName =  "Height Map Density";
+    STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 2;
+	FLOAT UIStep = 0.01;
+> = 1.5;
+
+
+FLOAT HairRimDensity: HAIRRIMDENSITY
+<
+    STRING UIName =  "Rim density";
+    STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 10;
+	FLOAT UIStep = 0.1;
+> = 3;
+
+
+FLOAT FrizzRadiusMin : HAIRFRIZZMIN
+<
+    STRING UIName =  "Frizz Radius Min";
+    STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 0.5;
+	FLOAT UIStep = 0.01;
+> = 0.1;
+
+FLOAT FrizzRadiusMax : HAIRFRIZZMAX
+<
+    STRING UIName =  "Frizz Radius Max";
+    STRING UIWidget = "slider";
+	FLOAT UIMin = 0;
+	FLOAT UIMax = 4;
+	FLOAT UIStep = 0.05;
+> = 0.45;
+
+FLOAT3 Lag : HAIRMOVEDIRECTION
+<
+    STRING UIName =  "Acceleration";
+> = {0,0,0};
+
+
+FLOAT HairLagDirectionMultiplier : HAIRMOVEMULTIPLIER
+<
+    STRING UIName =  "Acceleration Multiplier";
+    STRING UIWidget = "slider";
+    FLOAT UIMin = 0;
+    FLOAT UIMax = 2;
+    FLOAT UIStep = 0.01;
+> = 0.1;
+
+
+FLOAT HairLagRotationTheta :HAIRLAGROTATIONTHETA
+<
+    STRING UIName =  "Rotaion Acceleration Angle";
+    STRING UIWidget = "slider";
+    FLOAT UIMin = -1.3;
+    FLOAT UIMax = 1.3;
+    FLOAT UIStep = 0.05;
+> = 0;
+
+FLOAT HairLagRotationMultiplier : HAIRROTATIONMULTIPLIER
+<
+    STRING UIName =  "Rotation Multiplier";
+    STRING UIWidget = "slider";
+    FLOAT UIMin = 0;
+    FLOAT UIMax = 2;
+    FLOAT UIStep = 0.01;
+> = 1;
+
+FLOAT3 HairLagRotationAxis:HAIRLAGROTATIONAXIS
+<
+	STRING UIName =  "Rotation Axis";
+>  = {0,0,0};
+
+
+FLOAT EdgeAlpha : HAIREDGEALPHA
+<
+    STRING UIName =  "Alpha At Edge";
+    STRING UIWidget = "slider";
+	FLOAT UIMin = -1.0;
+	FLOAT UIMax = 1;
+	FLOAT UIStep = 0.01;
+> = 0;
+
+FLOAT AlphaStartPos : HAIRALPHAANGLE
+<
+    STRING UIName =  "Alpha Start Angle";
+    STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 89;
+	FLOAT UIStep = 1;
+> = 80;
+
+
+FLOAT GlowContrib : HAIRGLOWCONTRIB
+<
+    STRING UIName =  "Glow contribution";
+    STRING UIWidget = "slider";
+	FLOAT UIMin = 0.0;
+	FLOAT UIMax = 2;
+	FLOAT UIStep = 0.01;
+> = 1;
+
+//Default texture to apply to object
+TEXTURE EdgeTexture
+<
+	STRING ResourceName = "Drummer_d.dds";
+	STRING ResourceType = "2D";
+>;
+
+//Default 2D sampler to apply to object
+SAMPLER2D EdgeSampler = sampler_state
+{
+	Texture = <EdgeTexture>;
+  	MagFilter = Linear;
+  	MinFilter = LinearMipMapLinear;
+	AddressU = WRAP;
+	AddressV = CLAMP;	
+};
+
+FLOAT HairBacklightBleed : HAIRBACKLIGHTBLEED
+<
+    STRING UIName =  "Glow bleed level";
+    STRING UIWidget = "slider";
+	FLOAT UIMin = 1.0;
+	FLOAT UIMax = 4;
+	FLOAT UIStep = 0.05;
+> = 1.0;
+
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDVIEWPROJ_SHH
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDVIEWPROJ_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT4x4 WorldViewProjXf : WorldViewProjection;
+
+FLOAT4x4 GetWorldViewProj ()
+{
+	return WorldViewProjXf;
+}
+
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDTRANSPOSE
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDTRANSPOSE_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT4x4 WorldXf : World;
+
+FLOAT4x4 GetWorldTransform ()
+{
+	return WorldXf;
+}
+
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	Vertex shaders for normals
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define STRUCT_VERTEX_NORMAL
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDINVERSETRANSPOSE
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDINVERSETRANSPOSE_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT4x4 WorldITXf : WorldInverseTranspose;
+
+FLOAT4x4 GetWorldInverseTranspose ()
+{
+	return WorldITXf;
+}
+
+
+//-------------------------------------------------------------------------------------------------
+
+
+FLOAT3 CalcWorldNormal(FLOAT4 Normal)
+{
+	return (normalize(MULTIPLY(GetWorldInverseTranspose(), Normal).xyz));
+}
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	Vertex shaders for normals
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define WORLDVIEWPOSITION
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	WORLDVIEWPROJ_SHH
+	Conor Lenihan
+	14 February 2007
+*/
+
+//-------------------------------------------------------------------------------------------------
+FLOAT4 CalcWorldViewPosition(FLOAT3 position)
+{
+	return MULTIPLY(WorldViewProjXf, FLOAT4(position,1.0f));
+}
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	ViewInverse - Semantics connected to game, used to get the matrix of the camera
+	Conor Lenihan
+	17 January 2007
+*/
+
+#define VIEWINVERSE_SHH
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+
+FLOAT4x4 ViewInvXf : ViewInverse;
+
+FLOAT4x4 GetViewInverse ()
+{
+	return ViewInvXf;
+}
+
+FLOAT3 GetViewInversePosition ()
+{
+	return ViewInvXf[3].xyz;
+}
+
+//-------------------------------------------------------------------------------------------------
+#define FOG_SHH
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+#define FOG_ENABLED
+
+FLOAT Fog_Start : FOGSTART
+<
+    STRING UIName =  "Fog Start";
+    STRING UIWidget = "Fog Start";
+> = 0.0f;
+
+FLOAT Fog_End : FOGEND
+<
+    STRING UIName =  "Fog End";
+    STRING UIWidget = "Fog End";
+> = 100000.0f;
+
+FLOAT4 Fog : FOGCOLOR
+<
+    STRING UIName =  "Fog";
+    STRING UIWidget = "Fog";
+> = {1.0f, 1.0f, 1.0f, 0.0f};	// Fog that is white but no Density
+
+FLOAT CalculateExp2FogRatio (FLOAT distanceToCamera)
+{
+	FLOAT distanceInFog = clamp((Fog_End - distanceToCamera) / (Fog_End - Fog_Start), 0.0, 1.0);
+	FLOAT density = (1.0f - distanceInFog) * Fog.w;
+	return density;
+}
+
+FLOAT3 BlendFogAndLight (FLOAT3 currentColour, FLOAT fogRatio)
+{
+	return currentColour;
+}
+
+//-------------------------------------------------------------------------------------------------
+/*
+	Vertex shaders for eye vector
+	Conor Lenihan
+	14 February 2007
+*/
+
+#define STRUCT_VERTEX_EYEVECTOR
+
+//Includes
+//-----------------------------------------------------------------------------------------------
+/*
+	Base: This is used to make the rest of the files platform indepenant
+	Conor Lenihan
+	23 October 2006
+*/
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	ViewInverse - Semantics connected to game, used to get the matrix of the camera
+	Conor Lenihan
+	17 January 2007
+*/
+
+//-------------------------------------------------------------------------------------------------
+
+FLOAT3 CalcWorldEyeVec(FLOAT3 posWorld)
+{
+	return (normalize(GetViewInversePosition() - posWorld));
+}
+
+//-------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////
+/// structures /////////////////////////////////////
+////////////////////////////////////////////////////
+struct VertexInput 
+{
+    FLOAT3 Position : POSITION;
+    FLOAT4 UV0      : TEXCOORD0;
+    FLOAT4 Normal  	: NORMAL;
+	FLOAT4 Colour	: COLOR0;
+};
+
+struct PixelInput 
+{
+    FLOAT4 HPosition    : POSITION;
+    FLOAT4 TexCoord0   	: TEXCOORD0;
+	FLOAT3 ObjPosition  : TEXCOORD1;
+    FLOAT3 WorldNormal  : TEXCOORD2;
+    FLOAT3 WorldEyeVec  : TEXCOORD3;
+	FLOAT4 HairData		: TEXCOORD6;
+	FLOAT4 Colour		: COLOR0;
+};
+
+
+//Assume a normalised axis
+FLOAT3x3 RotationMatrix(FLOAT3 Axis, FLOAT Angle)
+{
+	FLOAT3x3 Rotate;
+	
+	FLOAT c = cos(Angle);
+	FLOAT s = sin(Angle);
+	FLOAT t = 1-c;
+	
+	//Rotate[0] = FLOAT3(t*Axis.x*Axis.x+c,        t*Axis.x*Axis.y+s*Axis.z, t*Axis.x*Axis.z-s*Axis.y);
+	//Rotate[1] = FLOAT3(t*Axis.y*Axis.x-s*Axis.z, t*Axis.y*Axis.y+c,        t*Axis.y*Axis.z+s*Axis.x);
+	//Rotate[2] = FLOAT3(t*Axis.z*Axis.x+s*Axis.y, t*Axis.z*Axis.y-s*Axis.y, t*Axis.z*Axis.z+c        );
+	//Rotate[0] = FLOAT3(1, 0, 0);
+	//Rotate[1] = FLOAT3(0, 1, 0);
+	//Rotate[2] = FLOAT3(0, 0, 1);
+	Rotate[0] = FLOAT3(t*Axis.x*Axis.x+c,        t*Axis.x*Axis.y-s*Axis.z, t*Axis.x*Axis.z+s*Axis.y);
+	Rotate[1] = FLOAT3(t*Axis.y*Axis.x+s*Axis.z, t*Axis.y*Axis.y+c,        t*Axis.y*Axis.z-s*Axis.x);
+	Rotate[2] = FLOAT3(t*Axis.z*Axis.x-s*Axis.y, t*Axis.z*Axis.y+s*Axis.y, t*Axis.z*Axis.z+c        );
+	return Rotate;
+}
+
+
+PixelInput VertexToPixelInputHairLayer(VertexInput IN, FLOAT Factor) 
+{
+	float FrizzRadius = (FrizzRadiusMax-FrizzRadiusMin)*IN.Colour.x+FrizzRadiusMin;
+	
+	FLOAT4 LagVector = FLOAT4(Lag,0);
+	LagVector.w = dot(LagVector.xyz, LagVector.xyz) == 0 ? 1 : 0;
+
+	float scale = dot(normalize(LagVector), IN.Normal);
+	
+	// This is a replica of Struct_1UV_N_E_T_B.shh
+	PixelInput OUT = (PixelInput)0;
+	
+	//Set up lag rotation matrix
+	FLOAT4 LagAxis = FLOAT4(HairLagRotationAxis, 0);
+	LagAxis.w = dot(HairLagRotationAxis, HairLagRotationAxis) == 0 ? 1 : 0;
+	LagAxis = normalize(LagAxis);
+	FLOAT3x3 LagMatrix = RotationMatrix(LagAxis, HairLagRotationTheta*Factor*0.125*HairLagRotationMultiplier);
+	FLOAT4 LagOffset = LagVector*Factor*HairLagDirectionMultiplier*(1-(scale*scale));
+	
+	
+	FLOAT3 posWorld = 0;
+	FLOAT4x4 TransMatrix = transpose(GetWorldTransform());
+	TransMatrix[0].w = 0;
+	TransMatrix[1].w = 0;
+	TransMatrix[2].w = 0;
+	TransMatrix[3] = FLOAT4(0,0,0,1);
+	
+	LagOffset.xyz += CalcWorldNormal(IN.Normal);
+	LagOffset.xyz = mul(LagMatrix, LagOffset.xyz);
+	LagOffset = normalize(LagOffset)*FrizzRadius*Factor;
+	LagOffset = MULTIPLY(TransMatrix, LagOffset);
+	IN.Position.xyz += LagOffset.xyz;
+
+	posWorld = MULTIPLY(GetWorldTransform(), FLOAT4(IN.Position, 1.0)).xyz;	
+	OUT.WorldNormal = CalcWorldNormal(IN.Normal);
+	OUT.HPosition = CalcWorldViewPosition(IN.Position);
+	OUT.ObjPosition = posWorld;
+
+	OUT.WorldEyeVec = CalcWorldEyeVec(posWorld);
+
+	OUT.TexCoord0 = IN.UV0;
+	
+	FLOAT distanceToCamera = distance(posWorld, GetViewInversePosition());
+	OUT.Colour.w = IN.Colour.w;
+	//End replica
+	
+	
+	FLOAT TexZ = Factor * 0.125;
+	OUT.Colour.rgb = lerp(FrizzColour, BulkColour, 1-TexZ);
+	
+	OUT.HairData.x = dot(OUT.WorldNormal, OUT.WorldEyeVec);
+	OUT.TexCoord0.z = TexZ;
+	
+	//Store point light in coord w
+
+	
+	return OUT;
+}
+
+
+
+PixelInput GetHairEdgeTextureCoordinates(VertexInput IN, PixelInput Pixel) 
+{
+	FLOAT4x4 tempViewMatrix = GetWorldViewProj ();
+	tempViewMatrix[3].xyz = 0;
+	tempViewMatrix[0].w = 0;
+	tempViewMatrix[1].w = 0;
+	tempViewMatrix[2].w = 0;
+	tempViewMatrix[3].w = 1;
+	
+	Pixel.TexCoord0.xy = MULTIPLY(tempViewMatrix, IN.Normal).xy;
+	Pixel.TexCoord0.z = dot(Pixel.WorldNormal, Pixel.WorldEyeVec);
+	
+	Pixel.WorldNormal = normalize(Pixel.WorldNormal + Pixel.WorldEyeVec);
+	//Pixel.Colour.a = 0;
+	Pixel.HairData.x = 0;		
+	return Pixel;
+}
+
+//-----------------------------------------------------------------------------------------------
+/*
+	Diffuse: 	Calculates diffuse 
+				D = Dintensity * Dcolor * Dcoefficent
+	Conor Lenihan
+	23 October 2006
+*/
+
+//-----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/*
+	Ambient - Over all colour that effects all parts of the object
+	Conor Lenihan
+	23 October 2006
+*/
+//-------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
+/*
+	Lambert: 	Pixel shader for the Lambert effect lighting model
+	Conor Lenihan
+	19 January 2007
+*/
+
+
+//--------------------------------------------------------------------------------------------
+//HEIGHTMAP TEST
+
+#define MY_HEIGHTMAP_SHH
+
+//Default texture to apply to object
+TEXTURE HeightmapTexture
+<
+	STRING ResourceName = "Drummer_d.dds";
+	STRING ResourceType = "2D";
+>;
+
+//Default 2D sampler to apply to object
+SAMPLER2D HeightmapSampler = sampler_state
+{
+	Texture = <HeightmapTexture>;
+  	MagFilter = Linear;
+  	MinFilter = LinearMipMapLinear;
+	AddressU = WRAP;
+	AddressV = WRAP;	
+};
+
+/*PixelInput GetHairEdgeTextureCoordinates(VertexInput IN, PixelInput Pixel) 
+{
+	FLOAT4x4 ViewMatrix = GetWorldViewProj ();
+	ViewMatrix[3].xyz = 0;
+	ViewMatrix[0].w = 0;
+	ViewMatrix[1].w = 0;
+	ViewMatrix[2].w = 0;
+	ViewMatrix[3].w = 1;
+	
+	Pixel.TexCoord0.xy = MULTIPLY(ViewMatrix, IN.Normal).xy;
+	Pixel.TexCoord0.z = dot(Pixel.WorldNormal, Pixel.WorldEyeVec);
+	
+	Pixel.WorldNormal = normalize(Pixel.WorldNormal + Pixel.WorldEyeVec);
+	Pixel.Colour.a = 0;
+			
+	return Pixel;
+}*/
+
+FLOAT3 GetBackGlow(FLOAT glowAngle, FLOAT normalEyeVecAnggle, FLOAT3 diffuseColour)  
+{
+	return saturate(diffuseColour.xyz*glowAngle * saturate(1-normalEyeVecAnggle*HairBacklightBleed));;
+}
+
+FLOAT3 HairLighting(FLOAT3 objPosition, FLOAT3 worldNormal, FLOAT glowAngle, FLOAT3 diffuseColour, FLOAT normalEyeVecAnggle)
+{
+//	FLOAT3 ambiContrib;
+	FLOAT3 diffContrib;
+
+	LambertEffectColour (objPosition, diffuseColour, worldNormal, diffContrib);
+//	ambiContrib = GetAmbient();
+	
+	FLOAT3 Colour;
+//	Colour = (ambiContrib + diffContrib + GetBackGlow(glowAngle, normalEyeVecAnggle, diffuseColour) * GlowContrib);
+	Colour = (diffContrib + GetBackGlow(glowAngle, normalEyeVecAnggle, diffuseColour) * GlowContrib);
+	
+	return Colour;
+}
+
+
+FLOAT HairLayerAlpha(FLOAT3 texCoord, FLOAT vertexAlpha)
+{  			
+	
+	FLOAT Noise = tex2D(DiffuseSampler, texCoord*NoiseTexDensity).r;
+	FLOAT Height = tex2D(HeightmapSampler, texCoord*HeightmapDensity).r + Noise.r;
+	
+	const float c = EdgeAlpha;
+	const float m = (1-EdgeAlpha)/(AlphaStartPos/90);
+	
+	float Alpha = saturate(vertexAlpha*m+c);	
+	float result = 0;
+	if(texCoord.z == 0)
+	{
+		result = Alpha;
+	}
+	
+	result += (texCoord.z < Height) ? Height*Alpha : 0;
+	
+	return result;
+}
+	
+FLOAT4 HairEdgeColour(FLOAT3 texCoord) 
+{  
+	FLOAT4 Colour = 1;
+		
+	FLOAT3 TexCoord0 = texCoord;
+	TexCoord0.x = atan2(texCoord.x, texCoord.y);
+	TexCoord0.y = 0;
+	
+	TexCoord0.x *= HairRimDensity;
+	
+	TexCoord0.y = 1-acos(-TexCoord0.z)*2/2.9;
+		
+	Colour = tex2D(EdgeSampler, TexCoord0.xy);
+	Colour.a = TexCoord0.z > 0 ? 0 : Colour.a;
+	return Colour;
+}
+
+
+
+PixelInput VSLevel0(VertexInput IN) 
+{
+	PixelInput OUT = VertexToPixelInputHairLayer(IN, 0);
+	return OUT;
+}
+PixelInput VSLevel1(VertexInput IN) 
+{
+	PixelInput OUT = VertexToPixelInputHairLayer(IN, 1);
+	return OUT;
+}
+PixelInput VSLevel2(VertexInput IN) 
+{
+	PixelInput OUT = VertexToPixelInputHairLayer(IN, 2);
+	return OUT;
+}
+PixelInput VSLevel3(VertexInput IN) 
+{
+	PixelInput OUT = VertexToPixelInputHairLayer(IN, 3);
+	return OUT;
+}
+PixelInput VSLevel4(VertexInput IN) 
+{
+	PixelInput OUT = VertexToPixelInputHairLayer(IN, 4);
+	return OUT;
+}
+PixelInput VSLevel5(VertexInput IN) 
+{
+	PixelInput OUT = VertexToPixelInputHairLayer(IN, 5);
+	return OUT;
+}
+PixelInput VSLevel6(VertexInput IN) 
+{
+	PixelInput OUT = VertexToPixelInputHairLayer(IN, 6);
+	return OUT;
+}
+PixelInput VSLevel7(VertexInput IN) 
+{
+	PixelInput OUT = VertexToPixelInputHairLayer(IN, 7);
+	return OUT;
+}
+PixelInput VSLevel8(VertexInput IN) 
+{
+	PixelInput Pixel = VertexToPixelInputHairLayer(IN, 8);
+	Pixel = GetHairEdgeTextureCoordinates(IN, Pixel);
+	return Pixel;
+}
+
+FLOAT4 main(PixelInput IN) : COLOR
+{
+	FLOAT4 Colour;
+	FLOAT vertexAlpha = IN.HairData.x;
+
+	Colour.rgb = HairLighting(IN.ObjPosition, IN.WorldNormal, IN.HairData.y, IN.Colour.xyz, IN.HairData.x);
+	Colour.rgb = BlendFogAndLight(Colour.rgb, IN.Colour.w);
+	Colour.a = HairLayerAlpha(IN.TexCoord0.xyz, vertexAlpha);
+	return Colour;
+}
+
+
+FLOAT4 mainEdge(PixelInput IN) : COLOR
+{
+	FLOAT4 Colour;
+	FLOAT4 diffuseColour;
+	
+	diffuseColour = HairEdgeColour(IN.TexCoord0.xyz);
+	
+	//last param is between normal and eye.  The edge is treated as a flat object so this will always be 0
+	Colour.rgb = HairLighting(IN.ObjPosition, IN.WorldNormal, IN.HairData.y, diffuseColour.xyz, 0);
+	Colour.rgb = BlendFogAndLight(Colour.rgb, IN.Colour.w);
+	Colour.a = HairLayerAlpha(IN.TexCoord0.xyz, diffuseColour.a);
+	return Colour;
+}
+
+
+technique Hair
+{
+	
+	pass p8
+	{
+		DepthMask = false;
+		FrontFace = CW;
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(Greater, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,OneMinusSrcAlpha);
+		CullFaceEnable = true;
+		VERTEXPROGRAM = compile VERTEXCOMPILE VSLevel8();
+		PIXELPROGRAM = compile PIXELCOMPILE mainEdge();
+	}
+	pass p0
+	{
+		DepthMask = false;
+		FrontFace = CCW;
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(Greater, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,OneMinusSrcAlpha);
+		CullFaceEnable = true;
+		VERTEXPROGRAM = compile VERTEXCOMPILE VSLevel0();
+		PIXELPROGRAM = compile PIXELCOMPILE main();
+	}
+	pass p1
+	{
+		DepthMask = false;
+		FrontFace = CCW;
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(Greater, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,OneMinusSrcAlpha);
+		CullFaceEnable = true;
+		VERTEXPROGRAM = compile VERTEXCOMPILE VSLevel1();
+		PIXELPROGRAM = compile PIXELCOMPILE main();
+	}
+	pass p2
+	{
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(Greater, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,OneMinusSrcAlpha);
+		CullFaceEnable = true;
+		FrontFace = CCW;
+		VERTEXPROGRAM = compile VERTEXCOMPILE VSLevel2();
+		PIXELPROGRAM = compile PIXELCOMPILE main();
+	}
+	pass p3
+	{
+		DepthMask = false;
+		FrontFace = CCW;
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(Greater, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,OneMinusSrcAlpha);
+		CullFaceEnable = true;
+		VERTEXPROGRAM = compile VERTEXCOMPILE VSLevel3();
+		PIXELPROGRAM = compile PIXELCOMPILE main();
+	}
+	pass p4
+	{
+		DepthMask = false;
+		FrontFace = CCW;
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(Greater, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,OneMinusSrcAlpha);
+		CullFaceEnable = true;
+		VERTEXPROGRAM = compile VERTEXCOMPILE VSLevel4();
+		PIXELPROGRAM = compile PIXELCOMPILE main();
+	}
+	pass p5
+	{
+		DepthMask = false;
+		FrontFace = CCW;
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(Greater, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,OneMinusSrcAlpha);
+		CullFaceEnable = true;
+		VERTEXPROGRAM = compile VERTEXCOMPILE VSLevel5();
+		PIXELPROGRAM = compile PIXELCOMPILE main();
+	}
+	pass p6
+	{
+		DepthMask = false;
+		FrontFace = CCW;
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(Greater, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,OneMinusSrcAlpha);
+		CullFaceEnable = true;
+		VERTEXPROGRAM = compile VERTEXCOMPILE VSLevel6();
+		PIXELPROGRAM = compile PIXELCOMPILE main();
+	}
+	pass p7
+	{
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		AlphaTestEnable = true;
+		AlphaFunc = float2(Greater, 0);
+		BlendEnable = true;
+		BlendFunc = int2(SrcAlpha,OneMinusSrcAlpha);
+		CullFaceEnable = true;
+		FrontFace = CCW;
+		VERTEXPROGRAM = compile VERTEXCOMPILE VSLevel7();
+		PIXELPROGRAM = compile PIXELCOMPILE main();
+	}
+	
+}

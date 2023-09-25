@@ -1,0 +1,89 @@
+// Simple test CG fragment program shader for PS3
+void main
+(
+	float4 color_in	: COLOR,
+	float2 texcoord	: TEXCOORD0,
+
+	uniform samplerRECT texture,
+
+	out float4 color_out : COLOR
+)
+{
+	color_out = texRECT(texture, texcoord) * color_in;
+}
+
+// Simple test CG vertex program shader for PS3
+void mainVs
+(
+	float4 position	: POSITION,
+	float4 color	: COLOR,
+	float2 texcoord	: TEXCOORD0,
+	
+    	uniform float4x4 transform : VIEWPROJECTION,
+
+	out float4 oPosition : POSITION,
+	out float4 oColor    : COLOR,
+	out float2 oTexCoord : TEXCOORD0
+)
+{	
+	oPosition = mul(float4(position.xyz, 1.0f), transform);
+	oColor = color;
+	oTexCoord = texcoord;
+}
+
+technique ALPHA_MODE_ADD_NO_ALPHA
+{
+	pass p0
+	{
+		BlendEnable = true;
+		BlendFunc = int2 (One, One);
+		DepthMask = false;
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		
+		VertexProgram = compile arbvp1 mainVs();
+		PIXELPROGRAM = compile arbfp1 main();
+	}
+}
+technique ALPHA_MODE_BLEND
+{
+	pass p0
+	{
+		BlendEnable = true;
+		BlendFunc = int2 (SrcAlpha, OneMinusSrcAlpha);
+		DepthMask = false;
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		
+		VertexProgram = compile arbvp1 mainVs();
+		PIXELPROGRAM = compile arbfp1 main();
+	}
+}
+technique ALPHA_MODE_SUBTRACT
+{
+	pass p0
+	{
+		BlendEnable = true;
+		BlendFunc = int2 (SrcAlpha, One);
+		BlendEquation = FuncReverseSubtract;
+		DepthMask = false;
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		
+		VertexProgram = compile arbvp1 mainVs();
+		PIXELPROGRAM = compile arbfp1 main();
+	}
+}
+technique ALPHA_MODE_NONE
+{
+	pass p0
+	{
+		BlendEnable = false;
+		DepthMask = false;
+		DepthTestEnable = true;
+		DepthFunc = LessEqual;
+		
+		VertexProgram = compile arbvp1 mainVs();
+		PIXELPROGRAM = compile arbfp1 main();
+	}
+}

@@ -1,0 +1,19 @@
+// Simple test CG vertex program shader for PS3
+
+void main
+(
+	float4 position	: POSITION,
+	float3 normal	: NORMAL,
+	float2 texcoord	: TEXCOORD0,
+	
+	uniform float4x4 transform,
+
+	out float4 oPosition : POSITION,
+//	out float3 oNormal   : NORMAL,
+	out float2 oTexCoord : TEXCOORD0
+)
+{
+	oPosition = mul(transform, position);
+//	oNormal = normal;
+	oTexCoord = texcoord;
+}

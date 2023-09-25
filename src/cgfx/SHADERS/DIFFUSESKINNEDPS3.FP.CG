@@ -1,0 +1,15 @@
+// Simple test CG fragment program shader for PS3
+
+void main
+(
+	float4 color_in	: COLOR,
+	float2 texcoord	: TEXCOORD0,
+
+	uniform samplerRECT texture,
+
+	out float4 color_out : COLOR
+)
+{
+	float4 colour_texture = texRECT(texture, texcoord);
+	color_out = colour_texture * color_in;
+}
