@@ -27,3 +27,5 @@ A. Im a software developer, noob reverse engineer, and game modder. My primary f
 <br>
 # Project announcements
 (19/9/2023): Project start date, Lua/XML/INI files are sorted from a game dump, files to be analyzed. | First mod released, [Unlock all e2a55f2](https://github.com/JamesIsWack/RRmod/commit/e2a55f2fc93c35b3a452f8a09d58e9e62aec395f)
+# Credits
+[cameron44251](https://github.com/cameron44251) for PS3 DLC
